@@ -9,6 +9,5 @@ namespace MyWallet.App.ViewModel
         public TransactionType Type { get; set; }
         public PriorityLevel Priority { get; set; }
         public decimal BudgetLimit { get; set; }
-        public User User { get; set; }
     }
 }

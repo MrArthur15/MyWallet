@@ -10,7 +10,6 @@ namespace MyWallet.App.ViewModel
         public decimal InitialBalance { get; set; }
         public decimal CreditLimit { get; set; }
         public AccountType Type { get; set; }
-        public User User { get; set; }
         public Bank Bank { get; set; }
     }
 }

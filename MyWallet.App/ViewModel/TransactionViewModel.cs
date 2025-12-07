@@ -14,7 +14,6 @@ namespace MyWallet.App.ViewModel
         public bool IsPaid { get; set; }
         public TransactionType Type { get; set; }
         public PaymentMethod PaymentType { get; set; }
-        public User User { get; set; }
         public Account Account { get; set; }
         public Category Category { get; set; }
     }

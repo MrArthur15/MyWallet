@@ -7,6 +7,5 @@ namespace MyWallet.App.ViewModel
     {
         public string Name { get; set; }
         public string Code { get; set; }
-        public User User { get; set; }
     }
 }
