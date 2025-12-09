@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.VisualBasic.Logging;
+using MyWallet.App.Others;
+using MyWallet.App.Register;
+using MyWallet.App.ViewModel;
 using MyWallet.Domain.Base;
 using MyWallet.Domain.Entities;
 using MyWallet.Repository.Context;
@@ -52,16 +55,27 @@ namespace MyWallet.App.Infra
             #endregion
 
             #region Forms
+            services.AddTransient<Login, Login>();
+            services.AddTransient<MainForm, MainForm>();
+            services.AddTransient<UserForm, UserForm>();
+            services.AddTransient<AccountForm, AccountForm>();
+            services.AddTransient<BankForm, BankForm>();
+            
+
             //services.AddTransient<Login, Login>();
             //services.AddTransient<CategoryForm, CategoryForm>();
-            
+
             #endregion
 
             services.AddSingleton(
                 new MapperConfiguration(
                     config => {
+                        config.CreateMap<User, UserViewModel>();
+                        config.CreateMap<Account, AccountViewModel>();
+                        config.CreateMap<Bank, BankViewModel>();
+
                         //config.CreateMap<User, UserViewModel>();
-                        
+
                     },
                     NullLoggerFactory.Instance).CreateMapper()
                 );
