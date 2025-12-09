@@ -54,6 +54,7 @@ namespace MyWallet.App.Register
                     {
                         FormToObject(bank);
                         _bankService.Update<Bank, Bank, BankValidators>(bank);
+
                     }
                 }
                 else
@@ -61,6 +62,10 @@ namespace MyWallet.App.Register
                     var bank = new Bank();
                     FormToObject(bank);
                     _bankService.Add<Bank, Bank, BankValidators>(bank);
+                    MessageBox.Show("Banco salvo!", "MyWallet", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.DialogResult = DialogResult.OK; // 1. Diz que deu certo
+                    this.Close();
 
                 }
                 

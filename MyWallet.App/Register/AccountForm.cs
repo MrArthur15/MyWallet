@@ -31,7 +31,7 @@ namespace MyWallet.App.Register
             
             cboType.DataSource = new[]
             {
-                new { Value = AccountType.Wallet,     Text = "Dinheiro" },
+                
                 new { Value = AccountType.Checking,   Text = "Conta Corrente" },
                 new { Value = AccountType.Savings,    Text = "Poupança" },
                 new { Value = AccountType.CreditCard, Text = "Cartão de Crédito" }
@@ -46,8 +46,8 @@ namespace MyWallet.App.Register
         private void CarregarComboBancos()
         {
             
-            var bancos = _bankService.Get<Bank>()
-                .Where(b => b.User.Id == UserSession.UserId)
+            var bancos = _bankService.Get<Bank>(new List<string> { "User" })
+                .Where(c => c.User != null && c.User.Id == UserSession.UserId)
                 .ToList();
 
             cboBank.DataSource = bancos;

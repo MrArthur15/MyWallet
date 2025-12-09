@@ -20,30 +20,36 @@ namespace MyWallet.App
         {
             _accountService = accountService;
             InitializeComponent();
-
+            CarregarGridContas();
         }
         private void CarregarGridContas()
         {
-            
-                
-            var contas = _accountService.Get<Account>()
-                .Where(c => c.User.Id == UserSession.UserId)
-                .Select(c => new
+            try
+            {
+                var contas = _accountService.Get<Account>(new List<string> { "User", "Bank" })
+                    .Where(c => c.User != null && c.User.Id == UserSession.UserId)
+                    .Select(c => new
+                    {
+                        Id = c.Id,
+                        Nome = c.Name,
+                        Saldo = c.InitialBalance,
+                        Banco = c.Bank?.Name ?? "N/A",
+                        Tipo = c.Type
+                    })
+                    .ToList();
+
+                dataGridView1.DataSource = contas;
+                // Verifique se o Grid não é nulo antes de configurar
+                if (dataGridView1.Columns.Count > 0)
                 {
-                    Id = c.Id,
-                    Nome = c.Name,
-                    Saldo = c.InitialBalance,
-                    Banco = c.Bank?.Name ?? "N/A", 
-                    Tipo = c.Type
-                })
-                .ToList();
-
-            dataGridView1.DataSource = contas;
-
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.Columns["Id"].Visible = false; 
-            
-            
+                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dataGridView1.Columns["Id"].Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar: " + ex.Message);
+            }
         }
 
         private void btnDeletar1_Click(object sender, EventArgs e)
@@ -70,7 +76,7 @@ namespace MyWallet.App
                 MessageBox.Show("Selecione uma conta para excluir.");
             }
         }
-        }
+        
 
         private void btnEditar1_Click(object sender, EventArgs e)
         {

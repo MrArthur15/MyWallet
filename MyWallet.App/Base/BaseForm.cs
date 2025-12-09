@@ -1,5 +1,7 @@
 ﻿using ReaLTaiizor.Controls;
 using ReaLTaiizor.Forms;
+using System.Windows.Forms; 
+using System;
 
 
 namespace MyWallet.App.Base
