@@ -21,6 +21,7 @@ namespace MyWallet.App.Others
             if (userEncontrado != null)
             {
                 UserSession.CurrentUser = userEncontrado;
+                
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }

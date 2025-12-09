@@ -18,6 +18,8 @@ namespace MyWallet.App.Register
         private IBaseService<Bank> _bankService;
 
         private int _id;
+
+
         public BankForm(IBaseService<Bank> bankService)
         {
             _bankService = bankService;
@@ -28,18 +30,40 @@ namespace MyWallet.App.Register
         {
             bank.Name = txtNome.Text;
             bank.Code = txtCodigo.Text;
-            bank.User = UserSession.CurrentUser;
+            if (bank.User != null && bank.User.Id == UserSession.UserId) ;
+
+            else
+            { 
+                var bancoNaMemoria = _bankService
+                    .Get<Bank>(new List<string> { "User" })
+                    .FirstOrDefault(b => b.User != null && b.User.Id == UserSession.UserId);
+
+                if (bancoNaMemoria != null)
+                {
+                    bank.User = bancoNaMemoria.User;
+                }
+                else
+                {
+                    bank.User = UserSession.CurrentUser;
+                }
+            }
         }
 
-        protected void GridToForm(DataGridViewRow row)
+        public void SetEditMode(int id)
         {
-            if (row.Cells["Id"].Value != null)
-            {
-                _id = (int)row.Cells["Id"].Value;
-            }
+            _id = id;
+            IsEditMode = true;
+            CarregarDadosEdicao();
+        }
 
-            txtNome.Text = row.Cells["Name"].Value?.ToString();
-            txtCodigo.Text = row.Cells["Code"].Value?.ToString();
+        private void CarregarDadosEdicao()
+        {
+            var bank = _bankService.GetById<Bank>(_id);
+            if (bank != null)
+            {
+                txtNome.Text = bank.Name;
+                txtCodigo.Text = bank.Code;
+            }
         }
         protected override void Save()
         {
@@ -54,7 +78,7 @@ namespace MyWallet.App.Register
                     {
                         FormToObject(bank);
                         _bankService.Update<Bank, Bank, BankValidators>(bank);
-
+                        
                     }
                 }
                 else
@@ -62,13 +86,14 @@ namespace MyWallet.App.Register
                     var bank = new Bank();
                     FormToObject(bank);
                     _bankService.Add<Bank, Bank, BankValidators>(bank);
-                    MessageBox.Show("Banco salvo!", "MyWallet", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    this.DialogResult = DialogResult.OK; // 1. Diz que deu certo
-                    this.Close();
+                    
 
                 }
-                
+                MessageBox.Show("Banco salvo!", "MyWallet", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+
             }
             catch (Exception ex)
             {

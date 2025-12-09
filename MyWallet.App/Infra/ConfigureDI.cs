@@ -11,10 +11,7 @@ using MyWallet.Domain.Entities;
 using MyWallet.Repository.Context;
 using MyWallet.Repository.Repository;
 using MyWallet.Service.Service;
-using System;
-using System.Collections.Generic;
-using System.Net.ServerSentEvents;
-using System.Text;
+
 
 namespace MyWallet.App.Infra
 {
@@ -60,7 +57,9 @@ namespace MyWallet.App.Infra
             services.AddTransient<UserForm, UserForm>();
             services.AddTransient<AccountForm, AccountForm>();
             services.AddTransient<BankForm, BankForm>();
-            
+            services.AddTransient<CategoryForm, CategoryForm>();
+
+
 
             //services.AddTransient<Login, Login>();
             //services.AddTransient<CategoryForm, CategoryForm>();
@@ -73,6 +72,7 @@ namespace MyWallet.App.Infra
                         config.CreateMap<User, UserViewModel>();
                         config.CreateMap<Account, AccountViewModel>();
                         config.CreateMap<Bank, BankViewModel>();
+                        config.CreateMap<Category, CategoryViewModel>();
 
                         //config.CreateMap<User, UserViewModel>();
 

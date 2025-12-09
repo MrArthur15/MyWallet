@@ -14,7 +14,7 @@ namespace MyWallet.Repository.Mapping
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).IsRequired();
             builder.Property(x => x.Type).IsRequired().HasConversion<string>().HasMaxLength(12);
-            builder.Property(x => x.InitialBalance).IsRequired();
+            builder.Property(x => x.InitialBalance);
             builder.Property(x => x.CreditLimit);
             builder.HasOne(x => x.User);
             builder.HasOne(x => x.Bank);

@@ -363,10 +363,7 @@
         private ReaLTaiizor.Controls.HopeTextBox txtNome;
         private ReaLTaiizor.Controls.HopeRoundButton btnVoltar;
         private ReaLTaiizor.Controls.HopeRoundButton btnEntrar;
-        private ReaLTaiizor.Controls.HopeTextBox hopeTextBox5;
-        private ReaLTaiizor.Controls.HopeTextBox hopeTextBox4;
-        private ReaLTaiizor.Controls.HopeTextBox hopeTextBox3;
-        private ReaLTaiizor.Controls.HopeTextBox hopeTextBox2;
+
         private ReaLTaiizor.Controls.HopeTextBox txtUsuario;
         private ReaLTaiizor.Controls.HopeRoundButton btnVoltar2;
         private ReaLTaiizor.Controls.HopeRoundButton btnCriar;
@@ -375,6 +372,6 @@
         private ReaLTaiizor.Controls.DungeonComboBox cboUserType;
         private PictureBox pictureBox1;
         private DateTimePicker dtpDataNacimento;
-        private ReaLTaiizor.Controls.PoisonDateTime poisonDateTime1;
+        
     }
 }

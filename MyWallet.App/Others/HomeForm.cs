@@ -7,7 +7,6 @@ using MyWallet.App.Register;
 
 namespace MyWallet.App.Others
 {
-    //public static User User { get; set; }
     public partial class HomeForm : LostForm
     {
         public HomeForm()
@@ -25,6 +24,7 @@ namespace MyWallet.App.Others
             if (result == DialogResult.OK)
             {
                 var mainForm = ConfigureDI.serviceProvider.GetRequiredService<MainForm>();
+                mainForm.AtualizarDadosDoUsuarioLogado();
                 mainForm.ShowDialog();
 
                 this.Close();

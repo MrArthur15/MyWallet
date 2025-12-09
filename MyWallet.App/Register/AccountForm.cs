@@ -17,16 +17,20 @@ namespace MyWallet.App.Register
         private IBaseService<Bank> _bankService;
 
         private int _id;
+
+
         public AccountForm(IBaseService<Account> accountService, IBaseService<Bank> bankService)
         {
             _accountService = accountService;
             _bankService = bankService;
             InitializeComponent();
-            CarregarCombos();
-            
+
+            CarregarComboTipo();
+            CarregarComboBancos();
+
         }
 
-        private void CarregarCombos()
+        private void CarregarComboTipo()
         {
             
             cboType.DataSource = new[]
@@ -40,7 +44,7 @@ namespace MyWallet.App.Register
             cboType.ValueMember = "Value";
             cboType.SelectedIndex = -1;
 
-            CarregarComboBancos();
+            
         }
 
         private void CarregarComboBancos()
@@ -87,12 +91,40 @@ namespace MyWallet.App.Register
             if (cboType.SelectedValue != null)
                 account.Type = (AccountType)cboType.SelectedValue;
 
-            if (cboBank.SelectedValue != null)
+            if (cboBank.SelectedValue != null && int.TryParse(cboBank.SelectedValue.ToString(), out int bankId))
             {
-                int bankId = (int)cboBank.SelectedValue;
-                account.Bank = _bankService.GetById<Bank>(bankId);
+             
+                var listaBancos = cboBank.DataSource as List<Bank>;
+
+                var bancoDaMemoria = listaBancos?.FirstOrDefault(b => b.Id == bankId);
+
+                if (bancoDaMemoria != null)
+                {
+                    account.Bank = bancoDaMemoria;
+
+                   
+                    if (account.Bank.User != null)
+                    {
+                        account.User = account.Bank.User;
+                    }
+                    else
+                    {
+                        account.User = UserSession.CurrentUser;
+                    }
+                }
+                else
+                {
+                    
+                    account.Bank = _bankService.GetById<Bank>(bankId);
+                    account.User = UserSession.CurrentUser;
+                }
             }
-            account.User = UserSession.CurrentUser;
+            else
+            {
+                account.Bank = null;
+                account.User = UserSession.CurrentUser;
+            }
+        
         }
         public void SetEditMode(int id)
         {
@@ -107,9 +139,9 @@ namespace MyWallet.App.Register
             if (account != null)
             {
                 txtNome.Text = account.Name;
-                txtValor.Text = account.InitialBalance.ToString("N2");
+                txtValor.Text = account.InitialBalance?.ToString("N2"); 
                 txtLimiteCredito.Text = account.CreditLimit?.ToString("N2");
-                cboType.SelectedItem = account.Type;
+                cboType.SelectedValue = account.Type;
 
                 if (account.Bank != null)
                     cboBank.SelectedValue = account.Bank.Id;
@@ -130,7 +162,7 @@ namespace MyWallet.App.Register
                 }
                 else
                 {
-
+                    
                     var account = new Account();
                     FormToObject(account);
                     _accountService.Add<Account, Account, AccountValidator>(account);

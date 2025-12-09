@@ -9,8 +9,8 @@ namespace MyWallet.Service.Validators
         {
             RuleFor(a => a.Name)
                .NotEmpty().WithMessage("Nome da conta é obrigatorio!");
-            RuleFor(a => a.InitialBalance)
-                    .NotEmpty().WithMessage("Quanto tem na conta (agora) é obrigatorio!");
+            /*RuleFor(a => a.InitialBalance)
+                    .NotEmpty().WithMessage("Quanto tem na conta (agora) é obrigatorio!");*/
             RuleFor(a => a.Type)
                     .NotEmpty().WithMessage("Tipo da conta é obrigatorio!");
             RuleFor(a => a.User)
