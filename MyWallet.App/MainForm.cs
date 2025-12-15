@@ -41,22 +41,7 @@ namespace MyWallet.App
 
         }
 
-        public void AtualizarDadosDoUsuarioLogado()
-        {
 
-
-            if (UserSession.CurrentUser != null)
-            {
-
-                lblUsuario.Text = $"Bem-vindo, {UserSession.CurrentUser.Name}!";
-
-
-            }
-            else
-            {
-                lblUsuario.Text = "Usuário Desconhecido";
-            }
-        }
         #region Grid
 
         private void CarregarGridContas()
@@ -381,6 +366,23 @@ namespace MyWallet.App
 
                     tabControl.SelectedTab = tabPageHome;
                 }
+            }
+        }
+
+        public void AtualizarDadosDoUsuarioLogado()
+        {
+
+
+            if (UserSession.CurrentUser != null)
+            {
+
+                lblUsuario.Text = $"Bem-vindo, {UserSession.CurrentUser.Name}!";
+
+
+            }
+            else
+            {
+                lblUsuario.Text = "Usuário Desconhecido";
             }
         }
 
