@@ -49,6 +49,11 @@ namespace MyWallet.App
             dataGridView4.MultiSelect = false;
             dataGridView5.MultiSelect = false;
 
+            tabPageReport.AutoScroll = true;
+
+            
+            tabPageReport.AutoScrollMinSize = new System.Drawing.Size(0, 2000);
+
 
         }
 
