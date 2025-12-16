@@ -125,6 +125,9 @@ namespace MyWallet.App.Register
             {
                 txtNome.Text = subscription.Name;
                 txtPrice.Text = subscription.Price.ToString("N2");
+                dtpNextDate.Value = subscription.NextDueDate;
+               
+
 
                 cboFrequencia.SelectedValue = subscription.Frequency;
                 chkAtivo.Checked = subscription.IsActive;

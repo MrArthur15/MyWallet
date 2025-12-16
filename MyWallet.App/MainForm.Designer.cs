@@ -55,16 +55,32 @@
             DataGridViewCellStyle dataGridViewCellStyle23 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle24 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle25 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle26 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle27 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle28 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle29 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle30 = new DataGridViewCellStyle();
             imageList1 = new ImageList(components);
             airTabPage1 = new ReaLTaiizor.Controls.AirTabPage();
             tabPageHome = new TabPage();
-            panel5 = new Panel();
-            lblUsuario = new ReaLTaiizor.Controls.BigLabel();
             panel3 = new Panel();
+            dgvRecentes = new DataGridView();
+            panel8 = new Panel();
+            parrotButton1 = new ReaLTaiizor.Controls.ParrotButton();
             btnNewTrans = new ReaLTaiizor.Controls.HopeRoundButton();
             hopeRoundButton4 = new ReaLTaiizor.Controls.HopeRoundButton();
             hopeRoundButton5 = new ReaLTaiizor.Controls.HopeRoundButton();
             hopeRoundButton6 = new ReaLTaiizor.Controls.HopeRoundButton();
+            panel5 = new Panel();
+            bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
+            bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
+            bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
+            bigLabel4 = new ReaLTaiizor.Controls.BigLabel();
+            lblGastosPagos = new ReaLTaiizor.Controls.BigLabel();
+            lblGastosTotal = new ReaLTaiizor.Controls.BigLabel();
+            lblSaldoPrevisto = new ReaLTaiizor.Controls.BigLabel();
+            lblSaldoAtual = new ReaLTaiizor.Controls.BigLabel();
+            lblUsuario = new ReaLTaiizor.Controls.BigLabel();
             tabPageAccout = new TabPage();
             dataGridView1 = new DataGridView();
             panel1 = new Panel();
@@ -110,6 +126,8 @@
             tabPageTrans = new TabPage();
             dataGridView5 = new DataGridView();
             panel7 = new Panel();
+            rdoTodas = new ReaLTaiizor.Controls.ParrotRadioButton();
+            rdoMes = new ReaLTaiizor.Controls.ParrotRadioButton();
             btnCriar5 = new ReaLTaiizor.Controls.HopeRoundButton();
             btnEditar5 = new ReaLTaiizor.Controls.HopeRoundButton();
             btnDeletar5 = new ReaLTaiizor.Controls.HopeRoundButton();
@@ -126,8 +144,10 @@
             tabPageLogout = new TabPage();
             airTabPage1.SuspendLayout();
             tabPageHome.SuspendLayout();
-            panel5.SuspendLayout();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvRecentes).BeginInit();
+            panel8.SuspendLayout();
+            panel5.SuspendLayout();
             tabPageAccout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
@@ -194,8 +214,8 @@
             // 
             tabPageHome.AutoScroll = true;
             tabPageHome.BackColor = Color.FromArgb(10, 6, 52);
-            tabPageHome.Controls.Add(panel5);
             tabPageHome.Controls.Add(panel3);
+            tabPageHome.Controls.Add(panel5);
             tabPageHome.ImageIndex = 0;
             tabPageHome.Location = new Point(84, 4);
             tabPageHome.Margin = new Padding(4);
@@ -204,41 +224,104 @@
             tabPageHome.Size = new Size(1594, 818);
             tabPageHome.TabIndex = 0;
             // 
-            // panel5
-            // 
-            panel5.Controls.Add(lblUsuario);
-            panel5.Dock = DockStyle.Top;
-            panel5.Location = new Point(4, 4);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(1586, 406);
-            panel5.TabIndex = 3;
-            // 
-            // lblUsuario
-            // 
-            lblUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            lblUsuario.AutoSize = true;
-            lblUsuario.BackColor = Color.Transparent;
-            lblUsuario.Font = new Font("Microsoft Sans Serif", 80F);
-            lblUsuario.ForeColor = Color.White;
-            lblUsuario.Location = new Point(344, 22);
-            lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(915, 120);
-            lblUsuario.TabIndex = 2;
-            lblUsuario.Text = "Bem-vindo, Arthur";
-            lblUsuario.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // panel3
             // 
-            panel3.Controls.Add(btnNewTrans);
+            panel3.Controls.Add(dgvRecentes);
+            panel3.Controls.Add(panel8);
             panel3.Controls.Add(hopeRoundButton4);
             panel3.Controls.Add(hopeRoundButton5);
             panel3.Controls.Add(hopeRoundButton6);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(4, 4);
+            panel3.Location = new Point(4, 370);
             panel3.Margin = new Padding(4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1586, 810);
+            panel3.Size = new Size(1586, 444);
             panel3.TabIndex = 1;
+            // 
+            // dgvRecentes
+            // 
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dgvRecentes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvRecentes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvRecentes.BackgroundColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle2.SelectionForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvRecentes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvRecentes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvRecentes.DefaultCellStyle = dataGridViewCellStyle3;
+            dgvRecentes.Dock = DockStyle.Right;
+            dgvRecentes.EditMode = DataGridViewEditMode.EditOnEnter;
+            dgvRecentes.Location = new Point(1086, 0);
+            dgvRecentes.Margin = new Padding(4);
+            dgvRecentes.Name = "dgvRecentes";
+            dgvRecentes.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvRecentes.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dgvRecentes.RowHeadersVisible = false;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle5.SelectionForeColor = Color.White;
+            dgvRecentes.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dgvRecentes.Size = new Size(500, 359);
+            dgvRecentes.TabIndex = 8;
+            // 
+            // panel8
+            // 
+            panel8.Controls.Add(parrotButton1);
+            panel8.Controls.Add(btnNewTrans);
+            panel8.Dock = DockStyle.Bottom;
+            panel8.Location = new Point(0, 359);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(1586, 85);
+            panel8.TabIndex = 7;
+            // 
+            // parrotButton1
+            // 
+            parrotButton1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            parrotButton1.BackgroundColor = Color.FromArgb(150, 0, 255);
+            parrotButton1.BackgroundImageLayout = ImageLayout.Center;
+            parrotButton1.ButtonImage = Properties.Resources.refresh;
+            parrotButton1.ButtonStyle = ReaLTaiizor.Controls.ParrotButton.Style.MaterialRounded;
+            parrotButton1.ButtonText = "";
+            parrotButton1.ClickBackColor = Color.FromArgb(65, 75, 80);
+            parrotButton1.ClickTextColor = Color.FromArgb(125, 130, 140);
+            parrotButton1.CornerRadius = 5;
+            parrotButton1.Font = new Font("Microsoft Sans Serif", 14F);
+            parrotButton1.Horizontal_Alignment = StringAlignment.Center;
+            parrotButton1.HoverBackgroundColor = Color.FromArgb(75, 80, 90);
+            parrotButton1.HoverTextColor = Color.FromArgb(235, 235, 215);
+            parrotButton1.ImagePosition = ReaLTaiizor.Controls.ParrotButton.ImgPosition.Left;
+            parrotButton1.Location = new Point(26, 12);
+            parrotButton1.Name = "parrotButton1";
+            parrotButton1.Size = new Size(60, 60);
+            parrotButton1.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            parrotButton1.TabIndex = 6;
+            parrotButton1.TextColor = Color.FromArgb(195, 200, 185);
+            parrotButton1.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            parrotButton1.Vertical_Alignment = StringAlignment.Center;
+            parrotButton1.Click += parrotButton1_Click;
             // 
             // btnNewTrans
             // 
@@ -250,7 +333,7 @@
             btnNewTrans.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnNewTrans.HoverTextColor = Color.FromArgb(48, 49, 51);
             btnNewTrans.InfoColor = Color.FromArgb(144, 147, 153);
-            btnNewTrans.Location = new Point(1341, 741);
+            btnNewTrans.Location = new Point(1343, 12);
             btnNewTrans.Margin = new Padding(4);
             btnNewTrans.Name = "btnNewTrans";
             btnNewTrans.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -272,7 +355,7 @@
             hopeRoundButton4.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton4.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton4.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton4.Location = new Point(2449, 731);
+            hopeRoundButton4.Location = new Point(2449, 365);
             hopeRoundButton4.Margin = new Padding(4);
             hopeRoundButton4.Name = "hopeRoundButton4";
             hopeRoundButton4.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -293,7 +376,7 @@
             hopeRoundButton5.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton5.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton5.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton5.Location = new Point(2624, 731);
+            hopeRoundButton5.Location = new Point(2624, 365);
             hopeRoundButton5.Margin = new Padding(4);
             hopeRoundButton5.Name = "hopeRoundButton5";
             hopeRoundButton5.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -314,7 +397,7 @@
             hopeRoundButton6.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton6.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton6.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton6.Location = new Point(2799, 731);
+            hopeRoundButton6.Location = new Point(2799, 365);
             hopeRoundButton6.Margin = new Padding(4);
             hopeRoundButton6.Name = "hopeRoundButton6";
             hopeRoundButton6.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -324,6 +407,149 @@
             hopeRoundButton6.Text = "Deletar";
             hopeRoundButton6.TextColor = Color.White;
             hopeRoundButton6.WarningColor = Color.FromArgb(230, 162, 60);
+            // 
+            // panel5
+            // 
+            panel5.Controls.Add(bigLabel1);
+            panel5.Controls.Add(bigLabel2);
+            panel5.Controls.Add(bigLabel3);
+            panel5.Controls.Add(bigLabel4);
+            panel5.Controls.Add(lblGastosPagos);
+            panel5.Controls.Add(lblGastosTotal);
+            panel5.Controls.Add(lblSaldoPrevisto);
+            panel5.Controls.Add(lblSaldoAtual);
+            panel5.Controls.Add(lblUsuario);
+            panel5.Dock = DockStyle.Top;
+            panel5.Location = new Point(4, 4);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(1586, 366);
+            panel5.TabIndex = 3;
+            // 
+            // bigLabel1
+            // 
+            bigLabel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            bigLabel1.AutoSize = true;
+            bigLabel1.BackColor = Color.Transparent;
+            bigLabel1.Font = new Font("Microsoft Sans Serif", 25F);
+            bigLabel1.ForeColor = Color.White;
+            bigLabel1.Location = new Point(821, 279);
+            bigLabel1.Name = "bigLabel1";
+            bigLabel1.Size = new Size(239, 39);
+            bigLabel1.TabIndex = 10;
+            bigLabel1.Text = "Gastos Pagos:";
+            bigLabel1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // bigLabel2
+            // 
+            bigLabel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            bigLabel2.AutoSize = true;
+            bigLabel2.BackColor = Color.Transparent;
+            bigLabel2.Font = new Font("Microsoft Sans Serif", 25F);
+            bigLabel2.ForeColor = Color.White;
+            bigLabel2.Location = new Point(344, 279);
+            bigLabel2.Name = "bigLabel2";
+            bigLabel2.Size = new Size(253, 39);
+            bigLabel2.TabIndex = 9;
+            bigLabel2.Text = "Gastos do Mês:";
+            bigLabel2.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // bigLabel3
+            // 
+            bigLabel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            bigLabel3.AutoSize = true;
+            bigLabel3.BackColor = Color.Transparent;
+            bigLabel3.Font = new Font("Microsoft Sans Serif", 25F);
+            bigLabel3.ForeColor = Color.White;
+            bigLabel3.Location = new Point(814, 192);
+            bigLabel3.Name = "bigLabel3";
+            bigLabel3.Size = new Size(246, 39);
+            bigLabel3.TabIndex = 8;
+            bigLabel3.Text = "Saldo Previsto:";
+            bigLabel3.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // bigLabel4
+            // 
+            bigLabel4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            bigLabel4.AutoSize = true;
+            bigLabel4.BackColor = Color.Transparent;
+            bigLabel4.Font = new Font("Microsoft Sans Serif", 25F);
+            bigLabel4.ForeColor = Color.White;
+            bigLabel4.Location = new Point(344, 192);
+            bigLabel4.Name = "bigLabel4";
+            bigLabel4.Size = new Size(201, 39);
+            bigLabel4.TabIndex = 7;
+            bigLabel4.Text = "Saldo Atual:";
+            bigLabel4.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblGastosPagos
+            // 
+            lblGastosPagos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblGastosPagos.AutoSize = true;
+            lblGastosPagos.BackColor = Color.Transparent;
+            lblGastosPagos.Font = new Font("Microsoft Sans Serif", 25F);
+            lblGastosPagos.ForeColor = Color.White;
+            lblGastosPagos.Location = new Point(1066, 279);
+            lblGastosPagos.Name = "lblGastosPagos";
+            lblGastosPagos.Size = new Size(193, 39);
+            lblGastosPagos.TabIndex = 6;
+            lblGastosPagos.Text = "R$ 0000,00";
+            lblGastosPagos.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblGastosTotal
+            // 
+            lblGastosTotal.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblGastosTotal.AutoSize = true;
+            lblGastosTotal.BackColor = Color.Transparent;
+            lblGastosTotal.Font = new Font("Microsoft Sans Serif", 25F);
+            lblGastosTotal.ForeColor = Color.White;
+            lblGastosTotal.Location = new Point(603, 279);
+            lblGastosTotal.Name = "lblGastosTotal";
+            lblGastosTotal.Size = new Size(193, 39);
+            lblGastosTotal.TabIndex = 5;
+            lblGastosTotal.Text = "R$ 0000,00";
+            lblGastosTotal.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblSaldoPrevisto
+            // 
+            lblSaldoPrevisto.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblSaldoPrevisto.AutoSize = true;
+            lblSaldoPrevisto.BackColor = Color.Transparent;
+            lblSaldoPrevisto.Font = new Font("Microsoft Sans Serif", 25F);
+            lblSaldoPrevisto.ForeColor = Color.White;
+            lblSaldoPrevisto.Location = new Point(1066, 192);
+            lblSaldoPrevisto.Name = "lblSaldoPrevisto";
+            lblSaldoPrevisto.Size = new Size(193, 39);
+            lblSaldoPrevisto.TabIndex = 4;
+            lblSaldoPrevisto.Text = "R$ 0000,00";
+            lblSaldoPrevisto.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblSaldoAtual
+            // 
+            lblSaldoAtual.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblSaldoAtual.AutoSize = true;
+            lblSaldoAtual.BackColor = Color.Transparent;
+            lblSaldoAtual.Font = new Font("Microsoft Sans Serif", 25F);
+            lblSaldoAtual.ForeColor = Color.White;
+            lblSaldoAtual.Location = new Point(551, 192);
+            lblSaldoAtual.Name = "lblSaldoAtual";
+            lblSaldoAtual.Size = new Size(193, 39);
+            lblSaldoAtual.TabIndex = 3;
+            lblSaldoAtual.Text = "R$ 0000,00";
+            lblSaldoAtual.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblUsuario
+            // 
+            lblUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblUsuario.AutoSize = true;
+            lblUsuario.BackColor = Color.Transparent;
+            lblUsuario.Font = new Font("Microsoft Sans Serif", 80F);
+            lblUsuario.ForeColor = Color.White;
+            lblUsuario.Location = new Point(344, 26);
+            lblUsuario.Name = "lblUsuario";
+            lblUsuario.Size = new Size(915, 120);
+            lblUsuario.TabIndex = 2;
+            lblUsuario.Text = "Bem-vindo, Arthur";
+            lblUsuario.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // tabPageAccout
             // 
@@ -341,47 +567,48 @@
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle6.SelectionForeColor = Color.White;
+            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.BackgroundColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle2.SelectionForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle7.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle7.SelectionForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            dataGridView1.Dock = DockStyle.Top;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle8.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle8.ForeColor = Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle8.SelectionForeColor = Color.White;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
             dataGridView1.Location = new Point(4, 4);
             dataGridView1.Margin = new Padding(4);
             dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle5.SelectionForeColor = Color.White;
-            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle9.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle9.ForeColor = Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle9.SelectionForeColor = Color.White;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle10.ForeColor = Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle10.SelectionForeColor = Color.White;
+            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle10;
             dataGridView1.Size = new Size(1586, 715);
             dataGridView1.TabIndex = 1;
             // 
@@ -479,47 +706,48 @@
             // 
             // dataGridView2
             // 
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle6.SelectionForeColor = Color.White;
-            dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle11.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle11.ForeColor = Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle11.SelectionForeColor = Color.White;
+            dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView2.BackgroundColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle7.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle7.SelectionForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle12.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle12.ForeColor = Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle12.SelectionForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle8.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle8.ForeColor = Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle8.SelectionForeColor = Color.White;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            dataGridView2.DefaultCellStyle = dataGridViewCellStyle8;
-            dataGridView2.Dock = DockStyle.Top;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle13.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle13.ForeColor = Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle13.SelectionForeColor = Color.White;
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.False;
+            dataGridView2.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridView2.Dock = DockStyle.Fill;
             dataGridView2.EditMode = DataGridViewEditMode.EditOnEnter;
             dataGridView2.Location = new Point(4, 4);
             dataGridView2.Margin = new Padding(4);
             dataGridView2.Name = "dataGridView2";
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle9.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle9.ForeColor = Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle9.SelectionForeColor = Color.White;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            dataGridViewCellStyle10.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle10.ForeColor = Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle10.SelectionForeColor = Color.White;
-            dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle14.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle14.ForeColor = Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle14.SelectionForeColor = Color.White;
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.True;
+            dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle15.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle15.ForeColor = Color.White;
+            dataGridViewCellStyle15.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle15.SelectionForeColor = Color.White;
+            dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle15;
             dataGridView2.Size = new Size(1586, 715);
             dataGridView2.TabIndex = 3;
             // 
@@ -683,47 +911,48 @@
             // 
             // dataGridView3
             // 
-            dataGridViewCellStyle11.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle11.ForeColor = Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle11.SelectionForeColor = Color.White;
-            dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle16.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle16.ForeColor = Color.White;
+            dataGridViewCellStyle16.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle16.SelectionForeColor = Color.White;
+            dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView3.BackgroundColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle12.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle12.ForeColor = Color.White;
-            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle12.SelectionForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
-            dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle17.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle17.ForeColor = Color.White;
+            dataGridViewCellStyle17.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle17.SelectionForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
+            dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle13.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle13.ForeColor = Color.White;
-            dataGridViewCellStyle13.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle13.SelectionForeColor = Color.White;
-            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.False;
-            dataGridView3.DefaultCellStyle = dataGridViewCellStyle13;
-            dataGridView3.Dock = DockStyle.Top;
+            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle18.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle18.ForeColor = Color.White;
+            dataGridViewCellStyle18.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle18.SelectionForeColor = Color.White;
+            dataGridViewCellStyle18.WrapMode = DataGridViewTriState.False;
+            dataGridView3.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridView3.Dock = DockStyle.Fill;
             dataGridView3.EditMode = DataGridViewEditMode.EditOnEnter;
             dataGridView3.Location = new Point(4, 4);
             dataGridView3.Margin = new Padding(4);
             dataGridView3.Name = "dataGridView3";
-            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle14.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle14.ForeColor = Color.White;
-            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle14.SelectionForeColor = Color.White;
-            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.True;
-            dataGridView3.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
-            dataGridViewCellStyle15.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle15.ForeColor = Color.White;
-            dataGridViewCellStyle15.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle15.SelectionForeColor = Color.White;
-            dataGridView3.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle19.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle19.ForeColor = Color.White;
+            dataGridViewCellStyle19.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle19.SelectionForeColor = Color.White;
+            dataGridViewCellStyle19.WrapMode = DataGridViewTriState.True;
+            dataGridView3.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle20.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle20.ForeColor = Color.White;
+            dataGridViewCellStyle20.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle20.SelectionForeColor = Color.White;
+            dataGridView3.RowsDefaultCellStyle = dataGridViewCellStyle20;
             dataGridView3.Size = new Size(1586, 715);
             dataGridView3.TabIndex = 5;
             // 
@@ -953,47 +1182,48 @@
             // 
             // dataGridView4
             // 
-            dataGridViewCellStyle16.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle16.ForeColor = Color.White;
-            dataGridViewCellStyle16.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle16.SelectionForeColor = Color.White;
-            dataGridView4.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle21.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle21.ForeColor = Color.White;
+            dataGridViewCellStyle21.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle21.SelectionForeColor = Color.White;
+            dataGridView4.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridView4.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView4.BackgroundColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle17.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle17.ForeColor = Color.White;
-            dataGridViewCellStyle17.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle17.SelectionForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
-            dataGridView4.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle22.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle22.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle22.ForeColor = Color.White;
+            dataGridViewCellStyle22.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle22.SelectionForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle22.WrapMode = DataGridViewTriState.True;
+            dataGridView4.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
             dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle18.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle18.ForeColor = Color.White;
-            dataGridViewCellStyle18.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle18.SelectionForeColor = Color.White;
-            dataGridViewCellStyle18.WrapMode = DataGridViewTriState.False;
-            dataGridView4.DefaultCellStyle = dataGridViewCellStyle18;
-            dataGridView4.Dock = DockStyle.Top;
+            dataGridViewCellStyle23.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle23.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle23.ForeColor = Color.White;
+            dataGridViewCellStyle23.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle23.SelectionForeColor = Color.White;
+            dataGridViewCellStyle23.WrapMode = DataGridViewTriState.False;
+            dataGridView4.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridView4.Dock = DockStyle.Fill;
             dataGridView4.EditMode = DataGridViewEditMode.EditOnEnter;
             dataGridView4.Location = new Point(4, 4);
             dataGridView4.Margin = new Padding(4);
             dataGridView4.Name = "dataGridView4";
-            dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle19.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle19.ForeColor = Color.White;
-            dataGridViewCellStyle19.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle19.SelectionForeColor = Color.White;
-            dataGridViewCellStyle19.WrapMode = DataGridViewTriState.True;
-            dataGridView4.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
-            dataGridViewCellStyle20.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle20.ForeColor = Color.White;
-            dataGridViewCellStyle20.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle20.SelectionForeColor = Color.White;
-            dataGridView4.RowsDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle24.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle24.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle24.ForeColor = Color.White;
+            dataGridViewCellStyle24.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle24.SelectionForeColor = Color.White;
+            dataGridViewCellStyle24.WrapMode = DataGridViewTriState.True;
+            dataGridView4.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle25.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle25.ForeColor = Color.White;
+            dataGridViewCellStyle25.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle25.SelectionForeColor = Color.White;
+            dataGridView4.RowsDefaultCellStyle = dataGridViewCellStyle25;
             dataGridView4.Size = new Size(1586, 715);
             dataGridView4.TabIndex = 7;
             // 
@@ -1285,55 +1515,59 @@
             tabPageTrans.Padding = new Padding(4);
             tabPageTrans.Size = new Size(1594, 818);
             tabPageTrans.TabIndex = 5;
+            tabPageTrans.Enter += tabPageTrans_Enter;
             // 
             // dataGridView5
             // 
-            dataGridViewCellStyle21.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle21.ForeColor = Color.White;
-            dataGridViewCellStyle21.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle21.SelectionForeColor = Color.White;
-            dataGridView5.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle26.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle26.ForeColor = Color.White;
+            dataGridViewCellStyle26.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle26.SelectionForeColor = Color.White;
+            dataGridView5.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle26;
+            dataGridView5.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView5.BackgroundColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle22.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle22.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle22.ForeColor = Color.White;
-            dataGridViewCellStyle22.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle22.SelectionForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle22.WrapMode = DataGridViewTriState.True;
-            dataGridView5.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle27.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle27.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle27.ForeColor = Color.White;
+            dataGridViewCellStyle27.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle27.SelectionForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle27.WrapMode = DataGridViewTriState.True;
+            dataGridView5.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle27;
             dataGridView5.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle23.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle23.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle23.ForeColor = Color.White;
-            dataGridViewCellStyle23.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle23.SelectionForeColor = Color.White;
-            dataGridViewCellStyle23.WrapMode = DataGridViewTriState.False;
-            dataGridView5.DefaultCellStyle = dataGridViewCellStyle23;
-            dataGridView5.Dock = DockStyle.Top;
+            dataGridViewCellStyle28.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle28.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle28.ForeColor = Color.White;
+            dataGridViewCellStyle28.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle28.SelectionForeColor = Color.White;
+            dataGridViewCellStyle28.WrapMode = DataGridViewTriState.False;
+            dataGridView5.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridView5.Dock = DockStyle.Fill;
             dataGridView5.EditMode = DataGridViewEditMode.EditOnEnter;
             dataGridView5.Location = new Point(4, 4);
             dataGridView5.Margin = new Padding(4);
             dataGridView5.Name = "dataGridView5";
-            dataGridViewCellStyle24.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle24.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle24.ForeColor = Color.White;
-            dataGridViewCellStyle24.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle24.SelectionForeColor = Color.White;
-            dataGridViewCellStyle24.WrapMode = DataGridViewTriState.True;
-            dataGridView5.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
-            dataGridViewCellStyle25.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle25.ForeColor = Color.White;
-            dataGridViewCellStyle25.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle25.SelectionForeColor = Color.White;
-            dataGridView5.RowsDefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle29.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle29.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle29.ForeColor = Color.White;
+            dataGridViewCellStyle29.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle29.SelectionForeColor = Color.White;
+            dataGridViewCellStyle29.WrapMode = DataGridViewTriState.True;
+            dataGridView5.RowHeadersDefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle30.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle30.ForeColor = Color.White;
+            dataGridViewCellStyle30.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle30.SelectionForeColor = Color.White;
+            dataGridView5.RowsDefaultCellStyle = dataGridViewCellStyle30;
             dataGridView5.Size = new Size(1586, 715);
             dataGridView5.TabIndex = 7;
             // 
             // panel7
             // 
+            panel7.Controls.Add(rdoTodas);
+            panel7.Controls.Add(rdoMes);
             panel7.Controls.Add(btnCriar5);
             panel7.Controls.Add(btnEditar5);
             panel7.Controls.Add(btnDeletar5);
@@ -1352,6 +1586,40 @@
             panel7.Name = "panel7";
             panel7.Size = new Size(1586, 95);
             panel7.TabIndex = 6;
+            // 
+            // rdoTodas
+            // 
+            rdoTodas.Checked = false;
+            rdoTodas.ForeColor = Color.White;
+            rdoTodas.Location = new Point(250, 21);
+            rdoTodas.Name = "rdoTodas";
+            rdoTodas.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+            rdoTodas.RadioColor = Color.FromArgb(150, 0, 255);
+            rdoTodas.RadioHoverColor = Color.FromArgb(249, 55, 98);
+            rdoTodas.RadioStyle = ReaLTaiizor.Controls.ParrotRadioButton.Style.Material;
+            rdoTodas.Size = new Size(133, 60);
+            rdoTodas.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            rdoTodas.TabIndex = 20;
+            rdoTodas.Text = "Todas";
+            rdoTodas.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            rdoTodas.Click += rdoTodas_Click;
+            // 
+            // rdoMes
+            // 
+            rdoMes.Checked = true;
+            rdoMes.ForeColor = Color.White;
+            rdoMes.Location = new Point(24, 21);
+            rdoMes.Name = "rdoMes";
+            rdoMes.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+            rdoMes.RadioColor = Color.FromArgb(150, 0, 255);
+            rdoMes.RadioHoverColor = Color.FromArgb(249, 55, 98);
+            rdoMes.RadioStyle = ReaLTaiizor.Controls.ParrotRadioButton.Style.Material;
+            rdoMes.Size = new Size(165, 60);
+            rdoMes.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            rdoMes.TabIndex = 19;
+            rdoMes.Text = "Mês Atual";
+            rdoMes.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            rdoMes.Click += rdoMes_Click;
             // 
             // btnCriar5
             // 
@@ -1612,7 +1880,7 @@
             // 
             tabPageReport.AutoScroll = true;
             tabPageReport.AutoScrollMargin = new Size(10, 10);
-            tabPageReport.AutoScrollMinSize = new Size(10, 10);
+            tabPageReport.AutoScrollMinSize = new Size(0, 2500);
             tabPageReport.BackColor = Color.FromArgb(10, 6, 52);
             tabPageReport.ImageIndex = 6;
             tabPageReport.Location = new Point(84, 4);
@@ -1656,9 +1924,11 @@
             Load += MainForm_Load;
             airTabPage1.ResumeLayout(false);
             tabPageHome.ResumeLayout(false);
+            panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvRecentes).EndInit();
+            panel8.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
-            panel3.ResumeLayout(false);
             tabPageAccout.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel1.ResumeLayout(false);
@@ -1750,5 +2020,18 @@
         private ReaLTaiizor.Controls.HopeRoundButton btnCriar5;
         private ReaLTaiizor.Controls.HopeRoundButton btnEditar5;
         private ReaLTaiizor.Controls.HopeRoundButton btnDeletar5;
+        private ReaLTaiizor.Controls.ParrotButton parrotButton1;
+        private ReaLTaiizor.Controls.BigLabel lblGastosPagos;
+        private ReaLTaiizor.Controls.BigLabel lblGastosTotal;
+        private ReaLTaiizor.Controls.BigLabel lblSaldoPrevisto;
+        private ReaLTaiizor.Controls.BigLabel lblSaldoAtual;
+        private ReaLTaiizor.Controls.BigLabel bigLabel1;
+        private ReaLTaiizor.Controls.BigLabel bigLabel2;
+        private ReaLTaiizor.Controls.BigLabel bigLabel3;
+        private ReaLTaiizor.Controls.BigLabel bigLabel4;
+        private Panel panel8;
+        private DataGridView dgvRecentes;
+        private ReaLTaiizor.Controls.ParrotRadioButton rdoMes;
+        private ReaLTaiizor.Controls.ParrotRadioButton rdoTodas;
     }
 }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             chkPago = new ReaLTaiizor.Controls.CyberCheckBox();
-            dtpNextDate = new DateTimePicker();
+            dtpDate = new DateTimePicker();
             cboConta = new ReaLTaiizor.Controls.DungeonComboBox();
             cboCategoria = new ReaLTaiizor.Controls.DungeonComboBox();
             cboMetodo = new ReaLTaiizor.Controls.DungeonComboBox();
@@ -76,16 +76,16 @@
             chkPago.Timer_Effect_1 = 1;
             chkPago.Timer_RGB = 300;
             // 
-            // dtpNextDate
+            // dtpDate
             // 
-            dtpNextDate.DropDownAlign = LeftRightAlignment.Right;
-            dtpNextDate.Font = new Font("Microsoft Sans Serif", 22F);
-            dtpNextDate.Format = DateTimePickerFormat.Short;
-            dtpNextDate.Location = new Point(171, 127);
-            dtpNextDate.Name = "dtpNextDate";
-            dtpNextDate.Size = new Size(182, 41);
-            dtpNextDate.TabIndex = 28;
-            dtpNextDate.Value = new DateTime(2025, 12, 15, 0, 0, 0, 0);
+            dtpDate.DropDownAlign = LeftRightAlignment.Right;
+            dtpDate.Font = new Font("Microsoft Sans Serif", 22F);
+            dtpDate.Format = DateTimePickerFormat.Short;
+            dtpDate.Location = new Point(171, 127);
+            dtpDate.Name = "dtpDate";
+            dtpDate.Size = new Size(182, 41);
+            dtpDate.TabIndex = 28;
+            dtpDate.Value = new DateTime(2025, 12, 15, 0, 0, 0, 0);
             // 
             // cboConta
             // 
@@ -250,7 +250,7 @@
             ClientSize = new Size(800, 409);
             Controls.Add(cboTipo);
             Controls.Add(chkPago);
-            Controls.Add(dtpNextDate);
+            Controls.Add(dtpDate);
             Controls.Add(cboConta);
             Controls.Add(cboCategoria);
             Controls.Add(cboMetodo);
@@ -263,7 +263,7 @@
             Controls.SetChildIndex(cboMetodo, 0);
             Controls.SetChildIndex(cboCategoria, 0);
             Controls.SetChildIndex(cboConta, 0);
-            Controls.SetChildIndex(dtpNextDate, 0);
+            Controls.SetChildIndex(dtpDate, 0);
             Controls.SetChildIndex(chkPago, 0);
             Controls.SetChildIndex(cboTipo, 0);
             ResumeLayout(false);
@@ -272,7 +272,7 @@
         #endregion
 
         private ReaLTaiizor.Controls.CyberCheckBox chkPago;
-        private DateTimePicker dtpNextDate;
+        private DateTimePicker dtpDate;
         private ReaLTaiizor.Controls.DungeonComboBox cboConta;
         private ReaLTaiizor.Controls.DungeonComboBox cboCategoria;
         private ReaLTaiizor.Controls.DungeonComboBox cboMetodo;

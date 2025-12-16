@@ -90,7 +90,7 @@ namespace MyWallet.App.Register
             }
 
             transaction.Description = txtDescricao.Text;
-            transaction.TransactionDate = dtpNextDate.Value;
+            transaction.TransactionDate = dtpDate.Value;
             transaction.IsPaid = chkPago.Checked;
 
             if (cboTipo.SelectedValue != null)
@@ -140,7 +140,7 @@ namespace MyWallet.App.Register
             {
                 txtValor.Text = transaction.Amount.ToString("N2");
                 txtDescricao.Text = transaction.Description;
-                dtpNextDate.Value = transaction.TransactionDate;
+                dtpDate.Value = transaction.TransactionDate;
                 chkPago.Checked = transaction.IsPaid;
 
                 cboTipo.SelectedValue = transaction.Type;

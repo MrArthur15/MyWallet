@@ -10,6 +10,7 @@ using MyWallet.App.ViewModel;
 using MyWallet.Domain.Base;
 using MyWallet.Domain.Entities;
 using MyWallet.Domain.Enum;
+using MyWallet.Service.Validators;
 using ReaLTaiizor.Forms;
 
 namespace MyWallet.App
@@ -49,14 +50,203 @@ namespace MyWallet.App
             dataGridView4.MultiSelect = false;
             dataGridView5.MultiSelect = false;
 
-            tabPageReport.AutoScroll = true;
-
-            
-            tabPageReport.AutoScrollMinSize = new System.Drawing.Size(0, 2000);
+            AtualizarDadosDoUsuarioLogado();
+            ProcessarAssinaturasVencidas();
+            CarregarDashboard();
+            CarregarTransacoesRecentes();
+            rdoMes.Checked = true; 
+            rdoTodas.Checked = false;
+            CarregarGridTransacoes();
 
 
         }
 
+        private void CarregarTransacoesRecentes()
+        {
+            try
+            {
+
+                var recentes = _transactionService.Get<Transaction>(new List<string> { "Category" })
+                    .Where(t => t.User.Id == UserSession.UserId)
+                    .OrderByDescending(t => t.TransactionDate)
+                    .Take(10)
+                    .Select(t => new
+                    {
+                        Id = t.Id,
+                        Data = t.TransactionDate,
+                        Descricao = t.Description,
+                        Categoria = t.Category != null ? t.Category.Name : "Geral",
+
+                        Tipo = t.Type switch
+                        {
+                            TransactionType.Revenue => "Receita",
+                            TransactionType.Expense => "Despesa",
+                            TransactionType.Transfer => "Transferência",
+                            _ => "Outro"
+                        },
+
+                        Valor = t.Amount
+                    })
+                    .ToList();
+
+                if (dgvRecentes != null)
+                {
+                    dgvRecentes.DataSource = recentes;
+
+                    if (dgvRecentes.Columns.Count > 0)
+                    {
+                        dgvRecentes.Columns["Id"].Visible = false;
+
+                        dgvRecentes.Columns["Valor"].DefaultCellStyle.Format = "C2";
+                        dgvRecentes.Columns["Data"].DefaultCellStyle.Format = "dd/MM";
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar recentes: " + ex.Message);
+            }
+        }
+        private void CarregarDashboard()
+        {
+            try
+            {
+                var userId = UserSession.UserId;
+                var dataAtual = DateTime.Now;
+
+
+                var contas = _accountService.Get<Account>(new List<string> { "User" })
+                    .Where(c => c.User.Id == userId)
+                    .ToList();
+
+                decimal valorBaseContas = contas.Sum(c => c.InitialBalance ?? 0);
+
+
+                var transacoesDoMes = _transactionService.Get<Transaction>(new List<string> { "User" })
+                    .Where(t => t.User.Id == userId &&
+                                t.TransactionDate.Month == dataAtual.Month &&
+                                t.TransactionDate.Year == dataAtual.Year)
+                    .ToList();
+
+
+                decimal receitasDoMes = transacoesDoMes
+                    .Where(t => t.Type == TransactionType.Revenue)
+                    .Sum(t => t.Amount);
+
+                decimal gastosPagosDoMes = transacoesDoMes
+                    .Where(t => t.Type == TransactionType.Expense && t.IsPaid)
+                    .Sum(t => t.Amount);
+
+                var assinaturas = _subscriptionService.Get<Subscription>(new List<string> { "User" })
+                    .Where(s => s.User.Id == userId && s.IsActive)
+                    .ToList();
+
+                decimal assinaturasPendentes = assinaturas
+                    .Where(s => s.NextDueDate.Month == dataAtual.Month &&
+                                s.NextDueDate.Year == dataAtual.Year &&
+                                s.NextDueDate > dataAtual)
+                    .Sum(s => s.Price);
+
+
+
+                decimal saldoAtual = valorBaseContas + receitasDoMes - gastosPagosDoMes;
+
+
+                decimal gastosTotalMes = gastosPagosDoMes + assinaturasPendentes;
+
+
+                decimal saldoPrevisto = saldoAtual - assinaturasPendentes;
+
+
+
+                if (lblSaldoAtual != null)
+                {
+                    lblSaldoAtual.Text = saldoAtual.ToString("C2");
+                    lblSaldoAtual.ForeColor = saldoAtual < 0 ? Color.Red : Color.White;
+                }
+
+                if (lblSaldoPrevisto != null)
+                {
+                    lblSaldoPrevisto.Text = saldoPrevisto.ToString("C2");
+                    lblSaldoPrevisto.ForeColor = saldoPrevisto < 0 ? Color.Red : Color.White;
+                }
+
+                if (lblGastosTotal != null) lblGastosTotal.Text = gastosTotalMes.ToString("C2");
+
+                if (lblGastosPagos != null) lblGastosPagos.Text = gastosPagosDoMes.ToString("C2");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar dashboard: " + ex.Message);
+            }
+        }
+        private void ProcessarAssinaturasVencidas()
+        {
+            try
+            {
+                var assinaturasVencidas = _subscriptionService.Get<Subscription>(new List<string> { "User", "Account", "Category" })
+                    .Where(s => s.User.Id == UserSession.UserId && s.IsActive && s.NextDueDate <= DateTime.Now)
+                    .ToList();
+
+                if (assinaturasVencidas.Count == 0) return;
+
+                bool houveAtualizacao = false;
+
+                foreach (var sub in assinaturasVencidas)
+                {
+
+                    while (sub.NextDueDate <= DateTime.Now)
+                    {
+                        var novaTransacao = new Transaction
+                        {
+                            Description = $"Assinatura: {sub.Name}",
+                            Amount = sub.Price,
+                            TransactionDate = sub.NextDueDate,
+                            IsPaid = true,
+                            Type = TransactionType.Expense,
+
+
+                            PaymentType = PaymentMethod.CreditCard,
+
+                            Account = sub.Account,
+                            Category = sub.Category,
+                            User = sub.User
+                        };
+
+                        _transactionService.Add<Transaction, Transaction, TransactionValidator>(novaTransacao);
+
+                        if (sub.Frequency == Frequency.Monthly)
+                        {
+                            sub.NextDueDate = sub.NextDueDate.AddMonths(1);
+                        }
+                        else if (sub.Frequency == Frequency.Yearly)
+                        {
+                            sub.NextDueDate = sub.NextDueDate.AddYears(1);
+                        }
+
+                        houveAtualizacao = true;
+                    }
+
+                    // Salva a Assinatura com a nova data
+                    _subscriptionService.Update<Subscription, Subscription, SubscriptionValidator>(sub);
+                }
+
+                if (houveAtualizacao)
+                {
+                    MessageBox.Show("Assinaturas vencidas foram lançadas automaticamente!", "MyWallet", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    CarregarGridTransacoes();
+                    CarregarGridAssinaturas();
+                    CarregarDashboard();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao processar assinaturas: {ex.Message}");
+            }
+        }
 
         #region Grid
 
@@ -232,10 +422,21 @@ namespace MyWallet.App
             try
             {
                 var includes = new List<string> { "User", "Account", "Category" };
-                var transacoes = _transactionService.Get<Transaction>(includes);
+                var query = _transactionService.Get<Transaction>(includes)
+                    .Where(t => t.User != null && t.User.Id == UserSession.UserId);
 
-                var transacoesFiltradas = transacoes
-                    .Where(t => t.User != null && t.User.Id == UserSession.UserId)
+                // --- CORREÇÃO DA LÓGICA ---
+                // Vamos assumir que rdoMes é o botão de "Mês Atual".
+                // Se ele estiver Marcado (Checked), aplicamos o filtro.
+                if (rdoMes.Checked)
+                {
+                    var dataAtual = DateTime.Now;
+                    query = query.Where(t => t.TransactionDate.Month == dataAtual.Month &&
+                                             t.TransactionDate.Year == dataAtual.Year);
+                }
+
+                // Restante do código de ordenação e grid (igual ao anterior)
+                var transacoesFiltradas = query
                     .OrderByDescending(t => t.TransactionDate)
                     .Select(t => new
                     {
@@ -243,46 +444,31 @@ namespace MyWallet.App
                         Descricao = t.Description,
                         Valor = t.Amount,
                         Data = t.TransactionDate,
-
-                        Tipo = t.Type switch
-                        {
-                            TransactionType.Revenue => "Receita",
-                            TransactionType.Expense => "Despesa",
-                            TransactionType.Transfer => "Transferência",
-                            _ => t.Type.ToString()
-                        },
-
-                        Pagamento = t.PaymentType switch
-                        {
-                            PaymentMethod.Cash => "Dinheiro",
-                            PaymentMethod.DebitCard => "Débito",
-                            PaymentMethod.CreditCard => "Crédito",
-                            PaymentMethod.Pix => "Pix",
-                            PaymentMethod.BankSlip => "Boleto",
-                            PaymentMethod.Transfer => "Transferência",
-                            _ => t.PaymentType.ToString()
-                        },
-
+                        // ... seus switchs de Tipo e Pagamento ...
+                        Tipo = t.Type switch { TransactionType.Revenue => "Receita", TransactionType.Expense => "Despesa", TransactionType.Transfer => "Transferência", _ => t.Type.ToString() },
+                        Pagamento = t.PaymentType switch { PaymentMethod.Cash => "Dinheiro", PaymentMethod.DebitCard => "Débito", PaymentMethod.CreditCard => "Crédito", PaymentMethod.Pix => "Pix", PaymentMethod.BankSlip => "Boleto", PaymentMethod.Transfer => "Transferência", _ => t.PaymentType.ToString() },
                         Pago = t.IsPaid ? "Sim" : "Não",
-                        Conta = t.Account?.Name ?? "N/A",
-                        Categoria = t.Category?.Name ?? "N/A"
+                        Conta = t.Account != null ? t.Account.Name : "N/A",
+                        Categoria = t.Category != null ? t.Category.Name : "N/A"
                     })
                     .ToList();
 
                 dataGridView5.DataSource = transacoesFiltradas;
 
+                // ... configurações de colunas ...
                 if (dataGridView5.Columns.Count > 0)
                 {
-                    dataGridView5.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dataGridView5.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                     dataGridView5.Columns["Id"].Visible = false;
-
+                    if (dataGridView5.Columns.Contains("Descricao"))
+                        dataGridView5.Columns["Descricao"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                     dataGridView5.Columns["Valor"].DefaultCellStyle.Format = "C2";
                     dataGridView5.Columns["Data"].DefaultCellStyle.Format = "dd/MM/yyyy";
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao carregar transações: " + ex.Message);
+                MessageBox.Show("Erro: " + ex.Message);
             }
         }
         #endregion
@@ -403,7 +589,10 @@ namespace MyWallet.App
                     try
                     {
                         _transactionService.Delete(id);
+
                         CarregarGridTransacoes();
+                        CarregarDashboard();
+                        CarregarTransacoesRecentes();
                         MessageBox.Show("Transação excluída com sucesso!");
                     }
                     catch (Exception ex)
@@ -517,6 +706,8 @@ namespace MyWallet.App
                 if (formTransacao.ShowDialog() == DialogResult.OK)
                 {
                     CarregarGridTransacoes();
+                    CarregarDashboard();
+                    CarregarTransacoesRecentes();
                 }
             }
             else
@@ -575,15 +766,18 @@ namespace MyWallet.App
             if (formTransacao.ShowDialog() == DialogResult.OK)
             {
                 CarregarGridTransacoes();
+                CarregarDashboard();
+                CarregarTransacoesRecentes();
+
             }
         }
+
         #endregion
 
         #region Load
         private void tabPageAccount_Enter(object sender, EventArgs e)
         {
             CarregarGridContas();
-
         }
 
         private void tabPageBank_Enter(object sender, EventArgs e)
@@ -598,6 +792,11 @@ namespace MyWallet.App
         private void tabPageSubs_Enter(object sender, EventArgs e)
         {
             CarregarGridAssinaturas();
+        }
+        private void tabPageTrans_Enter(object sender, EventArgs e)
+        {
+            CarregarGridTransacoes();
+
         }
         #endregion
 
@@ -654,9 +853,26 @@ namespace MyWallet.App
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            ProcessarAssinaturasVencidas();
+            CarregarDashboard();
+            CarregarTransacoesRecentes();
         }
 
-        
+        private void parrotButton1_Click(object sender, EventArgs e)
+        {
+            ProcessarAssinaturasVencidas();
+            CarregarDashboard();
+            CarregarTransacoesRecentes();
+        }
+
+        private void rdoMes_Click(object sender, EventArgs e)
+        {
+            CarregarGridTransacoes();
+        }
+
+        private void rdoTodas_Click(object sender, EventArgs e)
+        {
+            CarregarGridTransacoes();
+        }
     }
 }
