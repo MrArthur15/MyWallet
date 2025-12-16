@@ -154,7 +154,7 @@
             cboMetodo.ColorH = Color.FromArgb(224, 222, 220);
             cboMetodo.ColorI = Color.FromArgb(250, 249, 249);
             cboMetodo.DrawMode = DrawMode.OwnerDrawFixed;
-            cboMetodo.DropDownHeight = 100;
+            cboMetodo.DropDownHeight = 335;
             cboMetodo.DropDownStyle = ComboBoxStyle.DropDownList;
             cboMetodo.Font = new Font("Microsoft Sans Serif", 15F);
             cboMetodo.ForeColor = Color.Black;

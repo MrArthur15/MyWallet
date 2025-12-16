@@ -143,6 +143,18 @@
             hopeRoundButton29 = new ReaLTaiizor.Controls.HopeRoundButton();
             hopeRoundButton30 = new ReaLTaiizor.Controls.HopeRoundButton();
             tabPageReport = new TabPage();
+            plotRelatorioEvolucao = new ScottPlot.WinForms.FormsPlot();
+            plotRelatorioPizza = new ScottPlot.WinForms.FormsPlot();
+            panel9 = new Panel();
+            dtpInicio = new DateTimePicker();
+            lblRelatorioEntrada = new ReaLTaiizor.Controls.BigLabel();
+            bigLabel5 = new ReaLTaiizor.Controls.BigLabel();
+            bigLabel6 = new ReaLTaiizor.Controls.BigLabel();
+            lblRelatorioSaida = new ReaLTaiizor.Controls.BigLabel();
+            lblRelatorioSaldo = new ReaLTaiizor.Controls.BigLabel();
+            dtpFim = new DateTimePicker();
+            btnFiltrar = new ReaLTaiizor.Controls.HopeRoundButton();
+            cbFiltroPeriodo = new ReaLTaiizor.Controls.DungeonComboBox();
             tabPageLogout = new TabPage();
             airTabPage1.SuspendLayout();
             tabPageHome.SuspendLayout();
@@ -165,6 +177,8 @@
             tabPageTrans.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView5).BeginInit();
             panel7.SuspendLayout();
+            tabPageReport.SuspendLayout();
+            panel9.SuspendLayout();
             SuspendLayout();
             // 
             // imageList1
@@ -1903,10 +1917,10 @@
             // 
             // tabPageReport
             // 
-            tabPageReport.AutoScroll = true;
-            tabPageReport.AutoScrollMargin = new Size(10, 10);
-            tabPageReport.AutoScrollMinSize = new Size(0, 2500);
             tabPageReport.BackColor = Color.FromArgb(10, 6, 52);
+            tabPageReport.Controls.Add(plotRelatorioEvolucao);
+            tabPageReport.Controls.Add(plotRelatorioPizza);
+            tabPageReport.Controls.Add(panel9);
             tabPageReport.ImageIndex = 6;
             tabPageReport.Location = new Point(84, 4);
             tabPageReport.Margin = new Padding(4);
@@ -1914,6 +1928,189 @@
             tabPageReport.Padding = new Padding(4);
             tabPageReport.Size = new Size(1594, 818);
             tabPageReport.TabIndex = 6;
+            // 
+            // plotRelatorioEvolucao
+            // 
+            plotRelatorioEvolucao.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            plotRelatorioEvolucao.AutoSize = true;
+            plotRelatorioEvolucao.DisplayScale = 1F;
+            plotRelatorioEvolucao.Location = new Point(955, 181);
+            plotRelatorioEvolucao.Name = "plotRelatorioEvolucao";
+            plotRelatorioEvolucao.Size = new Size(620, 620);
+            plotRelatorioEvolucao.TabIndex = 12;
+            // 
+            // plotRelatorioPizza
+            // 
+            plotRelatorioPizza.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            plotRelatorioPizza.AutoSize = true;
+            plotRelatorioPizza.DisplayScale = 1F;
+            plotRelatorioPizza.Location = new Point(22, 181);
+            plotRelatorioPizza.Name = "plotRelatorioPizza";
+            plotRelatorioPizza.Size = new Size(620, 620);
+            plotRelatorioPizza.TabIndex = 11;
+            // 
+            // panel9
+            // 
+            panel9.Controls.Add(dtpInicio);
+            panel9.Controls.Add(lblRelatorioEntrada);
+            panel9.Controls.Add(bigLabel5);
+            panel9.Controls.Add(bigLabel6);
+            panel9.Controls.Add(lblRelatorioSaida);
+            panel9.Controls.Add(lblRelatorioSaldo);
+            panel9.Controls.Add(dtpFim);
+            panel9.Controls.Add(btnFiltrar);
+            panel9.Controls.Add(cbFiltroPeriodo);
+            panel9.Dock = DockStyle.Top;
+            panel9.Location = new Point(4, 4);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(1586, 171);
+            panel9.TabIndex = 0;
+            // 
+            // dtpInicio
+            // 
+            dtpInicio.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            dtpInicio.DropDownAlign = LeftRightAlignment.Right;
+            dtpInicio.Font = new Font("Microsoft Sans Serif", 35F);
+            dtpInicio.Format = DateTimePickerFormat.Short;
+            dtpInicio.Location = new Point(811, 54);
+            dtpInicio.Name = "dtpInicio";
+            dtpInicio.Size = new Size(277, 60);
+            dtpInicio.TabIndex = 38;
+            dtpInicio.Value = new DateTime(2025, 12, 15, 0, 0, 0, 0);
+            // 
+            // lblRelatorioEntrada
+            // 
+            lblRelatorioEntrada.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblRelatorioEntrada.AutoSize = true;
+            lblRelatorioEntrada.BackColor = Color.Transparent;
+            lblRelatorioEntrada.Font = new Font("Microsoft Sans Serif", 25F);
+            lblRelatorioEntrada.ForeColor = Color.White;
+            lblRelatorioEntrada.Location = new Point(598, 65);
+            lblRelatorioEntrada.Name = "lblRelatorioEntrada";
+            lblRelatorioEntrada.Size = new Size(149, 39);
+            lblRelatorioEntrada.TabIndex = 37;
+            lblRelatorioEntrada.Text = "0.000,00";
+            lblRelatorioEntrada.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // bigLabel5
+            // 
+            bigLabel5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            bigLabel5.AutoSize = true;
+            bigLabel5.BackColor = Color.Transparent;
+            bigLabel5.Font = new Font("Microsoft Sans Serif", 25F);
+            bigLabel5.ForeColor = Color.White;
+            bigLabel5.Location = new Point(901, 12);
+            bigLabel5.Name = "bigLabel5";
+            bigLabel5.Size = new Size(98, 39);
+            bigLabel5.TabIndex = 32;
+            bigLabel5.Text = "Inicio";
+            bigLabel5.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // bigLabel6
+            // 
+            bigLabel6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            bigLabel6.AutoSize = true;
+            bigLabel6.BackColor = Color.Transparent;
+            bigLabel6.Font = new Font("Microsoft Sans Serif", 25F);
+            bigLabel6.ForeColor = Color.White;
+            bigLabel6.Location = new Point(1206, 12);
+            bigLabel6.Name = "bigLabel6";
+            bigLabel6.Size = new Size(92, 39);
+            bigLabel6.TabIndex = 33;
+            bigLabel6.Text = "Final";
+            bigLabel6.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblRelatorioSaida
+            // 
+            lblRelatorioSaida.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblRelatorioSaida.AutoSize = true;
+            lblRelatorioSaida.BackColor = Color.Transparent;
+            lblRelatorioSaida.Font = new Font("Microsoft Sans Serif", 25F);
+            lblRelatorioSaida.ForeColor = Color.White;
+            lblRelatorioSaida.Location = new Point(80, 65);
+            lblRelatorioSaida.Name = "lblRelatorioSaida";
+            lblRelatorioSaida.Size = new Size(149, 39);
+            lblRelatorioSaida.TabIndex = 36;
+            lblRelatorioSaida.Text = "0.000,00";
+            lblRelatorioSaida.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblRelatorioSaldo
+            // 
+            lblRelatorioSaldo.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblRelatorioSaldo.AutoSize = true;
+            lblRelatorioSaldo.BackColor = Color.Transparent;
+            lblRelatorioSaldo.Font = new Font("Microsoft Sans Serif", 25F);
+            lblRelatorioSaldo.ForeColor = Color.White;
+            lblRelatorioSaldo.Location = new Point(352, 65);
+            lblRelatorioSaldo.Name = "lblRelatorioSaldo";
+            lblRelatorioSaldo.Size = new Size(149, 39);
+            lblRelatorioSaldo.TabIndex = 35;
+            lblRelatorioSaldo.Text = "0.000,00";
+            lblRelatorioSaldo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // dtpFim
+            // 
+            dtpFim.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            dtpFim.DropDownAlign = LeftRightAlignment.Right;
+            dtpFim.Font = new Font("Microsoft Sans Serif", 35F);
+            dtpFim.Format = DateTimePickerFormat.Short;
+            dtpFim.Location = new Point(1118, 54);
+            dtpFim.Name = "dtpFim";
+            dtpFim.Size = new Size(277, 60);
+            dtpFim.TabIndex = 31;
+            dtpFim.Value = new DateTime(2025, 12, 15, 0, 0, 0, 0);
+            // 
+            // btnFiltrar
+            // 
+            btnFiltrar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnFiltrar.BorderColor = Color.FromArgb(220, 223, 230);
+            btnFiltrar.ButtonType = ReaLTaiizor.Util.HopeButtonType.Primary;
+            btnFiltrar.DangerColor = Color.FromArgb(245, 108, 108);
+            btnFiltrar.DefaultColor = Color.FromArgb(255, 255, 255);
+            btnFiltrar.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnFiltrar.HoverTextColor = Color.FromArgb(48, 49, 51);
+            btnFiltrar.InfoColor = Color.FromArgb(144, 147, 153);
+            btnFiltrar.Location = new Point(1430, 54);
+            btnFiltrar.Margin = new Padding(4);
+            btnFiltrar.Name = "btnFiltrar";
+            btnFiltrar.PrimaryColor = Color.FromArgb(150, 0, 255);
+            btnFiltrar.Size = new Size(130, 60);
+            btnFiltrar.SuccessColor = Color.FromArgb(103, 194, 58);
+            btnFiltrar.TabIndex = 34;
+            btnFiltrar.Text = "Filtrar";
+            btnFiltrar.TextColor = Color.White;
+            btnFiltrar.WarningColor = Color.FromArgb(230, 162, 60);
+            btnFiltrar.Click += btnFiltrar_Click;
+            // 
+            // cbFiltroPeriodo
+            // 
+            cbFiltroPeriodo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            cbFiltroPeriodo.BackColor = Color.FromArgb(150, 0, 255);
+            cbFiltroPeriodo.ColorA = Color.FromArgb(192, 102, 255);
+            cbFiltroPeriodo.ColorB = Color.FromArgb(192, 102, 255);
+            cbFiltroPeriodo.ColorC = Color.FromArgb(150, 0, 255);
+            cbFiltroPeriodo.ColorD = Color.FromArgb(150, 0, 255);
+            cbFiltroPeriodo.ColorE = Color.FromArgb(150, 0, 255);
+            cbFiltroPeriodo.ColorF = Color.FromArgb(150, 0, 255);
+            cbFiltroPeriodo.ColorG = Color.White;
+            cbFiltroPeriodo.ColorH = Color.FromArgb(150, 0, 255);
+            cbFiltroPeriodo.ColorI = Color.FromArgb(150, 0, 255);
+            cbFiltroPeriodo.DrawMode = DrawMode.OwnerDrawFixed;
+            cbFiltroPeriodo.DropDownHeight = 254;
+            cbFiltroPeriodo.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbFiltroPeriodo.Font = new Font("Microsoft Sans Serif", 15F);
+            cbFiltroPeriodo.ForeColor = Color.White;
+            cbFiltroPeriodo.FormattingEnabled = true;
+            cbFiltroPeriodo.HoverSelectionColor = Color.Empty;
+            cbFiltroPeriodo.IntegralHeight = false;
+            cbFiltroPeriodo.ItemHeight = 54;
+            cbFiltroPeriodo.Location = new Point(598, 54);
+            cbFiltroPeriodo.MaxDropDownItems = 10;
+            cbFiltroPeriodo.Name = "cbFiltroPeriodo";
+            cbFiltroPeriodo.Size = new Size(176, 60);
+            cbFiltroPeriodo.StartIndex = 0;
+            cbFiltroPeriodo.TabIndex = 29;
+            cbFiltroPeriodo.SelectedIndexChanged += cbFiltroPeriodo_SelectedIndexChanged;
             // 
             // tabPageLogout
             // 
@@ -1970,6 +2167,10 @@
             tabPageTrans.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView5).EndInit();
             panel7.ResumeLayout(false);
+            tabPageReport.ResumeLayout(false);
+            tabPageReport.PerformLayout();
+            panel9.ResumeLayout(false);
+            panel9.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -2061,5 +2262,17 @@
         private ReaLTaiizor.Controls.ParrotRadioButton rdoTodas;
         private ScottPlot.WinForms.FormsPlot plotBarras;
         private ScottPlot.WinForms.FormsPlot plotPizza;
+        private Panel panel9;
+        private ReaLTaiizor.Controls.DungeonComboBox cbFiltroPeriodo;
+        private DateTimePicker dtpFim;
+        private ReaLTaiizor.Controls.HopeRoundButton btnFiltrar;
+        private ReaLTaiizor.Controls.BigLabel bigLabel6;
+        private ReaLTaiizor.Controls.BigLabel bigLabel5;
+        private ReaLTaiizor.Controls.BigLabel lblRelatorioEntrada;
+        private ReaLTaiizor.Controls.BigLabel lblRelatorioSaida;
+        private ReaLTaiizor.Controls.BigLabel lblRelatorioSaldo;
+        private ScottPlot.WinForms.FormsPlot plotRelatorioEvolucao;
+        private ScottPlot.WinForms.FormsPlot plotRelatorioPizza;
+        private DateTimePicker dtpInicio;
     }
 }

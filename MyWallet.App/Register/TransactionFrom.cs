@@ -54,7 +54,7 @@ namespace MyWallet.App.Register
                 new { Value = PaymentMethod.CreditCard, Text = "Crédito" },
                 new { Value = PaymentMethod.Pix, Text = "Pix" },
                 new { Value = PaymentMethod.BankSlip, Text = "Boleto" },
-                new { Value = PaymentMethod.Transfer, Text = "Transferência Bancária" }
+                new { Value = PaymentMethod.Transfer, Text = "Transf. Bancária" }
             };
 
             cboMetodo.DisplayMember = "Text";

@@ -66,6 +66,13 @@ namespace MyWallet.App
             ProcessarAssinaturasVencidas();
             CarregarDashboard();
             CarregarTransacoesRecentes();
+
+            // Configura o Filtro do Relatório
+            cbFiltroPeriodo.Items.Add("Este Mês");
+            cbFiltroPeriodo.Items.Add("Mês Passado");
+            cbFiltroPeriodo.Items.Add("Este Ano");
+            cbFiltroPeriodo.Items.Add("Personalizado");
+            cbFiltroPeriodo.SelectedIndex = 0;
         }
         public void AtualizarDadosDoUsuarioLogado()
         {
@@ -122,15 +129,7 @@ namespace MyWallet.App
                         Id = t.Id,
                         Data = t.TransactionDate,
                         Descricao = t.Description,
-                        Categoria = t.Category != null ? t.Category.Name : "Geral",
-
-                        Tipo = t.Type switch
-                        {
-                            TransactionType.Revenue => "Receita",
-                            TransactionType.Expense => "Despesa",
-                            TransactionType.Transfer => "Transferência",
-                            _ => "Outro"
-                        },
+                        
 
                         Valor = t.Amount
                     })
@@ -436,6 +435,7 @@ namespace MyWallet.App
         private void tabPageHome_Enter(object sender, EventArgs e)
         {
             CarregarGraficos();
+
         }
         #endregion
 
@@ -976,7 +976,216 @@ namespace MyWallet.App
         #endregion
 
         #region Reports
+        private void AtualizarKPIs(List<Transaction> transacoes)
+        {
+            double totalReceita = (double)transacoes.Where(t => t.Type == TransactionType.Revenue).Sum(t => t.Amount);
+            double totalDespesa = (double)transacoes.Where(t => t.Type == TransactionType.Expense).Sum(t => t.Amount);
+            double saldo = totalReceita - totalDespesa;
 
+            if (lblRelatorioSaldo != null)
+            {
+                lblRelatorioSaldo.Text = $"Saldo\n{saldo:C2}";
+                lblRelatorioSaldo.ForeColor = saldo >= 0 ? System.Drawing.Color.LightGreen : System.Drawing.Color.LightCoral;
+            }
+
+            if (lblRelatorioEntrada != null)
+                lblRelatorioEntrada.Text = $"Entradas\n{totalReceita:C2}";
+
+            if (lblRelatorioSaida != null)
+                lblRelatorioSaida.Text = $"Saídas\n{totalDespesa:C2}";
+        }
+
+        private void AtualizarGraficos(List<Transaction> transacoes, DateTime dataInicio, DateTime dataFim)
+        {
+            var corFundo = new ScottPlot.Color(21, 16, 70);
+            var corTexto = ScottPlot.Colors.White;
+
+        
+            if (plotRelatorioPizza != null)
+            {
+                plotRelatorioPizza.Plot.Clear();
+                plotRelatorioPizza.Plot.FigureBackground.Color = corFundo;
+                plotRelatorioPizza.Plot.DataBackground.Color = corFundo;
+                plotRelatorioPizza.Plot.Axes.Color(corTexto);
+
+                var dadosPizza = transacoes
+                    .Where(t => t.Type == TransactionType.Expense)
+                    .GroupBy(t => t.Category != null ? t.Category.Name : "Outros")
+                    .Select(g => new { Categoria = g.Key, Total = (double)g.Sum(t => t.Amount) })
+                    .Where(x => x.Total > 0)
+                    .OrderByDescending(x => x.Total)
+                    .ToList();
+
+                if (dadosPizza.Count > 0)
+                {
+                    var fatias = new List<ScottPlot.PieSlice>();
+                    var paleta = ScottPlot.Colors.Category10;
+                    int i = 0;
+
+                    foreach (var item in dadosPizza)
+                    {
+                        fatias.Add(new ScottPlot.PieSlice
+                        {
+                            Value = item.Total,
+                            Label = $"{item.Categoria}\n{item.Total:C2}",
+                            FillColor = paleta[i % paleta.Length],
+                            LabelFontColor = corTexto,
+                            LabelFontSize = 12, 
+                            LabelBold = true
+                        });
+                        i++;
+                    }
+
+                    var pie = plotRelatorioPizza.Plot.Add.Pie(fatias);
+                    pie.DonutFraction = 0.5;
+
+ 
+                    pie.SliceLabelDistance = 1.05; 
+
+                    plotRelatorioPizza.Plot.HideGrid();
+                    plotRelatorioPizza.Plot.Axes.Frameless();
+                    plotRelatorioPizza.Plot.Axes.Margins(0, 0);
+
+                    plotRelatorioPizza.Plot.Axes.SetLimits(-1.3, 1.3, -1.3, 1.3);
+                }
+                else
+                {
+                    plotRelatorioPizza.Plot.Title("Sem despesas no período");
+                    plotRelatorioPizza.Plot.Axes.Title.Label.ForeColor = corTexto;
+                }
+
+                plotRelatorioPizza.Plot.Title("Despesas por Categoria");
+                plotRelatorioPizza.Plot.Axes.Title.Label.ForeColor = corTexto;
+                plotRelatorioPizza.Refresh();
+            }
+
+            
+            if (plotRelatorioEvolucao != null)
+            {
+                plotRelatorioEvolucao.Plot.Clear();
+                plotRelatorioEvolucao.Plot.FigureBackground.Color = corFundo;
+                plotRelatorioEvolucao.Plot.DataBackground.Color = corFundo;
+                plotRelatorioEvolucao.Plot.Axes.Color(corTexto);
+                plotRelatorioEvolucao.Plot.Grid.MajorLineColor = ScottPlot.Colors.White.WithAlpha(0.1);
+
+                bool agruparPorMes = (dataFim - dataInicio).TotalDays > 60;
+
+                var grupos = transacoes
+                    .GroupBy(t => agruparPorMes
+                        ? new DateTime(t.TransactionDate.Year, t.TransactionDate.Month, 1)
+                        : t.TransactionDate.Date)
+                    .OrderBy(g => g.Key)
+                    .ToList();
+
+                List<ScottPlot.Bar> barras = new();
+                ScottPlot.TickGenerators.NumericManual tickGen = new();
+                int posicao = 0;
+                double maiorValor = 0;
+
+                foreach (var grupo in grupos)
+                {
+                    double ent = (double)grupo.Where(t => t.Type == TransactionType.Revenue).Sum(t => t.Amount);
+                    double sai = (double)grupo.Where(t => t.Type == TransactionType.Expense).Sum(t => t.Amount);
+
+                    if (ent > maiorValor) maiorValor = ent;
+                    if (sai > maiorValor) maiorValor = sai;
+
+                    barras.Add(new ScottPlot.Bar
+                    {
+                        Position = posicao,
+                        Value = ent,
+                        FillColor = ScottPlot.Colors.MediumSeaGreen,
+                        Size = 0.4
+                    });
+                    barras.Add(new ScottPlot.Bar
+                    {
+                        Position = posicao + 0.4,
+                        Value = sai,
+                        FillColor = ScottPlot.Colors.IndianRed,
+                        Size = 0.4
+                    });
+
+                    string textoData = agruparPorMes ? grupo.Key.ToString("MMM/yy") : grupo.Key.ToString("dd/MM");
+                    tickGen.AddMajor(posicao + 0.2, textoData);
+
+                    posicao++;
+                }
+
+                var plotBars = plotRelatorioEvolucao.Plot.Add.Bars(barras);
+                plotRelatorioEvolucao.Plot.Axes.Bottom.TickGenerator = tickGen;
+
+                plotRelatorioEvolucao.Plot.Title("Evolução Financeira");
+                plotRelatorioEvolucao.Plot.Axes.Title.Label.ForeColor = corTexto;
+
+                if (maiorValor > 0)
+                {
+                    plotRelatorioEvolucao.Plot.Axes.SetLimitsY(0, maiorValor * 1.2);
+                }
+                else
+                {
+                    plotRelatorioEvolucao.Plot.Axes.AutoScale();
+                }
+
+                plotRelatorioEvolucao.Refresh();
+            }
+        }
+        private void CarregarRelatorios()
+        {
+            try
+            {
+                DateTime dataInicio = dtpInicio.Value.Date;
+                DateTime dataFim = dtpFim.Value.Date.AddDays(1).AddTicks(-1);
+
+                var userId = UserSession.UserId;
+
+                var transacoes = _transactionService.Get<Transaction>(new List<string> { "Category" })
+                    .Where(t => t.User.Id == userId &&
+                                t.TransactionDate >= dataInicio &&
+                                t.TransactionDate <= dataFim)
+                    .ToList();
+
+                AtualizarKPIs(transacoes);
+
+                AtualizarGraficos(transacoes, dataInicio, dataFim);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao gerar relatório: " + ex.Message);
+            }
+        }
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            CarregarRelatorios();
+        }
+        private void cbFiltroPeriodo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var hoje = DateTime.Now;
+
+            dtpInicio.ValueChanged -= btnFiltrar_Click;
+
+            switch (cbFiltroPeriodo.SelectedItem.ToString())
+            {
+                case "Este Mês":
+                    dtpInicio.Value = new DateTime(hoje.Year, hoje.Month, 1);
+                    dtpFim.Value = hoje;
+                    break;
+
+                case "Mês Passado":
+                    var mesPassado = hoje.AddMonths(-1);
+                    dtpInicio.Value = new DateTime(mesPassado.Year, mesPassado.Month, 1);
+                    dtpFim.Value = new DateTime(mesPassado.Year, mesPassado.Month, DateTime.DaysInMonth(mesPassado.Year, mesPassado.Month));
+                    break;
+
+                case "Este Ano":
+                    dtpInicio.Value = new DateTime(hoje.Year, 1, 1);
+                    dtpFim.Value = new DateTime(hoje.Year, 12, 31);
+                    break;
+
+            }
+
+            
+            CarregarRelatorios();
+        }
         #endregion
 
         #region Extra
@@ -1013,8 +1222,9 @@ namespace MyWallet.App
                 }
             }
         }
-        
+
         #endregion
 
+        
     }
 }
