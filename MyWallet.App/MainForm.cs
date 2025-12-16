@@ -275,7 +275,6 @@ namespace MyWallet.App
                         houveAtualizacao = true;
                     }
 
-                    // Salva a Assinatura com a nova data
                     _subscriptionService.Update<Subscription, Subscription, SubscriptionValidator>(sub);
                 }
 
@@ -309,7 +308,7 @@ namespace MyWallet.App
                                 t.TransactionDate.Year == dataAtual.Year)
                     .ToList();
 
-
+                
                 if (plotPizza != null)
                 {
                     plotPizza.Plot.Clear();
@@ -328,34 +327,35 @@ namespace MyWallet.App
 
                     if (gastosPorCategoria.Count > 0)
                     {
-                        var fatias = new List<PieSlice>();
-
+                        var fatias = new List<ScottPlot.PieSlice>();
                         var paleta = ScottPlot.Colors.Category10;
                         int i = 0;
 
                         foreach (var item in gastosPorCategoria)
                         {
-                            fatias.Add(new PieSlice
+                            fatias.Add(new ScottPlot.PieSlice
                             {
                                 Value = item.Total,
                                 Label = $"{item.Categoria}\n{item.Total:C2}",
-
                                 FillColor = paleta[i % paleta.Length],
                                 LabelFontColor = corTexto,
-                                LabelFontSize = 14
+                                LabelFontSize = 12, 
+                                LabelBold = true
                             });
                             i++;
                         }
 
                         var pie = plotPizza.Plot.Add.Pie(fatias);
                         pie.DonutFraction = 0.5;
-                        pie.SliceLabelDistance = 1.2;
 
-                        plotPizza.Plot.Title("Gastos por Categoria");
-                        plotPizza.Plot.Axes.Title.Label.ForeColor = corTexto;
+                        pie.SliceLabelDistance = 1.05;
 
                         plotPizza.Plot.HideGrid();
                         plotPizza.Plot.Axes.Frameless();
+
+                        plotPizza.Plot.Axes.Margins(0, 0);
+
+                        plotPizza.Plot.Axes.SetLimits(-1.25, 1.25, -1.25, 1.25);
                     }
                     else
                     {
@@ -363,10 +363,13 @@ namespace MyWallet.App
                         plotPizza.Plot.Axes.Title.Label.ForeColor = corTexto;
                     }
 
+                    plotPizza.Plot.Title("Gastos por Categoria");
+                    plotPizza.Plot.Axes.Title.Label.ForeColor = corTexto;
+
                     plotPizza.Refresh();
                 }
 
-
+                
                 if (plotBarras != null)
                 {
                     plotBarras.Plot.Clear();
@@ -384,7 +387,6 @@ namespace MyWallet.App
                         .Where(t => t.Type == TransactionType.Expense)
                         .Sum(t => t.Amount);
 
-
                     var barraReceita = new ScottPlot.Bar
                     {
                         Value = totalReceita,
@@ -401,7 +403,6 @@ namespace MyWallet.App
                         Label = $"Despesa\n{totalDespesa:C2}"
                     };
 
-
                     var bars = plotBarras.Plot.Add.Bars(new[] { barraReceita, barraDespesa });
                     bars.ValueLabelStyle.ForeColor = corTexto;
 
@@ -410,15 +411,14 @@ namespace MyWallet.App
                     ticks.AddMajor(2, "");
                     plotBarras.Plot.Axes.Bottom.TickGenerator = ticks;
 
-
                     plotBarras.Plot.Title("Balanço do Mês");
                     plotBarras.Plot.Axes.Title.Label.ForeColor = corTexto;
-                    double maiorValor = Math.Max(totalReceita, totalDespesa);
 
+                    double maiorValor = Math.Max(totalReceita, totalDespesa);
 
                     if (maiorValor > 0)
                     {
-                        plotBarras.Plot.Axes.SetLimitsY(0, maiorValor * 1.2);
+                        plotBarras.Plot.Axes.SetLimitsY(0, maiorValor * 1.25);
                     }
                     else
                     {
@@ -1059,14 +1059,14 @@ namespace MyWallet.App
                 plotRelatorioPizza.Refresh();
             }
 
-            
+
             if (plotRelatorioEvolucao != null)
             {
                 plotRelatorioEvolucao.Plot.Clear();
                 plotRelatorioEvolucao.Plot.FigureBackground.Color = corFundo;
                 plotRelatorioEvolucao.Plot.DataBackground.Color = corFundo;
                 plotRelatorioEvolucao.Plot.Axes.Color(corTexto);
-                plotRelatorioEvolucao.Plot.Grid.MajorLineColor = ScottPlot.Colors.White.WithAlpha(0.1);
+                plotRelatorioEvolucao.Plot.Grid.MajorLineColor = ScottPlot.Colors.White.WithAlpha(0.05);
 
                 bool agruparPorMes = (dataFim - dataInicio).TotalDays > 60;
 
@@ -1084,8 +1084,8 @@ namespace MyWallet.App
 
                 foreach (var grupo in grupos)
                 {
-                    double ent = (double)grupo.Where(t => t.Type == TransactionType.Revenue).Sum(t => t.Amount);
-                    double sai = (double)grupo.Where(t => t.Type == TransactionType.Expense).Sum(t => t.Amount);
+                    double ent = Math.Abs((double)grupo.Where(t => t.Type == TransactionType.Revenue).Sum(t => t.Amount));
+                    double sai = Math.Abs((double)grupo.Where(t => t.Type == TransactionType.Expense).Sum(t => t.Amount));
 
                     if (ent > maiorValor) maiorValor = ent;
                     if (sai > maiorValor) maiorValor = sai;
@@ -1095,14 +1095,17 @@ namespace MyWallet.App
                         Position = posicao,
                         Value = ent,
                         FillColor = ScottPlot.Colors.MediumSeaGreen,
-                        Size = 0.4
+                        Size = 0.4,
+                        Label = ent > 0 ? ent.ToString("C0") : ""
                     });
+
                     barras.Add(new ScottPlot.Bar
                     {
                         Position = posicao + 0.4,
                         Value = sai,
                         FillColor = ScottPlot.Colors.IndianRed,
-                        Size = 0.4
+                        Size = 0.4,
+                        Label = sai > 0 ? sai.ToString("C0") : ""
                     });
 
                     string textoData = agruparPorMes ? grupo.Key.ToString("MMM/yy") : grupo.Key.ToString("dd/MM");
@@ -1112,7 +1115,16 @@ namespace MyWallet.App
                 }
 
                 var plotBars = plotRelatorioEvolucao.Plot.Add.Bars(barras);
+
+                plotBars.ValueLabelStyle.ForeColor = corTexto;
+                plotBars.ValueLabelStyle.FontSize = 10;
+                plotBars.ValueLabelStyle.Bold = true;
+
                 plotRelatorioEvolucao.Plot.Axes.Bottom.TickGenerator = tickGen;
+                plotRelatorioEvolucao.Plot.Axes.Bottom.TickLabelStyle.Rotation = -45;
+                plotRelatorioEvolucao.Plot.Axes.Bottom.TickLabelStyle.Alignment = ScottPlot.Alignment.MiddleRight;
+
+                plotRelatorioEvolucao.Plot.Axes.Margins(bottom: 0.2, top: 0.2);
 
                 plotRelatorioEvolucao.Plot.Title("Evolução Financeira");
                 plotRelatorioEvolucao.Plot.Axes.Title.Label.ForeColor = corTexto;
@@ -1123,7 +1135,12 @@ namespace MyWallet.App
                 }
                 else
                 {
-                    plotRelatorioEvolucao.Plot.Axes.AutoScale();
+                    plotRelatorioEvolucao.Plot.Axes.SetLimitsY(0, 100);
+                }
+
+                if (grupos.Count > 0)
+                {
+                    plotRelatorioEvolucao.Plot.Axes.SetLimitsX(-0.5, grupos.Count + 0.5);
                 }
 
                 plotRelatorioEvolucao.Refresh();
