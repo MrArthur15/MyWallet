@@ -64,6 +64,8 @@
             airTabPage1 = new ReaLTaiizor.Controls.AirTabPage();
             tabPageHome = new TabPage();
             panel3 = new Panel();
+            plotBarras = new ScottPlot.WinForms.FormsPlot();
+            plotPizza = new ScottPlot.WinForms.FormsPlot();
             dgvRecentes = new DataGridView();
             panel8 = new Panel();
             parrotButton1 = new ReaLTaiizor.Controls.ParrotButton();
@@ -223,20 +225,43 @@
             tabPageHome.Padding = new Padding(4);
             tabPageHome.Size = new Size(1594, 818);
             tabPageHome.TabIndex = 0;
+            tabPageHome.Enter += tabPageHome_Enter;
             // 
             // panel3
             // 
+            panel3.Controls.Add(plotBarras);
+            panel3.Controls.Add(plotPizza);
             panel3.Controls.Add(dgvRecentes);
             panel3.Controls.Add(panel8);
             panel3.Controls.Add(hopeRoundButton4);
             panel3.Controls.Add(hopeRoundButton5);
             panel3.Controls.Add(hopeRoundButton6);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(4, 370);
+            panel3.Location = new Point(4, 349);
             panel3.Margin = new Padding(4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1586, 444);
+            panel3.Size = new Size(1586, 465);
             panel3.TabIndex = 1;
+            // 
+            // plotBarras
+            // 
+            plotBarras.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            plotBarras.AutoSize = true;
+            plotBarras.DisplayScale = 1F;
+            plotBarras.Location = new Point(701, 0);
+            plotBarras.Name = "plotBarras";
+            plotBarras.Size = new Size(380, 380);
+            plotBarras.TabIndex = 10;
+            // 
+            // plotPizza
+            // 
+            plotPizza.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            plotPizza.AutoSize = true;
+            plotPizza.DisplayScale = 1F;
+            plotPizza.Location = new Point(26, 0);
+            plotPizza.Name = "plotPizza";
+            plotPizza.Size = new Size(380, 380);
+            plotPizza.TabIndex = 9;
             // 
             // dgvRecentes
             // 
@@ -284,7 +309,7 @@
             dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(50, 77, 249);
             dataGridViewCellStyle5.SelectionForeColor = Color.White;
             dgvRecentes.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            dgvRecentes.Size = new Size(500, 359);
+            dgvRecentes.Size = new Size(500, 380);
             dgvRecentes.TabIndex = 8;
             // 
             // panel8
@@ -292,7 +317,7 @@
             panel8.Controls.Add(parrotButton1);
             panel8.Controls.Add(btnNewTrans);
             panel8.Dock = DockStyle.Bottom;
-            panel8.Location = new Point(0, 359);
+            panel8.Location = new Point(0, 380);
             panel8.Name = "panel8";
             panel8.Size = new Size(1586, 85);
             panel8.TabIndex = 7;
@@ -355,7 +380,7 @@
             hopeRoundButton4.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton4.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton4.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton4.Location = new Point(2449, 365);
+            hopeRoundButton4.Location = new Point(2449, 386);
             hopeRoundButton4.Margin = new Padding(4);
             hopeRoundButton4.Name = "hopeRoundButton4";
             hopeRoundButton4.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -376,7 +401,7 @@
             hopeRoundButton5.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton5.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton5.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton5.Location = new Point(2624, 365);
+            hopeRoundButton5.Location = new Point(2624, 386);
             hopeRoundButton5.Margin = new Padding(4);
             hopeRoundButton5.Name = "hopeRoundButton5";
             hopeRoundButton5.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -397,7 +422,7 @@
             hopeRoundButton6.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton6.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton6.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton6.Location = new Point(2799, 365);
+            hopeRoundButton6.Location = new Point(2799, 386);
             hopeRoundButton6.Margin = new Padding(4);
             hopeRoundButton6.Name = "hopeRoundButton6";
             hopeRoundButton6.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -422,12 +447,12 @@
             panel5.Dock = DockStyle.Top;
             panel5.Location = new Point(4, 4);
             panel5.Name = "panel5";
-            panel5.Size = new Size(1586, 366);
+            panel5.Size = new Size(1586, 345);
             panel5.TabIndex = 3;
             // 
             // bigLabel1
             // 
-            bigLabel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            bigLabel1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             bigLabel1.AutoSize = true;
             bigLabel1.BackColor = Color.Transparent;
             bigLabel1.Font = new Font("Microsoft Sans Serif", 25F);
@@ -441,7 +466,7 @@
             // 
             // bigLabel2
             // 
-            bigLabel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            bigLabel2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             bigLabel2.AutoSize = true;
             bigLabel2.BackColor = Color.Transparent;
             bigLabel2.Font = new Font("Microsoft Sans Serif", 25F);
@@ -455,7 +480,7 @@
             // 
             // bigLabel3
             // 
-            bigLabel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            bigLabel3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             bigLabel3.AutoSize = true;
             bigLabel3.BackColor = Color.Transparent;
             bigLabel3.Font = new Font("Microsoft Sans Serif", 25F);
@@ -469,7 +494,7 @@
             // 
             // bigLabel4
             // 
-            bigLabel4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            bigLabel4.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             bigLabel4.AutoSize = true;
             bigLabel4.BackColor = Color.Transparent;
             bigLabel4.Font = new Font("Microsoft Sans Serif", 25F);
@@ -483,7 +508,7 @@
             // 
             // lblGastosPagos
             // 
-            lblGastosPagos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblGastosPagos.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblGastosPagos.AutoSize = true;
             lblGastosPagos.BackColor = Color.Transparent;
             lblGastosPagos.Font = new Font("Microsoft Sans Serif", 25F);
@@ -497,7 +522,7 @@
             // 
             // lblGastosTotal
             // 
-            lblGastosTotal.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblGastosTotal.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblGastosTotal.AutoSize = true;
             lblGastosTotal.BackColor = Color.Transparent;
             lblGastosTotal.Font = new Font("Microsoft Sans Serif", 25F);
@@ -511,7 +536,7 @@
             // 
             // lblSaldoPrevisto
             // 
-            lblSaldoPrevisto.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblSaldoPrevisto.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblSaldoPrevisto.AutoSize = true;
             lblSaldoPrevisto.BackColor = Color.Transparent;
             lblSaldoPrevisto.Font = new Font("Microsoft Sans Serif", 25F);
@@ -525,7 +550,7 @@
             // 
             // lblSaldoAtual
             // 
-            lblSaldoAtual.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblSaldoAtual.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblSaldoAtual.AutoSize = true;
             lblSaldoAtual.BackColor = Color.Transparent;
             lblSaldoAtual.Font = new Font("Microsoft Sans Serif", 25F);
@@ -539,7 +564,7 @@
             // 
             // lblUsuario
             // 
-            lblUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblUsuario.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblUsuario.AutoSize = true;
             lblUsuario.BackColor = Color.Transparent;
             lblUsuario.Font = new Font("Microsoft Sans Serif", 80F);
@@ -1925,6 +1950,7 @@
             airTabPage1.ResumeLayout(false);
             tabPageHome.ResumeLayout(false);
             panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRecentes).EndInit();
             panel8.ResumeLayout(false);
             panel5.ResumeLayout(false);
@@ -2033,5 +2059,7 @@
         private DataGridView dgvRecentes;
         private ReaLTaiizor.Controls.ParrotRadioButton rdoMes;
         private ReaLTaiizor.Controls.ParrotRadioButton rdoTodas;
+        private ScottPlot.WinForms.FormsPlot plotBarras;
+        private ScottPlot.WinForms.FormsPlot plotPizza;
     }
 }

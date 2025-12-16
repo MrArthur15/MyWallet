@@ -11,6 +11,7 @@ namespace MyWallet.App.Others
     {
         public HomeForm()
         {
+            UserSession.Logout();
             InitializeComponent();
         }
 

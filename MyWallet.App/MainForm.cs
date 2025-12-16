@@ -12,6 +12,8 @@ using MyWallet.Domain.Entities;
 using MyWallet.Domain.Enum;
 using MyWallet.Service.Validators;
 using ReaLTaiizor.Forms;
+using ScottPlot;
+using Color = System.Drawing.Color;
 
 namespace MyWallet.App
 {
@@ -24,9 +26,6 @@ namespace MyWallet.App
         private IBaseService<Category> _categoryService;
         private IBaseService<Subscription> _subscriptionService;
         private IBaseService<Transaction> _transactionService;
-
-
-
 
         public MainForm(IBaseService<Account> accountService, IBaseService<Bank> bankService, IBaseService<Category> categoryService, IBaseService<Subscription> subscriptionService, IBaseService<Transaction> transactionService)
         {
@@ -54,13 +53,61 @@ namespace MyWallet.App
             ProcessarAssinaturasVencidas();
             CarregarDashboard();
             CarregarTransacoesRecentes();
-            rdoMes.Checked = true; 
+            rdoMes.Checked = true;
             rdoTodas.Checked = false;
             CarregarGridTransacoes();
+            CarregarGraficos();
 
 
         }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            ProcessarAssinaturasVencidas();
+            CarregarDashboard();
+            CarregarTransacoesRecentes();
+        }
+        public void AtualizarDadosDoUsuarioLogado()
+        {
+
+
+            if (UserSession.CurrentUser != null)
+            {
+                var primeiroNome = UserSession.CurrentUser.Name.Split(' ')[0];
+                lblUsuario.Text = $"Bem-vindo, {primeiroNome}!";
+
+
+            }
+            else
+            {
+                lblUsuario.Text = "Usuário Desconhecido";
+            }
+        }
+
+        #region Dashboard 
+        private void parrotButton1_Click(object sender, EventArgs e)
+        {
+            ProcessarAssinaturasVencidas();
+            CarregarDashboard();
+            CarregarTransacoesRecentes();
+            CarregarGraficos();
+        }
+
+        private void rdoMes_Click(object sender, EventArgs e)
+        {
+            rdoMes.Checked = true;
+            rdoTodas.Checked = false;
+
+            CarregarGridTransacoes();
+        }
+
+        private void rdoTodas_Click(object sender, EventArgs e)
+        {
+            rdoTodas.Checked = true;
+            rdoMes.Checked = false;
+
+            CarregarGridTransacoes();
+        }
         private void CarregarTransacoesRecentes()
         {
             try
@@ -247,9 +294,152 @@ namespace MyWallet.App
                 MessageBox.Show($"Erro ao processar assinaturas: {ex.Message}");
             }
         }
+        private void CarregarGraficos()
+        {
+            try
+            {
+                var corFundo = new ScottPlot.Color(21, 16, 70);
+                var corTexto = ScottPlot.Colors.White;
 
-        #region Grid
+                var dataAtual = DateTime.Now;
+                var userId = UserSession.UserId;
 
+                var transacoesDoMes = _transactionService.Get<Transaction>(new List<string> { "Category" })
+                    .Where(t => t.User.Id == userId &&
+                                t.TransactionDate.Month == dataAtual.Month &&
+                                t.TransactionDate.Year == dataAtual.Year)
+                    .ToList();
+
+
+                if (plotPizza != null)
+                {
+                    plotPizza.Plot.Clear();
+
+                    plotPizza.Plot.FigureBackground.Color = corFundo;
+                    plotPizza.Plot.DataBackground.Color = corFundo;
+                    plotPizza.Plot.Axes.Color(corTexto);
+
+                    var gastosPorCategoria = transacoesDoMes
+                        .Where(t => t.Type == TransactionType.Expense)
+                        .GroupBy(t => t.Category != null ? t.Category.Name : "Outros")
+                        .Select(g => new { Categoria = g.Key, Total = (double)g.Sum(t => t.Amount) })
+                        .Where(x => x.Total > 0)
+                        .OrderByDescending(x => x.Total)
+                        .ToList();
+
+                    if (gastosPorCategoria.Count > 0)
+                    {
+                        var fatias = new List<PieSlice>();
+
+                        var paleta = ScottPlot.Colors.Category10;
+                        int i = 0;
+
+                        foreach (var item in gastosPorCategoria)
+                        {
+                            fatias.Add(new PieSlice
+                            {
+                                Value = item.Total,
+                                Label = $"{item.Categoria}\n{item.Total:C2}",
+
+                                FillColor = paleta[i % paleta.Length],
+                                LabelFontColor = corTexto,
+                                LabelFontSize = 14
+                            });
+                            i++;
+                        }
+
+                        var pie = plotPizza.Plot.Add.Pie(fatias);
+                        pie.DonutFraction = 0.5;
+                        pie.SliceLabelDistance = 1.2;
+
+                        plotPizza.Plot.Title("Gastos por Categoria");
+                        plotPizza.Plot.Axes.Title.Label.ForeColor = corTexto;
+
+                        plotPizza.Plot.HideGrid();
+                        plotPizza.Plot.Axes.Frameless();
+                    }
+                    else
+                    {
+                        plotPizza.Plot.Title("Sem despesas");
+                        plotPizza.Plot.Axes.Title.Label.ForeColor = corTexto;
+                    }
+
+                    plotPizza.Refresh();
+                }
+
+
+                if (plotBarras != null)
+                {
+                    plotBarras.Plot.Clear();
+
+                    plotBarras.Plot.FigureBackground.Color = corFundo;
+                    plotBarras.Plot.DataBackground.Color = corFundo;
+                    plotBarras.Plot.Axes.Color(corTexto);
+                    plotBarras.Plot.Grid.MajorLineColor = ScottPlot.Colors.White.WithAlpha(0.1);
+
+                    double totalReceita = (double)transacoesDoMes
+                        .Where(t => t.Type == TransactionType.Revenue)
+                        .Sum(t => t.Amount);
+
+                    double totalDespesa = (double)transacoesDoMes
+                        .Where(t => t.Type == TransactionType.Expense)
+                        .Sum(t => t.Amount);
+
+
+                    var barraReceita = new ScottPlot.Bar
+                    {
+                        Value = totalReceita,
+                        Position = 1,
+                        FillColor = ScottPlot.Colors.MediumSeaGreen,
+                        Label = $"Receita\n{totalReceita:C2}"
+                    };
+
+                    var barraDespesa = new ScottPlot.Bar
+                    {
+                        Value = totalDespesa,
+                        Position = 2,
+                        FillColor = ScottPlot.Colors.IndianRed,
+                        Label = $"Despesa\n{totalDespesa:C2}"
+                    };
+
+
+                    var bars = plotBarras.Plot.Add.Bars(new[] { barraReceita, barraDespesa });
+                    bars.ValueLabelStyle.ForeColor = corTexto;
+
+                    ScottPlot.TickGenerators.NumericManual ticks = new();
+                    ticks.AddMajor(1, "");
+                    ticks.AddMajor(2, "");
+                    plotBarras.Plot.Axes.Bottom.TickGenerator = ticks;
+
+
+                    plotBarras.Plot.Title("Balanço do Mês");
+                    plotBarras.Plot.Axes.Title.Label.ForeColor = corTexto;
+                    double maiorValor = Math.Max(totalReceita, totalDespesa);
+
+
+                    if (maiorValor > 0)
+                    {
+                        plotBarras.Plot.Axes.SetLimitsY(0, maiorValor * 1.2);
+                    }
+                    else
+                    {
+                        plotBarras.Plot.Axes.AutoScale();
+                    }
+                    plotBarras.Refresh();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao gerar gráficos: " + ex.Message);
+            }
+        }
+        private void tabPageHome_Enter(object sender, EventArgs e)
+        {
+            CarregarGraficos();
+        }
+        #endregion
+
+        #region Account 
         private void CarregarGridContas()
         {
             try
@@ -292,6 +482,68 @@ namespace MyWallet.App
                 MessageBox.Show("Erro ao carregar contas: " + ex.Message);
             }
         }
+        private void btnCriar1_Click(object sender, EventArgs e)
+        {
+            var formConta = ConfigureDI.serviceProvider.GetService<AccountForm>();
+
+
+            if (formConta.ShowDialog() == DialogResult.OK)
+            {
+
+                CarregarGridContas();
+            }
+        }
+        private void btnEditar1_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                var id = (int)dataGridView1.SelectedRows[0].Cells["Id"].Value;
+
+                var formConta = ConfigureDI.serviceProvider.GetRequiredService<AccountForm>();
+
+                formConta.SetEditMode(id);
+
+                if (formConta.ShowDialog() == DialogResult.OK)
+                {
+                    CarregarGridContas();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma conta para editar.");
+            }
+        }
+        private void btnDeletar1_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                var id = (int)dataGridView1.SelectedRows[0].Cells["Id"].Value;
+
+                if (MessageBox.Show("Deseja excluir esta conta?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        _accountService.Delete(id);
+                        CarregarGridContas();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro ao excluir: {ex.Message}");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma conta para excluir.");
+            }
+        }
+        private void tabPageAccount_Enter(object sender, EventArgs e)
+        {
+            CarregarGridContas();
+        }
+        #endregion
+
+        #region Bank 
         private void CarregarGridBancos()
         {
             try
@@ -323,6 +575,67 @@ namespace MyWallet.App
                 MessageBox.Show("Erro ao carregar: " + ex.Message);
             }
         }
+        private void btnCriar2_Click(object sender, EventArgs e)
+        {
+            var formBanco = ConfigureDI.serviceProvider.GetService<BankForm>();
+
+            if (formBanco.ShowDialog() == DialogResult.OK)
+            {
+                CarregarGridBancos();
+            }
+        }
+        private void btnEditar2_Click(object sender, EventArgs e)
+        {
+            if (dataGridView2.SelectedRows.Count > 0)
+            {
+                var id = (int)dataGridView2.SelectedRows[0].Cells["Id"].Value;
+
+                var formBanco = ConfigureDI.serviceProvider.GetRequiredService<BankForm>();
+
+                formBanco.SetEditMode(id);
+
+                if (formBanco.ShowDialog() == DialogResult.OK)
+                {
+                    CarregarGridBancos();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione um banco para editar.");
+            }
+        }
+        private void btnDeletar2_Click(object sender, EventArgs e)
+        {
+            if (dataGridView2.SelectedRows.Count > 0)
+            {
+                var id = (int)dataGridView2.SelectedRows[0].Cells["Id"].Value;
+
+                if (MessageBox.Show("Deseja excluir esta conta?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        _bankService.Delete(id);
+                        CarregarGridBancos();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro ao excluir: {ex.Message}");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma conta para excluir.");
+            }
+
+        }
+        private void tabPageBank_Enter(object sender, EventArgs e)
+        {
+            CarregarGridBancos();
+        }
+        #endregion
+
+        #region Category 
         private void CarregarGridCategorias()
         {
             try
@@ -369,6 +682,68 @@ namespace MyWallet.App
                 MessageBox.Show("Erro ao carregar: " + ex.Message);
             }
         }
+        private void btnCriar3_Click(object sender, EventArgs e)
+        {
+            var formCategoria = ConfigureDI.serviceProvider.GetService<CategoryForm>();
+
+            if (formCategoria.ShowDialog() == DialogResult.OK)
+            {
+                CarregarGridCategorias();
+            }
+        }
+        private void btnEditar3_Click(object sender, EventArgs e)
+        {
+            if (dataGridView3.SelectedRows.Count > 0)
+            {
+                var id = (int)dataGridView3.SelectedRows[0].Cells["Id"].Value;
+
+                var formCategoria = ConfigureDI.serviceProvider.GetRequiredService<CategoryForm>();
+
+                formCategoria.SetEditMode(id);
+
+                if (formCategoria.ShowDialog() == DialogResult.OK)
+                {
+                    CarregarGridCategorias();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma categoria para editar.");
+            }
+        }
+        private void btnDeletar3_Click(object sender, EventArgs e)
+        {
+            if (dataGridView3.SelectedRows.Count > 0)
+            {
+                var id = (int)dataGridView3.SelectedRows[0].Cells["Id"].Value;
+
+
+
+                if (MessageBox.Show("Deseja realmente excluir esta categoria?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        _categoryService.Delete(id);
+                        CarregarGridCategorias();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro: " + ex.Message);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma linha.");
+            }
+        }
+        private void tabPageCategory_Enter(object sender, EventArgs e)
+        {
+            CarregarGridCategorias();
+        }
+        #endregion
+
+        #region Subscription
         private void CarregarGridAssinaturas()
         {
             try
@@ -416,141 +791,37 @@ namespace MyWallet.App
                 MessageBox.Show("Erro ao carregar assinaturas: " + ex.Message);
             }
         }
-
-        private void CarregarGridTransacoes()
+        private void btnCriar4_Click(object sender, EventArgs e)
         {
-            try
+            var formAssinatura = ConfigureDI.serviceProvider.GetService<SubscriptionForm>();
+
+            if (formAssinatura.ShowDialog() == DialogResult.OK)
             {
-                var includes = new List<string> { "User", "Account", "Category" };
-                var query = _transactionService.Get<Transaction>(includes)
-                    .Where(t => t.User != null && t.User.Id == UserSession.UserId);
-
-                // --- CORREÇÃO DA LÓGICA ---
-                // Vamos assumir que rdoMes é o botão de "Mês Atual".
-                // Se ele estiver Marcado (Checked), aplicamos o filtro.
-                if (rdoMes.Checked)
-                {
-                    var dataAtual = DateTime.Now;
-                    query = query.Where(t => t.TransactionDate.Month == dataAtual.Month &&
-                                             t.TransactionDate.Year == dataAtual.Year);
-                }
-
-                // Restante do código de ordenação e grid (igual ao anterior)
-                var transacoesFiltradas = query
-                    .OrderByDescending(t => t.TransactionDate)
-                    .Select(t => new
-                    {
-                        Id = t.Id,
-                        Descricao = t.Description,
-                        Valor = t.Amount,
-                        Data = t.TransactionDate,
-                        // ... seus switchs de Tipo e Pagamento ...
-                        Tipo = t.Type switch { TransactionType.Revenue => "Receita", TransactionType.Expense => "Despesa", TransactionType.Transfer => "Transferência", _ => t.Type.ToString() },
-                        Pagamento = t.PaymentType switch { PaymentMethod.Cash => "Dinheiro", PaymentMethod.DebitCard => "Débito", PaymentMethod.CreditCard => "Crédito", PaymentMethod.Pix => "Pix", PaymentMethod.BankSlip => "Boleto", PaymentMethod.Transfer => "Transferência", _ => t.PaymentType.ToString() },
-                        Pago = t.IsPaid ? "Sim" : "Não",
-                        Conta = t.Account != null ? t.Account.Name : "N/A",
-                        Categoria = t.Category != null ? t.Category.Name : "N/A"
-                    })
-                    .ToList();
-
-                dataGridView5.DataSource = transacoesFiltradas;
-
-                // ... configurações de colunas ...
-                if (dataGridView5.Columns.Count > 0)
-                {
-                    dataGridView5.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                    dataGridView5.Columns["Id"].Visible = false;
-                    if (dataGridView5.Columns.Contains("Descricao"))
-                        dataGridView5.Columns["Descricao"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                    dataGridView5.Columns["Valor"].DefaultCellStyle.Format = "C2";
-                    dataGridView5.Columns["Data"].DefaultCellStyle.Format = "dd/MM/yyyy";
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro: " + ex.Message);
+                CarregarGridAssinaturas();
             }
         }
-        #endregion
-
-        #region Deletar
-        private void btnDeletar1_Click(object sender, EventArgs e)
+        private void btnEditar4_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count > 0)
+            if (dataGridView4.SelectedRows.Count > 0)
             {
-                var id = (int)dataGridView1.SelectedRows[0].Cells["Id"].Value;
 
-                if (MessageBox.Show("Deseja excluir esta conta?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                var id = (int)dataGridView4.SelectedRows[0].Cells["Id"].Value;
+
+                var formAssinatura = ConfigureDI.serviceProvider.GetRequiredService<SubscriptionForm>();
+
+
+                formAssinatura.SetEditMode(id);
+
+                if (formAssinatura.ShowDialog() == DialogResult.OK)
                 {
-                    try
-                    {
-                        _accountService.Delete(id);
-                        CarregarGridContas();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Erro ao excluir: {ex.Message}");
-                    }
+                    CarregarGridAssinaturas();
                 }
             }
             else
             {
-                MessageBox.Show("Selecione uma conta para excluir.");
+                MessageBox.Show("Selecione uma assinatura para editar.");
             }
         }
-
-        private void btnDeletar2_Click(object sender, EventArgs e)
-        {
-            if (dataGridView2.SelectedRows.Count > 0)
-            {
-                var id = (int)dataGridView2.SelectedRows[0].Cells["Id"].Value;
-
-                if (MessageBox.Show("Deseja excluir esta conta?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    try
-                    {
-                        _bankService.Delete(id);
-                        CarregarGridBancos();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Erro ao excluir: {ex.Message}");
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Selecione uma conta para excluir.");
-            }
-
-        }
-        private void btnDeletar3_Click(object sender, EventArgs e)
-        {
-            if (dataGridView3.SelectedRows.Count > 0)
-            {
-                var id = (int)dataGridView3.SelectedRows[0].Cells["Id"].Value;
-
-
-
-                if (MessageBox.Show("Deseja realmente excluir esta categoria?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    try
-                    {
-                        _categoryService.Delete(id);
-                        CarregarGridCategorias();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Erro: " + ex.Message);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Selecione uma linha.");
-            }
-        }
-
         private void btnDeletar4_Click(object sender, EventArgs e)
         {
             if (dataGridView4.SelectedRows.Count > 0)
@@ -577,122 +848,74 @@ namespace MyWallet.App
                 MessageBox.Show("Selecione uma assinatura para excluir.");
             }
         }
-
-        private void btnDeletar5_Click(object sender, EventArgs e)
+        private void tabPageSubs_Enter(object sender, EventArgs e)
         {
-            if (dataGridView5.SelectedRows.Count > 0)
-            {
-                var id = (int)dataGridView5.SelectedRows[0].Cells["Id"].Value;
-
-                if (MessageBox.Show("Deseja realmente excluir esta transação?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    try
-                    {
-                        _transactionService.Delete(id);
-
-                        CarregarGridTransacoes();
-                        CarregarDashboard();
-                        CarregarTransacoesRecentes();
-                        MessageBox.Show("Transação excluída com sucesso!");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Erro ao excluir: {ex.Message}");
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Selecione uma transação para excluir.");
-            }
+            CarregarGridAssinaturas();
         }
         #endregion
 
-        #region Editar
-        private void btnEditar1_Click(object sender, EventArgs e)
+        #region Transaction 
+        private void CarregarGridTransacoes()
         {
-            if (dataGridView1.SelectedRows.Count > 0)
+            try
             {
-                var id = (int)dataGridView1.SelectedRows[0].Cells["Id"].Value;
+                var includes = new List<string> { "User", "Account", "Category" };
+                var query = _transactionService.Get<Transaction>(includes)
+                    .Where(t => t.User != null && t.User.Id == UserSession.UserId);
 
-                var formConta = ConfigureDI.serviceProvider.GetRequiredService<AccountForm>();
-
-                formConta.SetEditMode(id);
-
-                if (formConta.ShowDialog() == DialogResult.OK)
+                if (rdoMes.Checked)
                 {
-                    CarregarGridContas();
+                    var dataAtual = DateTime.Now;
+                    query = query.Where(t => t.TransactionDate.Month == dataAtual.Month &&
+                                             t.TransactionDate.Year == dataAtual.Year);
+                }
+
+                var transacoesFiltradas = query
+                    .OrderByDescending(t => t.TransactionDate)
+                    .Select(t => new
+                    {
+                        Id = t.Id,
+                        Descricao = t.Description,
+                        Valor = t.Amount,
+                        Data = t.TransactionDate,
+                        Tipo = t.Type switch { TransactionType.Revenue => "Receita", TransactionType.Expense => "Despesa", TransactionType.Transfer => "Transferência", _ => t.Type.ToString() },
+                        Pagamento = t.PaymentType switch { PaymentMethod.Cash => "Dinheiro", PaymentMethod.DebitCard => "Débito", PaymentMethod.CreditCard => "Crédito", PaymentMethod.Pix => "Pix", PaymentMethod.BankSlip => "Boleto", PaymentMethod.Transfer => "Transferência", _ => t.PaymentType.ToString() },
+                        Pago = t.IsPaid ? "Sim" : "Não",
+                        Conta = t.Account != null ? t.Account.Name : "N/A",
+                        Categoria = t.Category != null ? t.Category.Name : "N/A"
+                    })
+                    .ToList();
+
+                dataGridView5.DataSource = transacoesFiltradas;
+
+                if (dataGridView5.Columns.Count > 0)
+                {
+                    dataGridView5.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                    dataGridView5.Columns["Id"].Visible = false;
+                    if (dataGridView5.Columns.Contains("Descricao"))
+                        dataGridView5.Columns["Descricao"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView5.Columns["Valor"].DefaultCellStyle.Format = "C2";
+                    dataGridView5.Columns["Data"].DefaultCellStyle.Format = "dd/MM/yyyy";
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Selecione uma conta para editar.");
+                MessageBox.Show("Erro: " + ex.Message);
             }
         }
-
-        private void btnEditar2_Click(object sender, EventArgs e)
+        private void btnCriar5_Click(object sender, EventArgs e)
         {
-            if (dataGridView2.SelectedRows.Count > 0)
+            var formTransacao = ConfigureDI.serviceProvider.GetRequiredService<TransactionFrom>();
+
+            if (formTransacao.ShowDialog() == DialogResult.OK)
             {
-                var id = (int)dataGridView2.SelectedRows[0].Cells["Id"].Value;
+                CarregarGridTransacoes();
+                CarregarDashboard();
+                CarregarTransacoesRecentes();
+                CarregarGraficos();
 
-                var formBanco = ConfigureDI.serviceProvider.GetRequiredService<BankForm>();
-
-                formBanco.SetEditMode(id);
-
-                if (formBanco.ShowDialog() == DialogResult.OK)
-                {
-                    CarregarGridBancos();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Selecione um banco para editar.");
             }
         }
-        private void btnEditar3_Click(object sender, EventArgs e)
-        {
-            if (dataGridView3.SelectedRows.Count > 0)
-            {
-                var id = (int)dataGridView3.SelectedRows[0].Cells["Id"].Value;
-
-                var formCategoria = ConfigureDI.serviceProvider.GetRequiredService<CategoryForm>();
-
-                formCategoria.SetEditMode(id);
-
-                if (formCategoria.ShowDialog() == DialogResult.OK)
-                {
-                    CarregarGridCategorias();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Selecione uma categoria para editar.");
-            }
-        }
-        private void btnEditar4_Click(object sender, EventArgs e)
-        {
-            if (dataGridView4.SelectedRows.Count > 0)
-            {
-
-                var id = (int)dataGridView4.SelectedRows[0].Cells["Id"].Value;
-
-                var formAssinatura = ConfigureDI.serviceProvider.GetRequiredService<SubscriptionForm>();
-
-
-                formAssinatura.SetEditMode(id);
-
-                if (formAssinatura.ShowDialog() == DialogResult.OK)
-                {
-                    CarregarGridAssinaturas();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Selecione uma assinatura para editar.");
-            }
-        }
-
         private void btnEditar5_Click(object sender, EventArgs e)
         {
             if (dataGridView5.SelectedRows.Count > 0)
@@ -708,6 +931,7 @@ namespace MyWallet.App
                     CarregarGridTransacoes();
                     CarregarDashboard();
                     CarregarTransacoesRecentes();
+                    CarregarGraficos();
                 }
             }
             else
@@ -715,83 +939,34 @@ namespace MyWallet.App
                 MessageBox.Show("Selecione uma transação para editar.");
             }
         }
-        #endregion
-
-        #region Criar
-        private void btnCriar1_Click(object sender, EventArgs e)
+        private void btnDeletar5_Click(object sender, EventArgs e)
         {
-            var formConta = ConfigureDI.serviceProvider.GetService<AccountForm>();
-
-
-            if (formConta.ShowDialog() == DialogResult.OK)
+            if (dataGridView5.SelectedRows.Count > 0)
             {
+                var id = (int)dataGridView5.SelectedRows[0].Cells["Id"].Value;
 
-                CarregarGridContas();
+                if (MessageBox.Show("Deseja realmente excluir esta transação?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        _transactionService.Delete(id);
+
+                        CarregarGridTransacoes();
+                        CarregarDashboard();
+                        CarregarTransacoesRecentes();
+                        CarregarGraficos();
+                        MessageBox.Show("Transação excluída com sucesso!");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro ao excluir: {ex.Message}");
+                    }
+                }
             }
-        }
-        private void btnCriar2_Click(object sender, EventArgs e)
-        {
-            var formBanco = ConfigureDI.serviceProvider.GetService<BankForm>();
-
-            if (formBanco.ShowDialog() == DialogResult.OK)
+            else
             {
-                CarregarGridBancos();
+                MessageBox.Show("Selecione uma transação para excluir.");
             }
-        }
-
-        private void btnCriar3_Click(object sender, EventArgs e)
-        {
-            var formCategoria = ConfigureDI.serviceProvider.GetService<CategoryForm>();
-
-            if (formCategoria.ShowDialog() == DialogResult.OK)
-            {
-                CarregarGridCategorias();
-            }
-        }
-
-        private void btnCriar4_Click(object sender, EventArgs e)
-        {
-            var formAssinatura = ConfigureDI.serviceProvider.GetService<SubscriptionForm>();
-
-            if (formAssinatura.ShowDialog() == DialogResult.OK)
-            {
-                CarregarGridAssinaturas();
-            }
-        }
-
-        private void btnCriar5_Click(object sender, EventArgs e)
-        {
-            var formTransacao = ConfigureDI.serviceProvider.GetRequiredService<TransactionFrom>();
-
-            if (formTransacao.ShowDialog() == DialogResult.OK)
-            {
-                CarregarGridTransacoes();
-                CarregarDashboard();
-                CarregarTransacoesRecentes();
-
-            }
-        }
-
-        #endregion
-
-        #region Load
-        private void tabPageAccount_Enter(object sender, EventArgs e)
-        {
-            CarregarGridContas();
-        }
-
-        private void tabPageBank_Enter(object sender, EventArgs e)
-        {
-            CarregarGridBancos();
-        }
-
-        private void tabPageCategory_Enter(object sender, EventArgs e)
-        {
-            CarregarGridCategorias();
-        }
-        private void tabPageSubs_Enter(object sender, EventArgs e)
-        {
-            CarregarGridAssinaturas();
         }
         private void tabPageTrans_Enter(object sender, EventArgs e)
         {
@@ -800,6 +975,11 @@ namespace MyWallet.App
         }
         #endregion
 
+        #region Reports
+
+        #endregion
+
+        #region Extra
         private void airTabPage1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -833,46 +1013,8 @@ namespace MyWallet.App
                 }
             }
         }
+        
+        #endregion
 
-        public void AtualizarDadosDoUsuarioLogado()
-        {
-
-
-            if (UserSession.CurrentUser != null)
-            {
-
-                lblUsuario.Text = $"Bem-vindo, {UserSession.CurrentUser.Name}!";
-
-
-            }
-            else
-            {
-                lblUsuario.Text = "Usuário Desconhecido";
-            }
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            ProcessarAssinaturasVencidas();
-            CarregarDashboard();
-            CarregarTransacoesRecentes();
-        }
-
-        private void parrotButton1_Click(object sender, EventArgs e)
-        {
-            ProcessarAssinaturasVencidas();
-            CarregarDashboard();
-            CarregarTransacoesRecentes();
-        }
-
-        private void rdoMes_Click(object sender, EventArgs e)
-        {
-            CarregarGridTransacoes();
-        }
-
-        private void rdoTodas_Click(object sender, EventArgs e)
-        {
-            CarregarGridTransacoes();
-        }
     }
 }
