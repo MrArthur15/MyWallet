@@ -58,6 +58,7 @@ namespace MyWallet.App.Infra
             services.AddTransient<AccountForm, AccountForm>();
             services.AddTransient<BankForm, BankForm>();
             services.AddTransient<CategoryForm, CategoryForm>();
+            services.AddTransient<SubscriptionForm, SubscriptionForm>();
 
 
 
@@ -73,6 +74,7 @@ namespace MyWallet.App.Infra
                         config.CreateMap<Account, AccountViewModel>();
                         config.CreateMap<Bank, BankViewModel>();
                         config.CreateMap<Category, CategoryViewModel>();
+                        config.CreateMap<Subscription, SubscriptionViewModel>();
 
                         //config.CreateMap<User, UserViewModel>();
 

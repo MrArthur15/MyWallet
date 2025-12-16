@@ -9,6 +9,7 @@ using MyWallet.App.Register;
 using MyWallet.App.ViewModel;
 using MyWallet.Domain.Base;
 using MyWallet.Domain.Entities;
+using MyWallet.Domain.Enum;
 using ReaLTaiizor.Forms;
 
 namespace MyWallet.App
@@ -20,23 +21,29 @@ namespace MyWallet.App
         private IBaseService<Account> _accountService;
         private IBaseService<Bank> _bankService;
         private IBaseService<Category> _categoryService;
+        private IBaseService<Subscription> _subscriptionService;
 
 
-        public MainForm(IBaseService<Account> accountService, IBaseService<Bank> bankService, IBaseService<Category> categoryService)
+
+
+        public MainForm(IBaseService<Account> accountService, IBaseService<Bank> bankService, IBaseService<Category> categoryService, IBaseService<Subscription> subscriptionService)
         {
             _accountService = accountService;
             _bankService = bankService;
             _categoryService = categoryService;
+            _subscriptionService = subscriptionService;
 
             InitializeComponent();
 
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView3.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView4.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             dataGridView1.MultiSelect = false;
             dataGridView2.MultiSelect = false;
             dataGridView3.MultiSelect = false;
+            dataGridView4.MultiSelect = false;
 
 
         }
@@ -59,21 +66,31 @@ namespace MyWallet.App
                         Saldo = c.InitialBalance,
                         Limite = c.CreditLimit,
                         Banco = c.Bank?.Name ?? "N/A",
-                        Tipo = c.Type
+
+                        Tipo = c.Type switch
+                        {
+                            AccountType.Checking => "Conta Corrente",
+                            AccountType.Savings => "Poupança",
+                            AccountType.CreditCard => "Cartão de Crédito",
+                            _ => c.Type.ToString() 
+                        }
                     })
                     .ToList();
 
                 dataGridView1.DataSource = contasFiltradas;
+
                 if (dataGridView1.Columns.Count > 0)
                 {
                     dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                     dataGridView1.Columns["Id"].Visible = false;
 
+                    dataGridView1.Columns["Saldo"].DefaultCellStyle.Format = "C2";
+                    dataGridView1.Columns["Limite"].DefaultCellStyle.Format = "C2";
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao carregar: " + ex.Message);
+                MessageBox.Show("Erro ao carregar contas: " + ex.Message);
             }
         }
         private void CarregarGridBancos()
@@ -107,7 +124,6 @@ namespace MyWallet.App
                 MessageBox.Show("Erro ao carregar: " + ex.Message);
             }
         }
-
         private void CarregarGridCategorias()
         {
             try
@@ -121,22 +137,85 @@ namespace MyWallet.App
                         Id = c.Id,
                         Nome = c.Name,
                         Limite = c.BudgetLimit,
-                        Prioridade = c.Priority,
-                        Tipo = c.Type
+
+                        Prioridade = c.Priority switch
+                        {
+                            PriorityLevel.Essential => "Essencial",
+                            PriorityLevel.Superfluous => "Supérfluo",
+                            PriorityLevel.None => "Nenhuma",
+                            _ => c.Priority.ToString()
+                        },
+
+                        Tipo = c.Type switch
+                        {
+                            TransactionType.Revenue => "Receita",
+                            TransactionType.Expense => "Despesa",
+                            TransactionType.Transfer => "Transferência",
+                            _ => c.Type.ToString()
+                        }
                     })
                     .ToList();
 
                 dataGridView3.DataSource = categoriasFiltradas;
+
                 if (dataGridView3.Columns.Count > 0)
                 {
                     dataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                     dataGridView3.Columns["Id"].Visible = false;
-
+                    dataGridView3.Columns["Limite"].DefaultCellStyle.Format = "C2";
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao carregar: " + ex.Message);
+            }
+        }
+        private void CarregarGridAssinaturas()
+        {
+            try
+            {
+                var includes = new List<string> { "User", "Account", "Category" };
+                var assinaturas = _subscriptionService.Get<Subscription>(includes);
+
+                var assinaturasFiltradas = assinaturas
+                    .Where(s => s.User != null && s.User.Id == UserSession.UserId)
+                    .Select(s => new
+                    {
+                        Id = s.Id,
+                        Nome = s.Name,
+                        Valor = s.Price,
+
+                        Frequencia = s.Frequency switch
+                        {
+                            Frequency.Monthly => "Mensal",
+                            Frequency.Yearly => "Anual",
+                            _ => s.Frequency.ToString()
+                        },
+
+                        Ativo = s.IsActive ? "Sim" : "Não",
+                        ProximoVencimento = s.NextDueDate,
+                        Conta = s.Account?.Name ?? "N/A",
+                        Categoria = s.Category?.Name ?? "N/A"
+                    })
+                    .ToList();
+
+                dataGridView4.DataSource = assinaturasFiltradas;
+
+                if (dataGridView4.Columns.Count > 0)
+                {
+                    dataGridView4.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dataGridView4.Columns["Id"].Visible = false;
+                    dataGridView4.Columns["Valor"].DefaultCellStyle.Format = "C2";
+                    dataGridView4.Columns["ProximoVencimento"].DefaultCellStyle.Format = "dd/MM/yyyy";
+
+                    // Ajuste dos títulos das colunas
+                    dataGridView4.Columns["ProximoVencimento"].HeaderText = "Vencimento";
+                    dataGridView4.Columns["Frequencia"].HeaderText = "Frequência";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar assinaturas: " + ex.Message);
             }
         }
         #endregion
@@ -218,6 +297,33 @@ namespace MyWallet.App
                 MessageBox.Show("Selecione uma linha.");
             }
         }
+
+        private void btnDeletar4_Click(object sender, EventArgs e)
+        {
+            if (dataGridView4.SelectedRows.Count > 0)
+            {
+                var id = (int)dataGridView4.SelectedRows[0].Cells["Id"].Value;
+
+                if (MessageBox.Show("Deseja realmente excluir esta assinatura?", "Confirmar Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        _subscriptionService.Delete(id);
+
+                        CarregarGridAssinaturas();
+                        MessageBox.Show("Assinatura excluída com sucesso!");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro ao excluir: {ex.Message}");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma assinatura para excluir.");
+            }
+        }
         #endregion
 
         #region Editar
@@ -282,6 +388,28 @@ namespace MyWallet.App
                 MessageBox.Show("Selecione uma categoria para editar.");
             }
         }
+        private void btnEditar4_Click(object sender, EventArgs e)
+        {
+            if (dataGridView4.SelectedRows.Count > 0)
+            {
+               
+                var id = (int)dataGridView4.SelectedRows[0].Cells["Id"].Value;
+
+                var formAssinatura = ConfigureDI.serviceProvider.GetRequiredService<SubscriptionForm>();
+
+                
+                formAssinatura.SetEditMode(id);
+
+                if (formAssinatura.ShowDialog() == DialogResult.OK)
+                {
+                    CarregarGridAssinaturas();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma assinatura para editar.");
+            }
+        }
         #endregion
 
         #region Criar
@@ -315,6 +443,16 @@ namespace MyWallet.App
                 CarregarGridCategorias();
             }
         }
+
+        private void btnCriar4_Click(object sender, EventArgs e)
+        {
+            var formAssinatura = ConfigureDI.serviceProvider.GetService<SubscriptionForm>();
+
+            if (formAssinatura.ShowDialog() == DialogResult.OK)
+            {
+                CarregarGridAssinaturas();
+            }
+        }
         #endregion
 
         #region Load
@@ -332,6 +470,10 @@ namespace MyWallet.App
         private void tabPageCategory_Enter(object sender, EventArgs e)
         {
             CarregarGridCategorias();
+        }
+        private void tabPageSubs_Enter(object sender, EventArgs e)
+        {
+            CarregarGridAssinaturas();
         }
         #endregion
 
@@ -386,19 +528,5 @@ namespace MyWallet.App
             }
         }
 
-        private void btnDeletar4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnEditar4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnCriar4_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

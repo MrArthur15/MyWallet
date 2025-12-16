@@ -162,7 +162,7 @@
             // airTabPage1
             // 
             airTabPage1.Alignment = TabAlignment.Left;
-            airTabPage1.BaseColor = Color.FromArgb(150, 0, 255);
+            airTabPage1.BaseColor = Color.FromArgb(192, 102, 255);
             airTabPage1.Controls.Add(tabPageHome);
             airTabPage1.Controls.Add(tabPageAccout);
             airTabPage1.Controls.Add(tabPageBank);
@@ -947,6 +947,7 @@
             tabPageSubs.Padding = new Padding(4);
             tabPageSubs.Size = new Size(1613, 804);
             tabPageSubs.TabIndex = 4;
+            tabPageSubs.Enter += tabPageSubs_Enter;
             // 
             // dataGridView4
             // 

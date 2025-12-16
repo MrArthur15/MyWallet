@@ -3,7 +3,7 @@ using MyWallet.Domain.Enum;
 
 namespace MyWallet.App.ViewModel
 {
-    public class SubscripionViewModel
+    public class SubscriptionViewModel
     {
         public string Name { get; set; }
         public decimal Price { get; set; }

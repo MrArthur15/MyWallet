@@ -30,11 +30,11 @@
         {
             cboCategoria = new ReaLTaiizor.Controls.DungeonComboBox();
             cboConta = new ReaLTaiizor.Controls.DungeonComboBox();
-            txtLimit = new ReaLTaiizor.Controls.HopeTextBox();
+            txtPrice = new ReaLTaiizor.Controls.HopeTextBox();
             cboFrequencia = new ReaLTaiizor.Controls.DungeonComboBox();
-            parrotRadioButton1 = new ReaLTaiizor.Controls.ParrotRadioButton();
             txtNome = new ReaLTaiizor.Controls.HopeTextBox();
-            hopeTextBox1 = new ReaLTaiizor.Controls.HopeTextBox();
+            dtpNextDate = new DateTimePicker();
+            chkAtivo = new ReaLTaiizor.Controls.CyberCheckBox();
             SuspendLayout();
             // 
             // cboCategoria
@@ -90,31 +90,30 @@
             cboConta.Size = new Size(169, 41);
             cboConta.StartIndex = 0;
             cboConta.TabIndex = 16;
-            cboConta.SelectedIndexChanged += cboConta_SelectedIndexChanged;
             // 
-            // txtLimit
+            // txtPrice
             // 
-            txtLimit.BackColor = Color.White;
-            txtLimit.BaseColor = Color.FromArgb(44, 55, 66);
-            txtLimit.BorderColorA = Color.FromArgb(64, 158, 255);
-            txtLimit.BorderColorB = Color.FromArgb(220, 223, 230);
-            txtLimit.Font = new Font("Microsoft Sans Serif", 16F);
-            txtLimit.ForeColor = Color.Black;
-            txtLimit.Hint = "preço";
-            txtLimit.ImeMode = ImeMode.NoControl;
-            txtLimit.Location = new Point(153, 108);
-            txtLimit.MaxLength = 32767;
-            txtLimit.Multiline = false;
-            txtLimit.Name = "txtLimit";
-            txtLimit.PasswordChar = '\0';
-            txtLimit.ScrollBars = ScrollBars.None;
-            txtLimit.SelectedText = "";
-            txtLimit.SelectionLength = 0;
-            txtLimit.SelectionStart = 0;
-            txtLimit.Size = new Size(240, 41);
-            txtLimit.TabIndex = 15;
-            txtLimit.TabStop = false;
-            txtLimit.UseSystemPasswordChar = false;
+            txtPrice.BackColor = Color.White;
+            txtPrice.BaseColor = Color.FromArgb(44, 55, 66);
+            txtPrice.BorderColorA = Color.FromArgb(64, 158, 255);
+            txtPrice.BorderColorB = Color.FromArgb(220, 223, 230);
+            txtPrice.Font = new Font("Microsoft Sans Serif", 16F);
+            txtPrice.ForeColor = Color.Black;
+            txtPrice.Hint = "preço";
+            txtPrice.ImeMode = ImeMode.NoControl;
+            txtPrice.Location = new Point(153, 108);
+            txtPrice.MaxLength = 32767;
+            txtPrice.Multiline = false;
+            txtPrice.Name = "txtPrice";
+            txtPrice.PasswordChar = '\0';
+            txtPrice.ScrollBars = ScrollBars.None;
+            txtPrice.SelectedText = "";
+            txtPrice.SelectionLength = 0;
+            txtPrice.SelectionStart = 0;
+            txtPrice.Size = new Size(240, 41);
+            txtPrice.TabIndex = 15;
+            txtPrice.TabStop = false;
+            txtPrice.UseSystemPasswordChar = false;
             // 
             // cboFrequencia
             // 
@@ -143,23 +142,6 @@
             cboFrequencia.StartIndex = 0;
             cboFrequencia.TabIndex = 18;
             // 
-            // parrotRadioButton1
-            // 
-            parrotRadioButton1.Checked = false;
-            parrotRadioButton1.Font = new Font("Microsoft Sans Serif", 16F);
-            parrotRadioButton1.ForeColor = Color.White;
-            parrotRadioButton1.Location = new Point(581, 108);
-            parrotRadioButton1.Name = "parrotRadioButton1";
-            parrotRadioButton1.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-            parrotRadioButton1.RadioColor = Color.FromArgb(0, 162, 250);
-            parrotRadioButton1.RadioHoverColor = Color.FromArgb(249, 55, 98);
-            parrotRadioButton1.RadioStyle = ReaLTaiizor.Controls.ParrotRadioButton.Style.Material;
-            parrotRadioButton1.Size = new Size(111, 41);
-            parrotRadioButton1.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            parrotRadioButton1.TabIndex = 19;
-            parrotRadioButton1.Text = "Aitvo";
-            parrotRadioButton1.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            // 
             // txtNome
             // 
             txtNome.BackColor = Color.White;
@@ -168,7 +150,7 @@
             txtNome.BorderColorB = Color.FromArgb(220, 223, 230);
             txtNome.Font = new Font("Microsoft Sans Serif", 16F);
             txtNome.ForeColor = Color.Black;
-            txtNome.Hint = "nome da categoria";
+            txtNome.Hint = "nome da assinatura";
             txtNome.ImeMode = ImeMode.NoControl;
             txtNome.Location = new Point(194, 51);
             txtNome.MaxLength = 32767;
@@ -184,51 +166,76 @@
             txtNome.TabStop = false;
             txtNome.UseSystemPasswordChar = false;
             // 
-            // hopeTextBox1
+            // dtpNextDate
             // 
-            hopeTextBox1.BackColor = Color.White;
-            hopeTextBox1.BaseColor = Color.FromArgb(44, 55, 66);
-            hopeTextBox1.BorderColorA = Color.FromArgb(64, 158, 255);
-            hopeTextBox1.BorderColorB = Color.FromArgb(220, 223, 230);
-            hopeTextBox1.Font = new Font("Microsoft Sans Serif", 16F);
-            hopeTextBox1.ForeColor = Color.Black;
-            hopeTextBox1.Hint = "nome da categoria";
-            hopeTextBox1.ImeMode = ImeMode.NoControl;
-            hopeTextBox1.Location = new Point(233, 168);
-            hopeTextBox1.MaxLength = 32767;
-            hopeTextBox1.Multiline = false;
-            hopeTextBox1.Name = "hopeTextBox1";
-            hopeTextBox1.PasswordChar = '\0';
-            hopeTextBox1.ScrollBars = ScrollBars.None;
-            hopeTextBox1.SelectedText = "";
-            hopeTextBox1.SelectionLength = 0;
-            hopeTextBox1.SelectionStart = 0;
-            hopeTextBox1.Size = new Size(318, 41);
-            hopeTextBox1.TabIndex = 20;
-            hopeTextBox1.TabStop = false;
-            hopeTextBox1.UseSystemPasswordChar = false;
+            dtpNextDate.DropDownAlign = LeftRightAlignment.Right;
+            dtpNextDate.Font = new Font("Microsoft Sans Serif", 22F);
+            dtpNextDate.Format = DateTimePickerFormat.Short;
+            dtpNextDate.Location = new Point(299, 170);
+            dtpNextDate.Name = "dtpNextDate";
+            dtpNextDate.Size = new Size(207, 41);
+            dtpNextDate.TabIndex = 20;
+            dtpNextDate.Value = new DateTime(2025, 12, 15, 0, 0, 0, 0);
+            // 
+            // chkAtivo
+            // 
+            chkAtivo.BackColor = Color.Transparent;
+            chkAtivo.Background = true;
+            chkAtivo.Background_WidthPen = 2F;
+            chkAtivo.BackgroundPen = true;
+            chkAtivo.Checked = false;
+            chkAtivo.ColorBackground = Color.FromArgb(37, 52, 68);
+            chkAtivo.ColorBackground_1 = Color.FromArgb(37, 52, 68);
+            chkAtivo.ColorBackground_2 = Color.FromArgb(41, 63, 86);
+            chkAtivo.ColorBackground_Pen = Color.FromArgb(29, 200, 238);
+            chkAtivo.ColorChecked = Color.FromArgb(29, 200, 238);
+            chkAtivo.ColorPen_1 = Color.FromArgb(37, 52, 68);
+            chkAtivo.ColorPen_2 = Color.FromArgb(41, 63, 86);
+            chkAtivo.CyberCheckBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
+            chkAtivo.Effect_1_ColorBackground = Color.FromArgb(29, 200, 238);
+            chkAtivo.Effect_1_Transparency = 25;
+            chkAtivo.Effect_2 = true;
+            chkAtivo.Effect_2_ColorBackground = Color.White;
+            chkAtivo.Effect_2_Transparency = 15;
+            chkAtivo.Font = new Font("Microsoft Sans Serif", 15F);
+            chkAtivo.ForeColor = Color.FromArgb(245, 245, 245);
+            chkAtivo.LinearGradient_Background = false;
+            chkAtivo.LinearGradientPen = false;
+            chkAtivo.Location = new Point(577, 107);
+            chkAtivo.Name = "chkAtivo";
+            chkAtivo.RGB = false;
+            chkAtivo.Rounding = true;
+            chkAtivo.RoundingInt = 100;
+            chkAtivo.Size = new Size(108, 45);
+            chkAtivo.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            chkAtivo.TabIndex = 22;
+            chkAtivo.Tag = "Cyber";
+            chkAtivo.TextButton = "Ativo";
+            chkAtivo.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            chkAtivo.Timer_Effect_1 = 1;
+            chkAtivo.Timer_RGB = 300;
             // 
             // SubscriptionForm
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(821, 375);
-            Controls.Add(hopeTextBox1);
-            Controls.Add(parrotRadioButton1);
+            Controls.Add(chkAtivo);
+            Controls.Add(dtpNextDate);
             Controls.Add(cboFrequencia);
             Controls.Add(cboCategoria);
             Controls.Add(cboConta);
-            Controls.Add(txtLimit);
+            Controls.Add(txtPrice);
             Controls.Add(txtNome);
             Name = "SubscriptionForm";
             Text = "Assinatura";
             Controls.SetChildIndex(txtNome, 0);
-            Controls.SetChildIndex(txtLimit, 0);
+            Controls.SetChildIndex(txtPrice, 0);
             Controls.SetChildIndex(cboConta, 0);
             Controls.SetChildIndex(cboCategoria, 0);
             Controls.SetChildIndex(cboFrequencia, 0);
-            Controls.SetChildIndex(parrotRadioButton1, 0);
-            Controls.SetChildIndex(hopeTextBox1, 0);
+            Controls.SetChildIndex(dtpNextDate, 0);
+            Controls.SetChildIndex(chkAtivo, 0);
             ResumeLayout(false);
         }
 
@@ -236,10 +243,10 @@
 
         private ReaLTaiizor.Controls.DungeonComboBox cboCategoria;
         private ReaLTaiizor.Controls.DungeonComboBox cboConta;
-        private ReaLTaiizor.Controls.HopeTextBox txtLimit;
+        private ReaLTaiizor.Controls.HopeTextBox txtPrice;
         private ReaLTaiizor.Controls.DungeonComboBox cboFrequencia;
-        private ReaLTaiizor.Controls.ParrotRadioButton parrotRadioButton1;
         private ReaLTaiizor.Controls.HopeTextBox txtNome;
-        private ReaLTaiizor.Controls.HopeTextBox hopeTextBox1;
+        private DateTimePicker dtpNextDate;
+        private ReaLTaiizor.Controls.CyberCheckBox chkAtivo;
     }
 }
