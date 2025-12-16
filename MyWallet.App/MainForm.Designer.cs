@@ -30,31 +30,31 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle22 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle23 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle24 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle25 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle26 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle27 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle28 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle29 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle30 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle31 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle32 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle33 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle34 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle35 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle36 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle37 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle38 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle39 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle40 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle41 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle42 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle43 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle44 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle45 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle46 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle47 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle48 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle49 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle50 = new DataGridViewCellStyle();
             imageList1 = new ImageList(components);
             airTabPage1 = new ReaLTaiizor.Controls.AirTabPage();
             tabPageHome = new TabPage();
@@ -110,9 +110,9 @@
             tabPageTrans = new TabPage();
             dataGridView5 = new DataGridView();
             panel7 = new Panel();
-            hopeRoundButton34 = new ReaLTaiizor.Controls.HopeRoundButton();
-            hopeRoundButton35 = new ReaLTaiizor.Controls.HopeRoundButton();
-            hopeRoundButton36 = new ReaLTaiizor.Controls.HopeRoundButton();
+            btnCriar5 = new ReaLTaiizor.Controls.HopeRoundButton();
+            btnEditar5 = new ReaLTaiizor.Controls.HopeRoundButton();
+            btnDeletar5 = new ReaLTaiizor.Controls.HopeRoundButton();
             hopeRoundButton22 = new ReaLTaiizor.Controls.HopeRoundButton();
             hopeRoundButton23 = new ReaLTaiizor.Controls.HopeRoundButton();
             hopeRoundButton24 = new ReaLTaiizor.Controls.HopeRoundButton();
@@ -162,6 +162,7 @@
             // airTabPage1
             // 
             airTabPage1.Alignment = TabAlignment.Left;
+            airTabPage1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             airTabPage1.BaseColor = Color.FromArgb(192, 102, 255);
             airTabPage1.Controls.Add(tabPageHome);
             airTabPage1.Controls.Add(tabPageAccout);
@@ -171,10 +172,9 @@
             airTabPage1.Controls.Add(tabPageTrans);
             airTabPage1.Controls.Add(tabPageReport);
             airTabPage1.Controls.Add(tabPageLogout);
-            airTabPage1.Dock = DockStyle.Fill;
             airTabPage1.ImageList = imageList1;
             airTabPage1.ItemSize = new Size(60, 80);
-            airTabPage1.Location = new Point(3, 43);
+            airTabPage1.Location = new Point(2, 31);
             airTabPage1.Margin = new Padding(4);
             airTabPage1.Multiline = true;
             airTabPage1.Name = "airTabPage1";
@@ -183,7 +183,7 @@
             airTabPage1.SelectedTabBackColor = Color.FromArgb(10, 6, 52);
             airTabPage1.SelectedTextColor = Color.Black;
             airTabPage1.ShowOuterBorders = false;
-            airTabPage1.Size = new Size(1701, 812);
+            airTabPage1.Size = new Size(1682, 826);
             airTabPage1.SizeMode = TabSizeMode.Fixed;
             airTabPage1.SquareColor = Color.FromArgb(10, 6, 52);
             airTabPage1.TabCursor = Cursors.Hand;
@@ -192,6 +192,7 @@
             // 
             // tabPageHome
             // 
+            tabPageHome.AutoScroll = true;
             tabPageHome.BackColor = Color.FromArgb(10, 6, 52);
             tabPageHome.Controls.Add(panel5);
             tabPageHome.Controls.Add(panel3);
@@ -200,7 +201,7 @@
             tabPageHome.Margin = new Padding(4);
             tabPageHome.Name = "tabPageHome";
             tabPageHome.Padding = new Padding(4);
-            tabPageHome.Size = new Size(1613, 804);
+            tabPageHome.Size = new Size(1594, 818);
             tabPageHome.TabIndex = 0;
             // 
             // panel5
@@ -209,7 +210,7 @@
             panel5.Dock = DockStyle.Top;
             panel5.Location = new Point(4, 4);
             panel5.Name = "panel5";
-            panel5.Size = new Size(1605, 406);
+            panel5.Size = new Size(1586, 406);
             panel5.TabIndex = 3;
             // 
             // lblUsuario
@@ -232,11 +233,11 @@
             panel3.Controls.Add(hopeRoundButton4);
             panel3.Controls.Add(hopeRoundButton5);
             panel3.Controls.Add(hopeRoundButton6);
-            panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(4, 710);
+            panel3.Dock = DockStyle.Fill;
+            panel3.Location = new Point(4, 4);
             panel3.Margin = new Padding(4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1605, 90);
+            panel3.Size = new Size(1586, 810);
             panel3.TabIndex = 1;
             // 
             // btnNewTrans
@@ -249,7 +250,7 @@
             btnNewTrans.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnNewTrans.HoverTextColor = Color.FromArgb(48, 49, 51);
             btnNewTrans.InfoColor = Color.FromArgb(144, 147, 153);
-            btnNewTrans.Location = new Point(1360, 21);
+            btnNewTrans.Location = new Point(1341, 741);
             btnNewTrans.Margin = new Padding(4);
             btnNewTrans.Name = "btnNewTrans";
             btnNewTrans.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -259,6 +260,7 @@
             btnNewTrans.Text = "Nova Transação";
             btnNewTrans.TextColor = Color.White;
             btnNewTrans.WarningColor = Color.FromArgb(230, 162, 60);
+            btnNewTrans.Click += btnCriar5_Click;
             // 
             // hopeRoundButton4
             // 
@@ -270,7 +272,7 @@
             hopeRoundButton4.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton4.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton4.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton4.Location = new Point(2468, 11);
+            hopeRoundButton4.Location = new Point(2449, 731);
             hopeRoundButton4.Margin = new Padding(4);
             hopeRoundButton4.Name = "hopeRoundButton4";
             hopeRoundButton4.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -291,7 +293,7 @@
             hopeRoundButton5.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton5.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton5.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton5.Location = new Point(2643, 11);
+            hopeRoundButton5.Location = new Point(2624, 731);
             hopeRoundButton5.Margin = new Padding(4);
             hopeRoundButton5.Name = "hopeRoundButton5";
             hopeRoundButton5.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -312,7 +314,7 @@
             hopeRoundButton6.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton6.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton6.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton6.Location = new Point(2818, 11);
+            hopeRoundButton6.Location = new Point(2799, 731);
             hopeRoundButton6.Margin = new Padding(4);
             hopeRoundButton6.Name = "hopeRoundButton6";
             hopeRoundButton6.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -333,54 +335,54 @@
             tabPageAccout.Margin = new Padding(4);
             tabPageAccout.Name = "tabPageAccout";
             tabPageAccout.Padding = new Padding(4);
-            tabPageAccout.Size = new Size(1613, 804);
+            tabPageAccout.Size = new Size(1594, 818);
             tabPageAccout.TabIndex = 1;
             tabPageAccout.Enter += tabPageAccount_Enter;
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle26.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle26.ForeColor = Color.White;
+            dataGridViewCellStyle26.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle26.SelectionForeColor = Color.White;
+            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle26;
             dataGridView1.BackgroundColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle2.SelectionForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle27.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle27.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle27.ForeColor = Color.White;
+            dataGridViewCellStyle27.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle27.SelectionForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle27.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle27;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            dataGridView1.Dock = DockStyle.Fill;
+            dataGridViewCellStyle28.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle28.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle28.ForeColor = Color.White;
+            dataGridViewCellStyle28.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle28.SelectionForeColor = Color.White;
+            dataGridViewCellStyle28.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridView1.Dock = DockStyle.Top;
             dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
             dataGridView1.Location = new Point(4, 4);
             dataGridView1.Margin = new Padding(4);
             dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle5.SelectionForeColor = Color.White;
-            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            dataGridView1.Size = new Size(1605, 701);
+            dataGridViewCellStyle29.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle29.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle29.ForeColor = Color.White;
+            dataGridViewCellStyle29.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle29.SelectionForeColor = Color.White;
+            dataGridViewCellStyle29.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle30.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle30.ForeColor = Color.White;
+            dataGridViewCellStyle30.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle30.SelectionForeColor = Color.White;
+            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle30;
+            dataGridView1.Size = new Size(1586, 715);
             dataGridView1.TabIndex = 1;
             // 
             // panel1
@@ -389,10 +391,10 @@
             panel1.Controls.Add(btnEditar1);
             panel1.Controls.Add(btnDeletar1);
             panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(4, 705);
+            panel1.Location = new Point(4, 719);
             panel1.Margin = new Padding(4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1605, 95);
+            panel1.Size = new Size(1586, 95);
             panel1.TabIndex = 0;
             // 
             // btnCriar1
@@ -405,7 +407,7 @@
             btnCriar1.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCriar1.HoverTextColor = Color.FromArgb(48, 49, 51);
             btnCriar1.InfoColor = Color.FromArgb(144, 147, 153);
-            btnCriar1.Location = new Point(1063, 21);
+            btnCriar1.Location = new Point(1044, 21);
             btnCriar1.Margin = new Padding(4);
             btnCriar1.Name = "btnCriar1";
             btnCriar1.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -427,7 +429,7 @@
             btnEditar1.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnEditar1.HoverTextColor = Color.FromArgb(48, 49, 51);
             btnEditar1.InfoColor = Color.FromArgb(144, 147, 153);
-            btnEditar1.Location = new Point(1238, 21);
+            btnEditar1.Location = new Point(1219, 21);
             btnEditar1.Margin = new Padding(4);
             btnEditar1.Name = "btnEditar1";
             btnEditar1.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -449,7 +451,7 @@
             btnDeletar1.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnDeletar1.HoverTextColor = Color.FromArgb(48, 49, 51);
             btnDeletar1.InfoColor = Color.FromArgb(144, 147, 153);
-            btnDeletar1.Location = new Point(1413, 21);
+            btnDeletar1.Location = new Point(1394, 21);
             btnDeletar1.Margin = new Padding(4);
             btnDeletar1.Name = "btnDeletar1";
             btnDeletar1.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -471,54 +473,54 @@
             tabPageBank.Margin = new Padding(4);
             tabPageBank.Name = "tabPageBank";
             tabPageBank.Padding = new Padding(4);
-            tabPageBank.Size = new Size(1613, 804);
+            tabPageBank.Size = new Size(1594, 818);
             tabPageBank.TabIndex = 2;
             tabPageBank.Enter += tabPageBank_Enter;
             // 
             // dataGridView2
             // 
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle6.SelectionForeColor = Color.White;
-            dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle31.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle31.ForeColor = Color.White;
+            dataGridViewCellStyle31.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle31.SelectionForeColor = Color.White;
+            dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle31;
             dataGridView2.BackgroundColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle7.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle7.SelectionForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle32.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle32.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle32.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle32.ForeColor = Color.White;
+            dataGridViewCellStyle32.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle32.SelectionForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle32.WrapMode = DataGridViewTriState.True;
+            dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle32;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle8.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle8.ForeColor = Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle8.SelectionForeColor = Color.White;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            dataGridView2.DefaultCellStyle = dataGridViewCellStyle8;
-            dataGridView2.Dock = DockStyle.Fill;
+            dataGridViewCellStyle33.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle33.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle33.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle33.ForeColor = Color.White;
+            dataGridViewCellStyle33.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle33.SelectionForeColor = Color.White;
+            dataGridViewCellStyle33.WrapMode = DataGridViewTriState.False;
+            dataGridView2.DefaultCellStyle = dataGridViewCellStyle33;
+            dataGridView2.Dock = DockStyle.Top;
             dataGridView2.EditMode = DataGridViewEditMode.EditOnEnter;
             dataGridView2.Location = new Point(4, 4);
             dataGridView2.Margin = new Padding(4);
             dataGridView2.Name = "dataGridView2";
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle9.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle9.ForeColor = Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle9.SelectionForeColor = Color.White;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            dataGridViewCellStyle10.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle10.ForeColor = Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle10.SelectionForeColor = Color.White;
-            dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle10;
-            dataGridView2.Size = new Size(1605, 701);
+            dataGridViewCellStyle34.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle34.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle34.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle34.ForeColor = Color.White;
+            dataGridViewCellStyle34.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle34.SelectionForeColor = Color.White;
+            dataGridViewCellStyle34.WrapMode = DataGridViewTriState.True;
+            dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle35.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle35.ForeColor = Color.White;
+            dataGridViewCellStyle35.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle35.SelectionForeColor = Color.White;
+            dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle35;
+            dataGridView2.Size = new Size(1586, 715);
             dataGridView2.TabIndex = 3;
             // 
             // panel2
@@ -530,10 +532,10 @@
             panel2.Controls.Add(hopeRoundButton2);
             panel2.Controls.Add(hopeRoundButton3);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(4, 705);
+            panel2.Location = new Point(4, 719);
             panel2.Margin = new Padding(4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1605, 95);
+            panel2.Size = new Size(1586, 95);
             panel2.TabIndex = 2;
             // 
             // btnCriar2
@@ -546,7 +548,7 @@
             btnCriar2.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCriar2.HoverTextColor = Color.FromArgb(48, 49, 51);
             btnCriar2.InfoColor = Color.FromArgb(144, 147, 153);
-            btnCriar2.Location = new Point(1063, 21);
+            btnCriar2.Location = new Point(1044, 21);
             btnCriar2.Margin = new Padding(4);
             btnCriar2.Name = "btnCriar2";
             btnCriar2.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -568,7 +570,7 @@
             btnEditar2.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnEditar2.HoverTextColor = Color.FromArgb(48, 49, 51);
             btnEditar2.InfoColor = Color.FromArgb(144, 147, 153);
-            btnEditar2.Location = new Point(1238, 21);
+            btnEditar2.Location = new Point(1219, 21);
             btnEditar2.Margin = new Padding(4);
             btnEditar2.Name = "btnEditar2";
             btnEditar2.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -590,7 +592,7 @@
             btnDeletar2.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnDeletar2.HoverTextColor = Color.FromArgb(48, 49, 51);
             btnDeletar2.InfoColor = Color.FromArgb(144, 147, 153);
-            btnDeletar2.Location = new Point(1413, 21);
+            btnDeletar2.Location = new Point(1394, 21);
             btnDeletar2.Margin = new Padding(4);
             btnDeletar2.Name = "btnDeletar2";
             btnDeletar2.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -612,7 +614,7 @@
             hopeRoundButton1.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton1.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton1.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton1.Location = new Point(2321, -2);
+            hopeRoundButton1.Location = new Point(2302, -2);
             hopeRoundButton1.Margin = new Padding(4);
             hopeRoundButton1.Name = "hopeRoundButton1";
             hopeRoundButton1.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -633,7 +635,7 @@
             hopeRoundButton2.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton2.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton2.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton2.Location = new Point(2528, -2);
+            hopeRoundButton2.Location = new Point(2509, -2);
             hopeRoundButton2.Margin = new Padding(4);
             hopeRoundButton2.Name = "hopeRoundButton2";
             hopeRoundButton2.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -654,7 +656,7 @@
             hopeRoundButton3.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton3.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton3.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton3.Location = new Point(2722, -2);
+            hopeRoundButton3.Location = new Point(2703, -2);
             hopeRoundButton3.Margin = new Padding(4);
             hopeRoundButton3.Name = "hopeRoundButton3";
             hopeRoundButton3.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -675,54 +677,54 @@
             tabPageCategory.Margin = new Padding(4);
             tabPageCategory.Name = "tabPageCategory";
             tabPageCategory.Padding = new Padding(4);
-            tabPageCategory.Size = new Size(1613, 804);
+            tabPageCategory.Size = new Size(1594, 818);
             tabPageCategory.TabIndex = 3;
             tabPageCategory.Enter += tabPageCategory_Enter;
             // 
             // dataGridView3
             // 
-            dataGridViewCellStyle11.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle11.ForeColor = Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle11.SelectionForeColor = Color.White;
-            dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle36.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle36.ForeColor = Color.White;
+            dataGridViewCellStyle36.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle36.SelectionForeColor = Color.White;
+            dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle36;
             dataGridView3.BackgroundColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle12.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle12.ForeColor = Color.White;
-            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle12.SelectionForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
-            dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle37.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle37.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle37.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle37.ForeColor = Color.White;
+            dataGridViewCellStyle37.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle37.SelectionForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle37.WrapMode = DataGridViewTriState.True;
+            dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle37;
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle13.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle13.ForeColor = Color.White;
-            dataGridViewCellStyle13.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle13.SelectionForeColor = Color.White;
-            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.False;
-            dataGridView3.DefaultCellStyle = dataGridViewCellStyle13;
-            dataGridView3.Dock = DockStyle.Fill;
+            dataGridViewCellStyle38.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle38.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle38.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle38.ForeColor = Color.White;
+            dataGridViewCellStyle38.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle38.SelectionForeColor = Color.White;
+            dataGridViewCellStyle38.WrapMode = DataGridViewTriState.False;
+            dataGridView3.DefaultCellStyle = dataGridViewCellStyle38;
+            dataGridView3.Dock = DockStyle.Top;
             dataGridView3.EditMode = DataGridViewEditMode.EditOnEnter;
             dataGridView3.Location = new Point(4, 4);
             dataGridView3.Margin = new Padding(4);
             dataGridView3.Name = "dataGridView3";
-            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle14.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle14.ForeColor = Color.White;
-            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle14.SelectionForeColor = Color.White;
-            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.True;
-            dataGridView3.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
-            dataGridViewCellStyle15.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle15.ForeColor = Color.White;
-            dataGridViewCellStyle15.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle15.SelectionForeColor = Color.White;
-            dataGridView3.RowsDefaultCellStyle = dataGridViewCellStyle15;
-            dataGridView3.Size = new Size(1605, 701);
+            dataGridViewCellStyle39.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle39.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle39.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle39.ForeColor = Color.White;
+            dataGridViewCellStyle39.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle39.SelectionForeColor = Color.White;
+            dataGridViewCellStyle39.WrapMode = DataGridViewTriState.True;
+            dataGridView3.RowHeadersDefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle40.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle40.ForeColor = Color.White;
+            dataGridViewCellStyle40.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle40.SelectionForeColor = Color.White;
+            dataGridView3.RowsDefaultCellStyle = dataGridViewCellStyle40;
+            dataGridView3.Size = new Size(1586, 715);
             dataGridView3.TabIndex = 5;
             // 
             // panel4
@@ -737,10 +739,10 @@
             panel4.Controls.Add(hopeRoundButton11);
             panel4.Controls.Add(hopeRoundButton12);
             panel4.Dock = DockStyle.Bottom;
-            panel4.Location = new Point(4, 705);
+            panel4.Location = new Point(4, 719);
             panel4.Margin = new Padding(4);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1605, 95);
+            panel4.Size = new Size(1586, 95);
             panel4.TabIndex = 4;
             // 
             // btnCriar3
@@ -753,7 +755,7 @@
             btnCriar3.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCriar3.HoverTextColor = Color.FromArgb(48, 49, 51);
             btnCriar3.InfoColor = Color.FromArgb(144, 147, 153);
-            btnCriar3.Location = new Point(1063, 21);
+            btnCriar3.Location = new Point(1044, 21);
             btnCriar3.Margin = new Padding(4);
             btnCriar3.Name = "btnCriar3";
             btnCriar3.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -775,7 +777,7 @@
             btnEditar3.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnEditar3.HoverTextColor = Color.FromArgb(48, 49, 51);
             btnEditar3.InfoColor = Color.FromArgb(144, 147, 153);
-            btnEditar3.Location = new Point(1238, 21);
+            btnEditar3.Location = new Point(1219, 21);
             btnEditar3.Margin = new Padding(4);
             btnEditar3.Name = "btnEditar3";
             btnEditar3.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -797,7 +799,7 @@
             btnDeletar3.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnDeletar3.HoverTextColor = Color.FromArgb(48, 49, 51);
             btnDeletar3.InfoColor = Color.FromArgb(144, 147, 153);
-            btnDeletar3.Location = new Point(1413, 21);
+            btnDeletar3.Location = new Point(1394, 21);
             btnDeletar3.Margin = new Padding(4);
             btnDeletar3.Name = "btnDeletar3";
             btnDeletar3.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -819,7 +821,7 @@
             hopeRoundButton7.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton7.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton7.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton7.Location = new Point(2468, 16);
+            hopeRoundButton7.Location = new Point(2449, 16);
             hopeRoundButton7.Margin = new Padding(4);
             hopeRoundButton7.Name = "hopeRoundButton7";
             hopeRoundButton7.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -840,7 +842,7 @@
             hopeRoundButton8.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton8.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton8.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton8.Location = new Point(2643, 16);
+            hopeRoundButton8.Location = new Point(2624, 16);
             hopeRoundButton8.Margin = new Padding(4);
             hopeRoundButton8.Name = "hopeRoundButton8";
             hopeRoundButton8.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -861,7 +863,7 @@
             hopeRoundButton9.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton9.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton9.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton9.Location = new Point(2818, 16);
+            hopeRoundButton9.Location = new Point(2799, 16);
             hopeRoundButton9.Margin = new Padding(4);
             hopeRoundButton9.Name = "hopeRoundButton9";
             hopeRoundButton9.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -882,7 +884,7 @@
             hopeRoundButton10.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton10.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton10.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton10.Location = new Point(3726, -7);
+            hopeRoundButton10.Location = new Point(3707, -7);
             hopeRoundButton10.Margin = new Padding(4);
             hopeRoundButton10.Name = "hopeRoundButton10";
             hopeRoundButton10.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -903,7 +905,7 @@
             hopeRoundButton11.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton11.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton11.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton11.Location = new Point(3933, -7);
+            hopeRoundButton11.Location = new Point(3914, -7);
             hopeRoundButton11.Margin = new Padding(4);
             hopeRoundButton11.Name = "hopeRoundButton11";
             hopeRoundButton11.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -924,7 +926,7 @@
             hopeRoundButton12.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton12.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton12.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton12.Location = new Point(4127, -7);
+            hopeRoundButton12.Location = new Point(4108, -7);
             hopeRoundButton12.Margin = new Padding(4);
             hopeRoundButton12.Name = "hopeRoundButton12";
             hopeRoundButton12.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -945,54 +947,54 @@
             tabPageSubs.Margin = new Padding(4);
             tabPageSubs.Name = "tabPageSubs";
             tabPageSubs.Padding = new Padding(4);
-            tabPageSubs.Size = new Size(1613, 804);
+            tabPageSubs.Size = new Size(1594, 818);
             tabPageSubs.TabIndex = 4;
             tabPageSubs.Enter += tabPageSubs_Enter;
             // 
             // dataGridView4
             // 
-            dataGridViewCellStyle16.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle16.ForeColor = Color.White;
-            dataGridViewCellStyle16.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle16.SelectionForeColor = Color.White;
-            dataGridView4.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle41.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle41.ForeColor = Color.White;
+            dataGridViewCellStyle41.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle41.SelectionForeColor = Color.White;
+            dataGridView4.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle41;
             dataGridView4.BackgroundColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle17.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle17.ForeColor = Color.White;
-            dataGridViewCellStyle17.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle17.SelectionForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
-            dataGridView4.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle42.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle42.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle42.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle42.ForeColor = Color.White;
+            dataGridViewCellStyle42.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle42.SelectionForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle42.WrapMode = DataGridViewTriState.True;
+            dataGridView4.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle42;
             dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle18.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle18.ForeColor = Color.White;
-            dataGridViewCellStyle18.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle18.SelectionForeColor = Color.White;
-            dataGridViewCellStyle18.WrapMode = DataGridViewTriState.False;
-            dataGridView4.DefaultCellStyle = dataGridViewCellStyle18;
-            dataGridView4.Dock = DockStyle.Fill;
+            dataGridViewCellStyle43.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle43.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle43.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle43.ForeColor = Color.White;
+            dataGridViewCellStyle43.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle43.SelectionForeColor = Color.White;
+            dataGridViewCellStyle43.WrapMode = DataGridViewTriState.False;
+            dataGridView4.DefaultCellStyle = dataGridViewCellStyle43;
+            dataGridView4.Dock = DockStyle.Top;
             dataGridView4.EditMode = DataGridViewEditMode.EditOnEnter;
             dataGridView4.Location = new Point(4, 4);
             dataGridView4.Margin = new Padding(4);
             dataGridView4.Name = "dataGridView4";
-            dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle19.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle19.ForeColor = Color.White;
-            dataGridViewCellStyle19.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle19.SelectionForeColor = Color.White;
-            dataGridViewCellStyle19.WrapMode = DataGridViewTriState.True;
-            dataGridView4.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
-            dataGridViewCellStyle20.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle20.ForeColor = Color.White;
-            dataGridViewCellStyle20.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle20.SelectionForeColor = Color.White;
-            dataGridView4.RowsDefaultCellStyle = dataGridViewCellStyle20;
-            dataGridView4.Size = new Size(1605, 701);
+            dataGridViewCellStyle44.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle44.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle44.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle44.ForeColor = Color.White;
+            dataGridViewCellStyle44.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle44.SelectionForeColor = Color.White;
+            dataGridViewCellStyle44.WrapMode = DataGridViewTriState.True;
+            dataGridView4.RowHeadersDefaultCellStyle = dataGridViewCellStyle44;
+            dataGridViewCellStyle45.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle45.ForeColor = Color.White;
+            dataGridViewCellStyle45.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle45.SelectionForeColor = Color.White;
+            dataGridView4.RowsDefaultCellStyle = dataGridViewCellStyle45;
+            dataGridView4.Size = new Size(1586, 715);
             dataGridView4.TabIndex = 7;
             // 
             // panel6
@@ -1010,10 +1012,10 @@
             panel6.Controls.Add(hopeRoundButton20);
             panel6.Controls.Add(hopeRoundButton21);
             panel6.Dock = DockStyle.Bottom;
-            panel6.Location = new Point(4, 705);
+            panel6.Location = new Point(4, 719);
             panel6.Margin = new Padding(4);
             panel6.Name = "panel6";
-            panel6.Size = new Size(1605, 95);
+            panel6.Size = new Size(1586, 95);
             panel6.TabIndex = 6;
             // 
             // btnCriar4
@@ -1026,7 +1028,7 @@
             btnCriar4.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCriar4.HoverTextColor = Color.FromArgb(48, 49, 51);
             btnCriar4.InfoColor = Color.FromArgb(144, 147, 153);
-            btnCriar4.Location = new Point(1063, 21);
+            btnCriar4.Location = new Point(1044, 21);
             btnCriar4.Margin = new Padding(4);
             btnCriar4.Name = "btnCriar4";
             btnCriar4.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1048,7 +1050,7 @@
             btnEditar4.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnEditar4.HoverTextColor = Color.FromArgb(48, 49, 51);
             btnEditar4.InfoColor = Color.FromArgb(144, 147, 153);
-            btnEditar4.Location = new Point(1238, 21);
+            btnEditar4.Location = new Point(1219, 21);
             btnEditar4.Margin = new Padding(4);
             btnEditar4.Name = "btnEditar4";
             btnEditar4.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1070,7 +1072,7 @@
             btnDeletar4.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnDeletar4.HoverTextColor = Color.FromArgb(48, 49, 51);
             btnDeletar4.InfoColor = Color.FromArgb(144, 147, 153);
-            btnDeletar4.Location = new Point(1413, 21);
+            btnDeletar4.Location = new Point(1394, 21);
             btnDeletar4.Margin = new Padding(4);
             btnDeletar4.Name = "btnDeletar4";
             btnDeletar4.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1092,7 +1094,7 @@
             hopeRoundButton13.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton13.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton13.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton13.Location = new Point(2468, 16);
+            hopeRoundButton13.Location = new Point(2449, 16);
             hopeRoundButton13.Margin = new Padding(4);
             hopeRoundButton13.Name = "hopeRoundButton13";
             hopeRoundButton13.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1113,7 +1115,7 @@
             hopeRoundButton14.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton14.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton14.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton14.Location = new Point(2643, 16);
+            hopeRoundButton14.Location = new Point(2624, 16);
             hopeRoundButton14.Margin = new Padding(4);
             hopeRoundButton14.Name = "hopeRoundButton14";
             hopeRoundButton14.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1134,7 +1136,7 @@
             hopeRoundButton15.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton15.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton15.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton15.Location = new Point(2818, 16);
+            hopeRoundButton15.Location = new Point(2799, 16);
             hopeRoundButton15.Margin = new Padding(4);
             hopeRoundButton15.Name = "hopeRoundButton15";
             hopeRoundButton15.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1155,7 +1157,7 @@
             hopeRoundButton16.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton16.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton16.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton16.Location = new Point(3873, 11);
+            hopeRoundButton16.Location = new Point(3854, 11);
             hopeRoundButton16.Margin = new Padding(4);
             hopeRoundButton16.Name = "hopeRoundButton16";
             hopeRoundButton16.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1176,7 +1178,7 @@
             hopeRoundButton17.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton17.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton17.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton17.Location = new Point(4048, 11);
+            hopeRoundButton17.Location = new Point(4029, 11);
             hopeRoundButton17.Margin = new Padding(4);
             hopeRoundButton17.Name = "hopeRoundButton17";
             hopeRoundButton17.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1197,7 +1199,7 @@
             hopeRoundButton18.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton18.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton18.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton18.Location = new Point(4223, 11);
+            hopeRoundButton18.Location = new Point(4204, 11);
             hopeRoundButton18.Margin = new Padding(4);
             hopeRoundButton18.Name = "hopeRoundButton18";
             hopeRoundButton18.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1218,7 +1220,7 @@
             hopeRoundButton19.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton19.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton19.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton19.Location = new Point(5131, -12);
+            hopeRoundButton19.Location = new Point(5112, -12);
             hopeRoundButton19.Margin = new Padding(4);
             hopeRoundButton19.Name = "hopeRoundButton19";
             hopeRoundButton19.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1239,7 +1241,7 @@
             hopeRoundButton20.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton20.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton20.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton20.Location = new Point(5338, -12);
+            hopeRoundButton20.Location = new Point(5319, -12);
             hopeRoundButton20.Margin = new Padding(4);
             hopeRoundButton20.Name = "hopeRoundButton20";
             hopeRoundButton20.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1260,7 +1262,7 @@
             hopeRoundButton21.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton21.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton21.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton21.Location = new Point(5532, -12);
+            hopeRoundButton21.Location = new Point(5513, -12);
             hopeRoundButton21.Margin = new Padding(4);
             hopeRoundButton21.Name = "hopeRoundButton21";
             hopeRoundButton21.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1281,60 +1283,60 @@
             tabPageTrans.Margin = new Padding(4);
             tabPageTrans.Name = "tabPageTrans";
             tabPageTrans.Padding = new Padding(4);
-            tabPageTrans.Size = new Size(1613, 804);
+            tabPageTrans.Size = new Size(1594, 818);
             tabPageTrans.TabIndex = 5;
             // 
             // dataGridView5
             // 
-            dataGridViewCellStyle21.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle21.ForeColor = Color.White;
-            dataGridViewCellStyle21.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle21.SelectionForeColor = Color.White;
-            dataGridView5.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle46.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle46.ForeColor = Color.White;
+            dataGridViewCellStyle46.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle46.SelectionForeColor = Color.White;
+            dataGridView5.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle46;
             dataGridView5.BackgroundColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle22.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle22.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle22.ForeColor = Color.White;
-            dataGridViewCellStyle22.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle22.SelectionForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle22.WrapMode = DataGridViewTriState.True;
-            dataGridView5.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle47.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle47.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle47.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle47.ForeColor = Color.White;
+            dataGridViewCellStyle47.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle47.SelectionForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle47.WrapMode = DataGridViewTriState.True;
+            dataGridView5.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle47;
             dataGridView5.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle23.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle23.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle23.ForeColor = Color.White;
-            dataGridViewCellStyle23.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle23.SelectionForeColor = Color.White;
-            dataGridViewCellStyle23.WrapMode = DataGridViewTriState.False;
-            dataGridView5.DefaultCellStyle = dataGridViewCellStyle23;
-            dataGridView5.Dock = DockStyle.Fill;
+            dataGridViewCellStyle48.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle48.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle48.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle48.ForeColor = Color.White;
+            dataGridViewCellStyle48.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle48.SelectionForeColor = Color.White;
+            dataGridViewCellStyle48.WrapMode = DataGridViewTriState.False;
+            dataGridView5.DefaultCellStyle = dataGridViewCellStyle48;
+            dataGridView5.Dock = DockStyle.Top;
             dataGridView5.EditMode = DataGridViewEditMode.EditOnEnter;
             dataGridView5.Location = new Point(4, 4);
             dataGridView5.Margin = new Padding(4);
             dataGridView5.Name = "dataGridView5";
-            dataGridViewCellStyle24.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle24.Font = new Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle24.ForeColor = Color.White;
-            dataGridViewCellStyle24.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle24.SelectionForeColor = Color.White;
-            dataGridViewCellStyle24.WrapMode = DataGridViewTriState.True;
-            dataGridView5.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
-            dataGridViewCellStyle25.BackColor = Color.FromArgb(21, 16, 70);
-            dataGridViewCellStyle25.ForeColor = Color.White;
-            dataGridViewCellStyle25.SelectionBackColor = Color.FromArgb(50, 77, 249);
-            dataGridViewCellStyle25.SelectionForeColor = Color.White;
-            dataGridView5.RowsDefaultCellStyle = dataGridViewCellStyle25;
-            dataGridView5.Size = new Size(1605, 701);
+            dataGridViewCellStyle49.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle49.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle49.Font = new Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle49.ForeColor = Color.White;
+            dataGridViewCellStyle49.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle49.SelectionForeColor = Color.White;
+            dataGridViewCellStyle49.WrapMode = DataGridViewTriState.True;
+            dataGridView5.RowHeadersDefaultCellStyle = dataGridViewCellStyle49;
+            dataGridViewCellStyle50.BackColor = Color.FromArgb(21, 16, 70);
+            dataGridViewCellStyle50.ForeColor = Color.White;
+            dataGridViewCellStyle50.SelectionBackColor = Color.FromArgb(50, 77, 249);
+            dataGridViewCellStyle50.SelectionForeColor = Color.White;
+            dataGridView5.RowsDefaultCellStyle = dataGridViewCellStyle50;
+            dataGridView5.Size = new Size(1586, 715);
             dataGridView5.TabIndex = 7;
             // 
             // panel7
             // 
-            panel7.Controls.Add(hopeRoundButton34);
-            panel7.Controls.Add(hopeRoundButton35);
-            panel7.Controls.Add(hopeRoundButton36);
+            panel7.Controls.Add(btnCriar5);
+            panel7.Controls.Add(btnEditar5);
+            panel7.Controls.Add(btnDeletar5);
             panel7.Controls.Add(hopeRoundButton22);
             panel7.Controls.Add(hopeRoundButton23);
             panel7.Controls.Add(hopeRoundButton24);
@@ -1345,74 +1347,77 @@
             panel7.Controls.Add(hopeRoundButton29);
             panel7.Controls.Add(hopeRoundButton30);
             panel7.Dock = DockStyle.Bottom;
-            panel7.Location = new Point(4, 705);
+            panel7.Location = new Point(4, 719);
             panel7.Margin = new Padding(4);
             panel7.Name = "panel7";
-            panel7.Size = new Size(1605, 95);
+            panel7.Size = new Size(1586, 95);
             panel7.TabIndex = 6;
             // 
-            // hopeRoundButton34
+            // btnCriar5
             // 
-            hopeRoundButton34.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            hopeRoundButton34.BorderColor = Color.FromArgb(220, 223, 230);
-            hopeRoundButton34.ButtonType = ReaLTaiizor.Util.HopeButtonType.Primary;
-            hopeRoundButton34.DangerColor = Color.FromArgb(245, 108, 108);
-            hopeRoundButton34.DefaultColor = Color.FromArgb(255, 255, 255);
-            hopeRoundButton34.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            hopeRoundButton34.HoverTextColor = Color.FromArgb(48, 49, 51);
-            hopeRoundButton34.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton34.Location = new Point(1063, 21);
-            hopeRoundButton34.Margin = new Padding(4);
-            hopeRoundButton34.Name = "hopeRoundButton34";
-            hopeRoundButton34.PrimaryColor = Color.FromArgb(150, 0, 255);
-            hopeRoundButton34.Size = new Size(167, 60);
-            hopeRoundButton34.SuccessColor = Color.FromArgb(103, 194, 58);
-            hopeRoundButton34.TabIndex = 17;
-            hopeRoundButton34.Text = "Criar";
-            hopeRoundButton34.TextColor = Color.White;
-            hopeRoundButton34.WarningColor = Color.FromArgb(230, 162, 60);
+            btnCriar5.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCriar5.BorderColor = Color.FromArgb(220, 223, 230);
+            btnCriar5.ButtonType = ReaLTaiizor.Util.HopeButtonType.Primary;
+            btnCriar5.DangerColor = Color.FromArgb(245, 108, 108);
+            btnCriar5.DefaultColor = Color.FromArgb(255, 255, 255);
+            btnCriar5.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCriar5.HoverTextColor = Color.FromArgb(48, 49, 51);
+            btnCriar5.InfoColor = Color.FromArgb(144, 147, 153);
+            btnCriar5.Location = new Point(1044, 21);
+            btnCriar5.Margin = new Padding(4);
+            btnCriar5.Name = "btnCriar5";
+            btnCriar5.PrimaryColor = Color.FromArgb(150, 0, 255);
+            btnCriar5.Size = new Size(167, 60);
+            btnCriar5.SuccessColor = Color.FromArgb(103, 194, 58);
+            btnCriar5.TabIndex = 17;
+            btnCriar5.Text = "Criar";
+            btnCriar5.TextColor = Color.White;
+            btnCriar5.WarningColor = Color.FromArgb(230, 162, 60);
+            btnCriar5.Click += btnCriar5_Click;
             // 
-            // hopeRoundButton35
+            // btnEditar5
             // 
-            hopeRoundButton35.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            hopeRoundButton35.BorderColor = Color.FromArgb(220, 223, 230);
-            hopeRoundButton35.ButtonType = ReaLTaiizor.Util.HopeButtonType.Primary;
-            hopeRoundButton35.DangerColor = Color.FromArgb(245, 108, 108);
-            hopeRoundButton35.DefaultColor = Color.FromArgb(255, 255, 255);
-            hopeRoundButton35.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            hopeRoundButton35.HoverTextColor = Color.FromArgb(48, 49, 51);
-            hopeRoundButton35.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton35.Location = new Point(1238, 21);
-            hopeRoundButton35.Margin = new Padding(4);
-            hopeRoundButton35.Name = "hopeRoundButton35";
-            hopeRoundButton35.PrimaryColor = Color.FromArgb(150, 0, 255);
-            hopeRoundButton35.Size = new Size(167, 60);
-            hopeRoundButton35.SuccessColor = Color.FromArgb(103, 194, 58);
-            hopeRoundButton35.TabIndex = 16;
-            hopeRoundButton35.Text = "Editar";
-            hopeRoundButton35.TextColor = Color.White;
-            hopeRoundButton35.WarningColor = Color.FromArgb(230, 162, 60);
+            btnEditar5.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEditar5.BorderColor = Color.FromArgb(220, 223, 230);
+            btnEditar5.ButtonType = ReaLTaiizor.Util.HopeButtonType.Primary;
+            btnEditar5.DangerColor = Color.FromArgb(245, 108, 108);
+            btnEditar5.DefaultColor = Color.FromArgb(255, 255, 255);
+            btnEditar5.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnEditar5.HoverTextColor = Color.FromArgb(48, 49, 51);
+            btnEditar5.InfoColor = Color.FromArgb(144, 147, 153);
+            btnEditar5.Location = new Point(1219, 21);
+            btnEditar5.Margin = new Padding(4);
+            btnEditar5.Name = "btnEditar5";
+            btnEditar5.PrimaryColor = Color.FromArgb(150, 0, 255);
+            btnEditar5.Size = new Size(167, 60);
+            btnEditar5.SuccessColor = Color.FromArgb(103, 194, 58);
+            btnEditar5.TabIndex = 16;
+            btnEditar5.Text = "Editar";
+            btnEditar5.TextColor = Color.White;
+            btnEditar5.WarningColor = Color.FromArgb(230, 162, 60);
+            btnEditar5.Click += btnEditar5_Click;
             // 
-            // hopeRoundButton36
+            // btnDeletar5
             // 
-            hopeRoundButton36.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            hopeRoundButton36.BorderColor = Color.FromArgb(220, 223, 230);
-            hopeRoundButton36.ButtonType = ReaLTaiizor.Util.HopeButtonType.Primary;
-            hopeRoundButton36.DangerColor = Color.FromArgb(245, 108, 108);
-            hopeRoundButton36.DefaultColor = Color.FromArgb(255, 255, 255);
-            hopeRoundButton36.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            hopeRoundButton36.HoverTextColor = Color.FromArgb(48, 49, 51);
-            hopeRoundButton36.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton36.Location = new Point(1413, 21);
-            hopeRoundButton36.Margin = new Padding(4);
-            hopeRoundButton36.Name = "hopeRoundButton36";
-            hopeRoundButton36.PrimaryColor = Color.FromArgb(150, 0, 255);
-            hopeRoundButton36.Size = new Size(167, 60);
-            hopeRoundButton36.SuccessColor = Color.FromArgb(103, 194, 58);
-            hopeRoundButton36.TabIndex = 15;
-            hopeRoundButton36.Text = "Deletar";
-            hopeRoundButton36.TextColor = Color.White;
-            hopeRoundButton36.WarningColor = Color.FromArgb(230, 162, 60);
+            btnDeletar5.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnDeletar5.BorderColor = Color.FromArgb(220, 223, 230);
+            btnDeletar5.ButtonType = ReaLTaiizor.Util.HopeButtonType.Primary;
+            btnDeletar5.DangerColor = Color.FromArgb(245, 108, 108);
+            btnDeletar5.DefaultColor = Color.FromArgb(255, 255, 255);
+            btnDeletar5.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDeletar5.HoverTextColor = Color.FromArgb(48, 49, 51);
+            btnDeletar5.InfoColor = Color.FromArgb(144, 147, 153);
+            btnDeletar5.Location = new Point(1394, 21);
+            btnDeletar5.Margin = new Padding(4);
+            btnDeletar5.Name = "btnDeletar5";
+            btnDeletar5.PrimaryColor = Color.FromArgb(150, 0, 255);
+            btnDeletar5.Size = new Size(167, 60);
+            btnDeletar5.SuccessColor = Color.FromArgb(103, 194, 58);
+            btnDeletar5.TabIndex = 15;
+            btnDeletar5.Text = "Deletar";
+            btnDeletar5.TextColor = Color.White;
+            btnDeletar5.WarningColor = Color.FromArgb(230, 162, 60);
+            btnDeletar5.Click += btnDeletar5_Click;
             // 
             // hopeRoundButton22
             // 
@@ -1424,7 +1429,7 @@
             hopeRoundButton22.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton22.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton22.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton22.Location = new Point(2468, 16);
+            hopeRoundButton22.Location = new Point(2449, 16);
             hopeRoundButton22.Margin = new Padding(4);
             hopeRoundButton22.Name = "hopeRoundButton22";
             hopeRoundButton22.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1445,7 +1450,7 @@
             hopeRoundButton23.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton23.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton23.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton23.Location = new Point(2643, 16);
+            hopeRoundButton23.Location = new Point(2624, 16);
             hopeRoundButton23.Margin = new Padding(4);
             hopeRoundButton23.Name = "hopeRoundButton23";
             hopeRoundButton23.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1466,7 +1471,7 @@
             hopeRoundButton24.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton24.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton24.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton24.Location = new Point(2818, 16);
+            hopeRoundButton24.Location = new Point(2799, 16);
             hopeRoundButton24.Margin = new Padding(4);
             hopeRoundButton24.Name = "hopeRoundButton24";
             hopeRoundButton24.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1487,7 +1492,7 @@
             hopeRoundButton25.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton25.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton25.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton25.Location = new Point(3873, 11);
+            hopeRoundButton25.Location = new Point(3854, 11);
             hopeRoundButton25.Margin = new Padding(4);
             hopeRoundButton25.Name = "hopeRoundButton25";
             hopeRoundButton25.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1508,7 +1513,7 @@
             hopeRoundButton26.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton26.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton26.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton26.Location = new Point(4048, 11);
+            hopeRoundButton26.Location = new Point(4029, 11);
             hopeRoundButton26.Margin = new Padding(4);
             hopeRoundButton26.Name = "hopeRoundButton26";
             hopeRoundButton26.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1529,7 +1534,7 @@
             hopeRoundButton27.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton27.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton27.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton27.Location = new Point(4223, 11);
+            hopeRoundButton27.Location = new Point(4204, 11);
             hopeRoundButton27.Margin = new Padding(4);
             hopeRoundButton27.Name = "hopeRoundButton27";
             hopeRoundButton27.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1550,7 +1555,7 @@
             hopeRoundButton28.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton28.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton28.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton28.Location = new Point(5131, -12);
+            hopeRoundButton28.Location = new Point(5112, -12);
             hopeRoundButton28.Margin = new Padding(4);
             hopeRoundButton28.Name = "hopeRoundButton28";
             hopeRoundButton28.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1571,7 +1576,7 @@
             hopeRoundButton29.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton29.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton29.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton29.Location = new Point(5338, -12);
+            hopeRoundButton29.Location = new Point(5319, -12);
             hopeRoundButton29.Margin = new Padding(4);
             hopeRoundButton29.Name = "hopeRoundButton29";
             hopeRoundButton29.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1592,7 +1597,7 @@
             hopeRoundButton30.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             hopeRoundButton30.HoverTextColor = Color.FromArgb(48, 49, 51);
             hopeRoundButton30.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeRoundButton30.Location = new Point(5532, -12);
+            hopeRoundButton30.Location = new Point(5513, -12);
             hopeRoundButton30.Margin = new Padding(4);
             hopeRoundButton30.Name = "hopeRoundButton30";
             hopeRoundButton30.PrimaryColor = Color.FromArgb(150, 0, 255);
@@ -1606,13 +1611,15 @@
             // tabPageReport
             // 
             tabPageReport.AutoScroll = true;
+            tabPageReport.AutoScrollMargin = new Size(10, 10);
+            tabPageReport.AutoScrollMinSize = new Size(10, 10);
             tabPageReport.BackColor = Color.FromArgb(10, 6, 52);
             tabPageReport.ImageIndex = 6;
             tabPageReport.Location = new Point(84, 4);
             tabPageReport.Margin = new Padding(4);
             tabPageReport.Name = "tabPageReport";
             tabPageReport.Padding = new Padding(4);
-            tabPageReport.Size = new Size(1613, 804);
+            tabPageReport.Size = new Size(1594, 818);
             tabPageReport.TabIndex = 6;
             // 
             // tabPageLogout
@@ -1622,15 +1629,17 @@
             tabPageLogout.Location = new Point(84, 4);
             tabPageLogout.Name = "tabPageLogout";
             tabPageLogout.Padding = new Padding(3);
-            tabPageLogout.Size = new Size(1613, 804);
+            tabPageLogout.Size = new Size(1594, 818);
             tabPageLogout.TabIndex = 7;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(12F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoScroll = true;
             BackColor = Color.FromArgb(10, 6, 52);
-            ClientSize = new Size(1707, 857);
+            BorderColor = Color.Transparent;
+            ClientSize = new Size(1686, 857);
             Controls.Add(airTabPage1);
             Font = new Font("Microsoft Sans Serif", 15F);
             HeaderColor = Color.FromArgb(192, 102, 255);
@@ -1644,6 +1653,7 @@
             Text = "MyWallet";
             TitleColor = Color.Black;
             WindowState = FormWindowState.Maximized;
+            Load += MainForm_Load;
             airTabPage1.ResumeLayout(false);
             tabPageHome.ResumeLayout(false);
             panel5.ResumeLayout(false);
@@ -1737,8 +1747,8 @@
         private ReaLTaiizor.Controls.HopeRoundButton btnCriar4;
         private ReaLTaiizor.Controls.HopeRoundButton btnEditar4;
         private ReaLTaiizor.Controls.HopeRoundButton btnDeletar4;
-        private ReaLTaiizor.Controls.HopeRoundButton hopeRoundButton34;
-        private ReaLTaiizor.Controls.HopeRoundButton hopeRoundButton35;
-        private ReaLTaiizor.Controls.HopeRoundButton hopeRoundButton36;
+        private ReaLTaiizor.Controls.HopeRoundButton btnCriar5;
+        private ReaLTaiizor.Controls.HopeRoundButton btnEditar5;
+        private ReaLTaiizor.Controls.HopeRoundButton btnDeletar5;
     }
 }

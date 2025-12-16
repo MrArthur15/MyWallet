@@ -34,8 +34,8 @@
             cboCategoria = new ReaLTaiizor.Controls.DungeonComboBox();
             cboMetodo = new ReaLTaiizor.Controls.DungeonComboBox();
             txtDescricao = new ReaLTaiizor.Controls.HopeTextBox();
-            txtNome = new ReaLTaiizor.Controls.HopeTextBox();
-            dungeonComboBox1 = new ReaLTaiizor.Controls.DungeonComboBox();
+            txtValor = new ReaLTaiizor.Controls.HopeTextBox();
+            cboTipo = new ReaLTaiizor.Controls.DungeonComboBox();
             SuspendLayout();
             // 
             // chkPago
@@ -62,7 +62,7 @@
             chkPago.ForeColor = Color.FromArgb(245, 245, 245);
             chkPago.LinearGradient_Background = false;
             chkPago.LinearGradientPen = false;
-            chkPago.Location = new Point(425, 127);
+            chkPago.Location = new Point(431, 127);
             chkPago.Name = "chkPago";
             chkPago.RGB = false;
             chkPago.Rounding = true;
@@ -81,7 +81,7 @@
             dtpNextDate.DropDownAlign = LeftRightAlignment.Right;
             dtpNextDate.Font = new Font("Microsoft Sans Serif", 22F);
             dtpNextDate.Format = DateTimePickerFormat.Short;
-            dtpNextDate.Location = new Point(233, 127);
+            dtpNextDate.Location = new Point(171, 127);
             dtpNextDate.Name = "dtpNextDate";
             dtpNextDate.Size = new Size(182, 41);
             dtpNextDate.TabIndex = 28;
@@ -192,80 +192,80 @@
             txtDescricao.TabStop = false;
             txtDescricao.UseSystemPasswordChar = false;
             // 
-            // txtNome
+            // txtValor
             // 
-            txtNome.BackColor = Color.White;
-            txtNome.BaseColor = Color.FromArgb(44, 55, 66);
-            txtNome.BorderColorA = Color.FromArgb(64, 158, 255);
-            txtNome.BorderColorB = Color.FromArgb(220, 223, 230);
-            txtNome.Font = new Font("Microsoft Sans Serif", 16F);
-            txtNome.ForeColor = Color.Black;
-            txtNome.Hint = "valor";
-            txtNome.ImeMode = ImeMode.NoControl;
-            txtNome.Location = new Point(109, 69);
-            txtNome.MaxLength = 32767;
-            txtNome.Multiline = false;
-            txtNome.Name = "txtNome";
-            txtNome.PasswordChar = '\0';
-            txtNome.ScrollBars = ScrollBars.None;
-            txtNome.SelectedText = "";
-            txtNome.SelectionLength = 0;
-            txtNome.SelectionStart = 0;
-            txtNome.Size = new Size(362, 41);
-            txtNome.TabIndex = 23;
-            txtNome.TabStop = false;
-            txtNome.UseSystemPasswordChar = false;
+            txtValor.BackColor = Color.White;
+            txtValor.BaseColor = Color.FromArgb(44, 55, 66);
+            txtValor.BorderColorA = Color.FromArgb(64, 158, 255);
+            txtValor.BorderColorB = Color.FromArgb(220, 223, 230);
+            txtValor.Font = new Font("Microsoft Sans Serif", 16F);
+            txtValor.ForeColor = Color.Black;
+            txtValor.Hint = "valor";
+            txtValor.ImeMode = ImeMode.NoControl;
+            txtValor.Location = new Point(109, 69);
+            txtValor.MaxLength = 32767;
+            txtValor.Multiline = false;
+            txtValor.Name = "txtValor";
+            txtValor.PasswordChar = '\0';
+            txtValor.ScrollBars = ScrollBars.None;
+            txtValor.SelectedText = "";
+            txtValor.SelectionLength = 0;
+            txtValor.SelectionStart = 0;
+            txtValor.Size = new Size(362, 41);
+            txtValor.TabIndex = 23;
+            txtValor.TabStop = false;
+            txtValor.UseSystemPasswordChar = false;
             // 
-            // dungeonComboBox1
+            // cboTipo
             // 
-            dungeonComboBox1.BackColor = Color.FromArgb(246, 246, 246);
-            dungeonComboBox1.ColorA = Color.FromArgb(246, 132, 85);
-            dungeonComboBox1.ColorB = Color.FromArgb(231, 108, 57);
-            dungeonComboBox1.ColorC = Color.FromArgb(242, 241, 240);
-            dungeonComboBox1.ColorD = Color.FromArgb(253, 252, 252);
-            dungeonComboBox1.ColorE = Color.FromArgb(239, 237, 236);
-            dungeonComboBox1.ColorF = Color.FromArgb(180, 180, 180);
-            dungeonComboBox1.ColorG = Color.FromArgb(119, 119, 118);
-            dungeonComboBox1.ColorH = Color.FromArgb(224, 222, 220);
-            dungeonComboBox1.ColorI = Color.FromArgb(250, 249, 249);
-            dungeonComboBox1.DrawMode = DrawMode.OwnerDrawFixed;
-            dungeonComboBox1.DropDownHeight = 100;
-            dungeonComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            dungeonComboBox1.Font = new Font("Microsoft Sans Serif", 15F);
-            dungeonComboBox1.ForeColor = Color.Black;
-            dungeonComboBox1.FormattingEnabled = true;
-            dungeonComboBox1.HoverSelectionColor = Color.Empty;
-            dungeonComboBox1.IntegralHeight = false;
-            dungeonComboBox1.ItemHeight = 35;
-            dungeonComboBox1.Location = new Point(492, 69);
-            dungeonComboBox1.Name = "dungeonComboBox1";
-            dungeonComboBox1.Size = new Size(168, 41);
-            dungeonComboBox1.StartIndex = 0;
-            dungeonComboBox1.TabIndex = 30;
+            cboTipo.BackColor = Color.FromArgb(246, 246, 246);
+            cboTipo.ColorA = Color.FromArgb(246, 132, 85);
+            cboTipo.ColorB = Color.FromArgb(231, 108, 57);
+            cboTipo.ColorC = Color.FromArgb(242, 241, 240);
+            cboTipo.ColorD = Color.FromArgb(253, 252, 252);
+            cboTipo.ColorE = Color.FromArgb(239, 237, 236);
+            cboTipo.ColorF = Color.FromArgb(180, 180, 180);
+            cboTipo.ColorG = Color.FromArgb(119, 119, 118);
+            cboTipo.ColorH = Color.FromArgb(224, 222, 220);
+            cboTipo.ColorI = Color.FromArgb(250, 249, 249);
+            cboTipo.DrawMode = DrawMode.OwnerDrawFixed;
+            cboTipo.DropDownHeight = 100;
+            cboTipo.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboTipo.Font = new Font("Microsoft Sans Serif", 15F);
+            cboTipo.ForeColor = Color.Black;
+            cboTipo.FormattingEnabled = true;
+            cboTipo.HoverSelectionColor = Color.Empty;
+            cboTipo.IntegralHeight = false;
+            cboTipo.ItemHeight = 35;
+            cboTipo.Location = new Point(492, 69);
+            cboTipo.Name = "cboTipo";
+            cboTipo.Size = new Size(168, 41);
+            cboTipo.StartIndex = 0;
+            cboTipo.TabIndex = 30;
             // 
             // TransactionFrom
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(dungeonComboBox1);
+            ClientSize = new Size(800, 409);
+            Controls.Add(cboTipo);
             Controls.Add(chkPago);
             Controls.Add(dtpNextDate);
             Controls.Add(cboConta);
             Controls.Add(cboCategoria);
             Controls.Add(cboMetodo);
             Controls.Add(txtDescricao);
-            Controls.Add(txtNome);
+            Controls.Add(txtValor);
             Name = "TransactionFrom";
             Text = "TransactionFrom";
-            Controls.SetChildIndex(txtNome, 0);
+            Controls.SetChildIndex(txtValor, 0);
             Controls.SetChildIndex(txtDescricao, 0);
             Controls.SetChildIndex(cboMetodo, 0);
             Controls.SetChildIndex(cboCategoria, 0);
             Controls.SetChildIndex(cboConta, 0);
             Controls.SetChildIndex(dtpNextDate, 0);
             Controls.SetChildIndex(chkPago, 0);
-            Controls.SetChildIndex(dungeonComboBox1, 0);
+            Controls.SetChildIndex(cboTipo, 0);
             ResumeLayout(false);
         }
 
@@ -277,7 +277,7 @@
         private ReaLTaiizor.Controls.DungeonComboBox cboCategoria;
         private ReaLTaiizor.Controls.DungeonComboBox cboMetodo;
         private ReaLTaiizor.Controls.HopeTextBox txtDescricao;
-        private ReaLTaiizor.Controls.HopeTextBox txtNome;
-        private ReaLTaiizor.Controls.DungeonComboBox dungeonComboBox1;
+        private ReaLTaiizor.Controls.HopeTextBox txtValor;
+        private ReaLTaiizor.Controls.DungeonComboBox cboTipo;
     }
 }

@@ -22,16 +22,18 @@ namespace MyWallet.App
         private IBaseService<Bank> _bankService;
         private IBaseService<Category> _categoryService;
         private IBaseService<Subscription> _subscriptionService;
+        private IBaseService<Transaction> _transactionService;
 
 
 
 
-        public MainForm(IBaseService<Account> accountService, IBaseService<Bank> bankService, IBaseService<Category> categoryService, IBaseService<Subscription> subscriptionService)
+        public MainForm(IBaseService<Account> accountService, IBaseService<Bank> bankService, IBaseService<Category> categoryService, IBaseService<Subscription> subscriptionService, IBaseService<Transaction> transactionService)
         {
             _accountService = accountService;
             _bankService = bankService;
             _categoryService = categoryService;
             _subscriptionService = subscriptionService;
+            _transactionService = transactionService;
 
             InitializeComponent();
 
@@ -39,11 +41,13 @@ namespace MyWallet.App
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView3.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView4.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView5.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             dataGridView1.MultiSelect = false;
             dataGridView2.MultiSelect = false;
             dataGridView3.MultiSelect = false;
             dataGridView4.MultiSelect = false;
+            dataGridView5.MultiSelect = false;
 
 
         }
@@ -72,7 +76,7 @@ namespace MyWallet.App
                             AccountType.Checking => "Conta Corrente",
                             AccountType.Savings => "Poupança",
                             AccountType.CreditCard => "Cartão de Crédito",
-                            _ => c.Type.ToString() 
+                            _ => c.Type.ToString()
                         }
                     })
                     .ToList();
@@ -208,7 +212,6 @@ namespace MyWallet.App
                     dataGridView4.Columns["Valor"].DefaultCellStyle.Format = "C2";
                     dataGridView4.Columns["ProximoVencimento"].DefaultCellStyle.Format = "dd/MM/yyyy";
 
-                    // Ajuste dos títulos das colunas
                     dataGridView4.Columns["ProximoVencimento"].HeaderText = "Vencimento";
                     dataGridView4.Columns["Frequencia"].HeaderText = "Frequência";
                 }
@@ -216,6 +219,65 @@ namespace MyWallet.App
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao carregar assinaturas: " + ex.Message);
+            }
+        }
+
+        private void CarregarGridTransacoes()
+        {
+            try
+            {
+                var includes = new List<string> { "User", "Account", "Category" };
+                var transacoes = _transactionService.Get<Transaction>(includes);
+
+                var transacoesFiltradas = transacoes
+                    .Where(t => t.User != null && t.User.Id == UserSession.UserId)
+                    .OrderByDescending(t => t.TransactionDate)
+                    .Select(t => new
+                    {
+                        Id = t.Id,
+                        Descricao = t.Description,
+                        Valor = t.Amount,
+                        Data = t.TransactionDate,
+
+                        Tipo = t.Type switch
+                        {
+                            TransactionType.Revenue => "Receita",
+                            TransactionType.Expense => "Despesa",
+                            TransactionType.Transfer => "Transferência",
+                            _ => t.Type.ToString()
+                        },
+
+                        Pagamento = t.PaymentType switch
+                        {
+                            PaymentMethod.Cash => "Dinheiro",
+                            PaymentMethod.DebitCard => "Débito",
+                            PaymentMethod.CreditCard => "Crédito",
+                            PaymentMethod.Pix => "Pix",
+                            PaymentMethod.BankSlip => "Boleto",
+                            PaymentMethod.Transfer => "Transferência",
+                            _ => t.PaymentType.ToString()
+                        },
+
+                        Pago = t.IsPaid ? "Sim" : "Não",
+                        Conta = t.Account?.Name ?? "N/A",
+                        Categoria = t.Category?.Name ?? "N/A"
+                    })
+                    .ToList();
+
+                dataGridView5.DataSource = transacoesFiltradas;
+
+                if (dataGridView5.Columns.Count > 0)
+                {
+                    dataGridView5.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dataGridView5.Columns["Id"].Visible = false;
+
+                    dataGridView5.Columns["Valor"].DefaultCellStyle.Format = "C2";
+                    dataGridView5.Columns["Data"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar transações: " + ex.Message);
             }
         }
         #endregion
@@ -324,6 +386,32 @@ namespace MyWallet.App
                 MessageBox.Show("Selecione uma assinatura para excluir.");
             }
         }
+
+        private void btnDeletar5_Click(object sender, EventArgs e)
+        {
+            if (dataGridView5.SelectedRows.Count > 0)
+            {
+                var id = (int)dataGridView5.SelectedRows[0].Cells["Id"].Value;
+
+                if (MessageBox.Show("Deseja realmente excluir esta transação?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        _transactionService.Delete(id);
+                        CarregarGridTransacoes();
+                        MessageBox.Show("Transação excluída com sucesso!");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro ao excluir: {ex.Message}");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma transação para excluir.");
+            }
+        }
         #endregion
 
         #region Editar
@@ -392,12 +480,12 @@ namespace MyWallet.App
         {
             if (dataGridView4.SelectedRows.Count > 0)
             {
-               
+
                 var id = (int)dataGridView4.SelectedRows[0].Cells["Id"].Value;
 
                 var formAssinatura = ConfigureDI.serviceProvider.GetRequiredService<SubscriptionForm>();
 
-                
+
                 formAssinatura.SetEditMode(id);
 
                 if (formAssinatura.ShowDialog() == DialogResult.OK)
@@ -408,6 +496,27 @@ namespace MyWallet.App
             else
             {
                 MessageBox.Show("Selecione uma assinatura para editar.");
+            }
+        }
+
+        private void btnEditar5_Click(object sender, EventArgs e)
+        {
+            if (dataGridView5.SelectedRows.Count > 0)
+            {
+                var id = (int)dataGridView5.SelectedRows[0].Cells["Id"].Value;
+
+                var formTransacao = ConfigureDI.serviceProvider.GetRequiredService<TransactionFrom>();
+
+                formTransacao.SetEditMode(id);
+
+                if (formTransacao.ShowDialog() == DialogResult.OK)
+                {
+                    CarregarGridTransacoes();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma transação para editar.");
             }
         }
         #endregion
@@ -451,6 +560,16 @@ namespace MyWallet.App
             if (formAssinatura.ShowDialog() == DialogResult.OK)
             {
                 CarregarGridAssinaturas();
+            }
+        }
+
+        private void btnCriar5_Click(object sender, EventArgs e)
+        {
+            var formTransacao = ConfigureDI.serviceProvider.GetRequiredService<TransactionFrom>();
+
+            if (formTransacao.ShowDialog() == DialogResult.OK)
+            {
+                CarregarGridTransacoes();
             }
         }
         #endregion
@@ -528,5 +647,11 @@ namespace MyWallet.App
             }
         }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }
